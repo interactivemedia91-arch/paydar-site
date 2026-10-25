@@ -1,0 +1,45 @@
+{
+  "serviceId": "badsvc",
+  "name": "Netflix",
+  "slug": "Bad Slug!",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Open netflix.com/cancelplan in a browser. You can't cancel inside the Netflix app.",
+    "url": "https://www.netflix.com/cancelplan"
+  },
+  "steps": [
+    "one",
+    "two"
+  ],
+  "appleBilled": true,
+  "note": "If you pay through Google Play, Roku or your TV provider, cancel there instead.",
+  "faq": [
+    {
+      "q": "Do I keep watching after I cancel?",
+      "a": "Yes, until the end of your current billing period."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "Netflix doesn't refund partial months."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "Netflix has no pause in the US. If you come back within 10 months, your profiles and history are still there."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Standard with ads, $8.99/mo."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "x",
+      "url": "http://insecure.example.com"
+    }
+  ],
+  "headline": {
+    "plan": "Standard",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}
