@@ -170,6 +170,7 @@ def price_tag(changes: list[Change], plan: str, frequency: str, label: str, toda
 
 
 def plan_cards(changes: list[Change], service_name: str, today: date) -> list[Card]:
+    """One card per plan, cheapest first."""
     plans = list(dict.fromkeys(c.plan for c in changes))
     cards = []
     for plan in plans:
@@ -186,9 +187,11 @@ def plan_cards(changes: list[Change], service_name: str, today: date) -> list[Ca
         else:
             c = past[-1]
             badge, badge_kind = signed(c.new - c.old), _kind(c)
-        cards.append(Card(label=plan or service_name, price=money(_current(series, today)) + per(main),
-                          yearly=yearly, badge=badge, badge_kind=badge_kind))
-    return cards
+        current = _current(series, today)
+        monthly_equivalent = current if main == "monthly" else current / 12
+        cards.append((monthly_equivalent, Card(label=plan or service_name, price=money(current) + per(main),
+                                               yearly=yearly, badge=badge, badge_kind=badge_kind)))
+    return [card for _, card in sorted(cards, key=lambda pair: pair[0])]
 
 
 def chart_bars(changes: list[Change], plan: str, frequency: str, today: date) -> list[Bar]:

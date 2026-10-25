@@ -93,12 +93,12 @@ class CardsAndChartTest(unittest.TestCase):
         [c] = plan_cards(cs, "X", TODAY)
         self.assertEqual((c.price, c.yearly), ("$119/yr", None))
 
-    def test_card_order_and_upcoming_badge(self):  # Discovery+
+    def test_cards_cheapest_first_with_upcoming_badge(self):  # Discovery+
         cs = [ch("Ad-free", "monthly", 8.99, 9.99, "2025-02-07"), ch("With ads", "monthly", 4.99, 5.99, "2025-02-07"),
               ch("Ad-free", "monthly", 9.99, 11.99, "2026-11-12"), ch("With ads", "monthly", 5.99, 6.99, "2026-11-12")]
         cards = plan_cards(cs, "Discovery+", TODAY)
         self.assertEqual([(c.label, c.price, c.badge) for c in cards],
-                         [("Ad-free", "$9.99/mo", "→ $11.99 on Nov 12"), ("With ads", "$5.99/mo", "→ $6.99 on Nov 12")])
+                         [("With ads", "$5.99/mo", "→ $6.99 on Nov 12"), ("Ad-free", "$9.99/mo", "→ $11.99 on Nov 12")])
 
     def test_only_upcoming_uses_old_price(self):
         cs = [ch("Ad-free", "monthly", 9.99, 11.99, "2026-11-12")]
