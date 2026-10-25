@@ -16,15 +16,36 @@
   "appleBilled": true,
   "note": "Got Disney+ through a bundle, your phone carrier, Roku or Amazon? Cancel with whoever bills you.",
   "faq": [
-    {"q": "Do I keep watching after I cancel?", "a": "Yes. The cancellation takes effect at the end of your current billing period, and you can keep watching until then."},
-    {"q": "Can I get a refund?", "a": "Normally no. Disney+ doesn't refund or credit the unused part of a billing period."},
-    {"q": "Does cancelling delete my account?", "a": "No. Your Disney account stays; deleting it is a separate option in your account settings."},
-    {"q": "Is there a cheaper plan?", "a": "Disney+ Basic, with ads, is the cheapest plan in the US at $12.49/mo."}
+    {
+      "q": "Do I keep watching after I cancel?",
+      "a": "Yes. The cancellation takes effect at the end of your current billing period, and you can keep watching until then."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "Normally no. Disney+ doesn't refund or credit the unused part of a billing period."
+    },
+    {
+      "q": "Does cancelling delete my account?",
+      "a": "No. Your Disney account stays; deleting it is a separate option in your account settings."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Disney+ Basic, with ads, is the cheapest plan in the US at {price:Basic}."
+    }
   ],
   "cancelSources": [
-    {"label": "Disney+ Subscriber Agreement (cancellation and refunds)", "url": "https://www.disneyplus.com/legal/subscriber-agreement"},
-    {"label": "SlashGear: How to cancel your Disney+ subscription", "url": "https://www.slashgear.com/1496875/how-to-cancel-disney-plus-subscription-guide"}
+    {
+      "label": "Disney+ Subscriber Agreement (cancellation and refunds)",
+      "url": "https://www.disneyplus.com/legal/subscriber-agreement"
+    },
+    {
+      "label": "SlashGear: How to cancel your Disney+ subscription",
+      "url": "https://www.slashgear.com/1496875/how-to-cancel-disney-plus-subscription-guide"
+    }
   ],
-  "headline": {"plan": "Premium", "frequency": "monthly"},
+  "headline": {
+    "plan": "Premium",
+    "frequency": "monthly"
+  },
   "planAliases": {}
 }

@@ -30,7 +30,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "ESPN Select is $13.99/mo in the US, against $31.99/mo for ESPN Unlimited."
+      "a": "ESPN Select is {price:ESPN Select} in the US, against {price:ESPN Unlimited} for ESPN Unlimited."
     }
   ],
   "cancelSources": [

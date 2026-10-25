@@ -59,7 +59,7 @@ class Row:
     effective: date
     when: str
     lines: list[str]
-    source: str
+    sources: list[str]
 
 
 def _is_price(v) -> bool:
@@ -165,7 +165,7 @@ def price_tag(changes: list[Change], plan: str, frequency: str, label: str, toda
     name = plan or label
     if last.effective > today - RECENT:
         return Tag(_kind(last), f"{name} is now {money(last.new)}{per(frequency)} · "
-                                f"{signed(last.new - last.old)} since {MONTHS[last.effective.month - 1]}")
+                                f"{signed(last.new - last.old)} since {MONTHS[last.effective.month - 1]} {last.effective.year}")
     return Tag("flat", f"{name}: {money(last.new)}{per(frequency)}")
 
 
@@ -179,14 +179,17 @@ def plan_cards(changes: list[Change], service_name: str, today: date) -> list[Ca
         series = _series(changes, plan, main)
         yearly = None
         if main == "monthly" and "annual" in freqs:
-            yearly = f"or {money(_current(_series(changes, plan, 'annual'), today))}/yr"
+            annual = _series(changes, plan, "annual")
+            # A yearly price older than the monthly one is probably out of date: leave it out.
+            if annual[-1].effective >= series[-1].effective:
+                yearly = f"or {money(_current(annual, today))}/yr"
         past, upcoming = _split(series, today)
         if upcoming:
             c = upcoming[0]
             badge, badge_kind = f"→ {money(c.new)} {_on(c)}", _kind(c)
         else:
             c = past[-1]
-            badge, badge_kind = signed(c.new - c.old), _kind(c)
+            badge, badge_kind = f"{signed(c.new - c.old)} · {_mon_year(c.effective)}", _kind(c)
         current = _current(series, today)
         monthly_equivalent = current if main == "monthly" else current / 12
         cards.append((monthly_equivalent, Card(label=plan or service_name, price=money(current) + per(main),
@@ -200,7 +203,8 @@ def chart_bars(changes: list[Change], plan: str, frequency: str, today: date) ->
         return []
     first = series[0]
     bars = [Bar(f"Before {_mon_year(first.effective)}", first.old, money(first.old), False)]
-    bars += [Bar(_mon_year(c.effective), c.new, money(c.new), c.effective > today) for c in series]
+    bars += [Bar(_mon_year(c.effective) + (" (coming)" if c.effective > today else ""), c.new, money(c.new),
+                 c.effective > today) for c in series]
     return bars
 
 
@@ -212,9 +216,30 @@ def increase_rows(us: list[Change], names: dict[str, str], today: date) -> tuple
             groups.setdefault((c.service_id, c.effective), []).append(c)
     rows = []
     for (sid, effective), cs in groups.items():
-        lines = [f"{c.plan or names.get(sid, sid)} {money(c.old)} → {money(c.new)}{per(c.frequency)}" for c in cs]
+        lines = [f"{c.plan or names.get(sid, sid)} {money(c.old)} → {money(c.new)}{per(c.frequency)} "
+                 f"({signed(c.new - c.old)})" for c in cs]
         approx = next((c for c in cs if c.approx_month), cs[0])
-        rows.append(Row(service_id=sid, effective=effective, when=_when(approx), lines=lines, source=cs[0].source))
+        sources = list(dict.fromkeys(c.source for c in cs if c.source))
+        rows.append(Row(service_id=sid, effective=effective, when=_when(approx), lines=lines, sources=sources))
     upcoming = sorted((r for r in rows if r.effective > today), key=lambda r: (r.effective, r.service_id))
     past = sorted((r for r in rows if r.effective <= today), key=lambda r: (r.effective, r.service_id), reverse=True)
     return upcoming, past
+
+
+PRICE_TOKEN = re.compile(r"\{(price|monthly|yearly):([^}]*)\}")
+
+
+def fill_prices(text: str, changes: list[Change], today: date) -> str:
+    """Replaces {price:Plan}, {monthly:Plan} and {yearly:Plan} with that plan's current price
+    ("$8.99/mo"); {price:...} picks monthly when the plan has it. Plan "" means no plan name.
+    Raises ValueError when the plan or frequency has no data, so a stale FAQ fails the build."""
+    def sub(m: re.Match) -> str:
+        kind, plan = m.group(1), m.group(2)
+        freqs = {c.frequency for c in changes if c.plan == plan}
+        frequency = {"monthly": "monthly", "yearly": "annual"}.get(kind) or (
+            "monthly" if "monthly" in freqs else "annual")
+        series = _series(changes, plan, frequency)
+        if not series:
+            raise ValueError(f"no {frequency} US price for plan '{plan}' in {m.group(0)}")
+        return money(_current(series, today)) + per(frequency)
+    return PRICE_TOKEN.sub(sub, text)

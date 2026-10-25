@@ -43,10 +43,10 @@ class ContentTest(unittest.TestCase):
         self.assertIn("foo.json: serviceId", str(cm.exception))
 
     def test_real_content_dir_is_valid(self):
-        self.assertTrue(load_services(Path("content/services")))
+        self.assertTrue(load_services(Path(__file__).resolve().parents[2] / "content" / "services"))
 
     def test_site_config(self):
-        site = load_site(Path("content/site.json"))
+        site = load_site(Path(__file__).resolve().parents[2] / "content" / "site.json")
         self.assertEqual((site.base_url, site.app_id), ("https://getpaydarapp.com", "6786868155"))
         self.assertEqual(site.prices_url, "https://interactivemedia91-arch.github.io/prices.json")
 

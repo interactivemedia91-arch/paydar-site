@@ -29,7 +29,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Spotify Premium Student is $6.99/mo in the US for eligible students."
+      "a": "Spotify Premium Student is {price:Student} in the US for eligible students."
     }
   ],
   "cancelSources": [

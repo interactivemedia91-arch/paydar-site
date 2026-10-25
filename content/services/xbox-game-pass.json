@@ -26,7 +26,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "PC Game Pass is $13.99/mo in the US if you only play on PC."
+      "a": "PC Game Pass is {price:PC Game Pass} in the US if you only play on PC."
     }
   ],
   "cancelSources": [

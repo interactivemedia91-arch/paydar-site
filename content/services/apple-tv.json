@@ -30,7 +30,7 @@
     },
     {
       "q": "Is there a cheaper option?",
-      "a": "Paying yearly, at $119/yr, costs less than twelve monthly payments of $14.99."
+      "a": "Paying yearly, at {yearly:}, costs less than twelve monthly payments of {monthly:}."
     }
   ],
   "cancelSources": [

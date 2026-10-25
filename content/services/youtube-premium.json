@@ -26,7 +26,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Premium Lite, with fewer features, is $8.99/mo in the US."
+      "a": "Premium Lite, with fewer features, is {price:Lite} in the US."
     }
   ],
   "cancelSources": [

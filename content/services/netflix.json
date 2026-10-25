@@ -16,15 +16,36 @@
   "appleBilled": true,
   "note": "No cancel option on the page? Then a partner bills you (for example your phone, internet or TV provider), and you cancel with them instead.",
   "faq": [
-    {"q": "Do I keep watching after I cancel?", "a": "Yes. You can keep using Netflix until the end of the billing period you've already paid for, and you won't be charged again."},
-    {"q": "Can I get a refund?", "a": "No. Netflix's terms say payments are non-refundable and there are no refunds or credits for partial months."},
-    {"q": "Does deleting the app cancel my membership?", "a": "No. Signing out or deleting the app doesn't cancel anything; you have to finish the cancellation on your account page."},
-    {"q": "Is there a cheaper plan?", "a": "Standard with ads is the cheapest Netflix plan in the US, at $8.99/mo."}
+    {
+      "q": "Do I keep watching after I cancel?",
+      "a": "Yes. You can keep using Netflix until the end of the billing period you've already paid for, and you won't be charged again."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "No. Netflix's terms say payments are non-refundable and there are no refunds or credits for partial months."
+    },
+    {
+      "q": "Does deleting the app cancel my membership?",
+      "a": "No. Signing out or deleting the app doesn't cancel anything; you have to finish the cancellation on your account page."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Standard with ads is the cheapest Netflix plan in the US, at {price:Standard with ads}."
+    }
   ],
   "cancelSources": [
-    {"label": "Netflix Help Center: How to cancel Netflix", "url": "https://help.netflix.com/en/node/407"},
-    {"label": "Netflix Terms of Use", "url": "https://help.netflix.com/legal/termsofuse"}
+    {
+      "label": "Netflix Help Center: How to cancel Netflix",
+      "url": "https://help.netflix.com/en/node/407"
+    },
+    {
+      "label": "Netflix Terms of Use",
+      "url": "https://help.netflix.com/legal/termsofuse"
+    }
   ],
-  "headline": {"plan": "Standard", "frequency": "monthly"},
+  "headline": {
+    "plan": "Standard",
+    "frequency": "monthly"
+  },
   "planAliases": {}
 }

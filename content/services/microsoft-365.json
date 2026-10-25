@@ -30,7 +30,7 @@
     },
     {
       "q": "Is there a cheaper option?",
-      "a": "Paying yearly, at $99.99/yr for Personal, costs less than twelve monthly payments of $9.99."
+      "a": "Paying yearly, at {yearly:Personal} for Personal, costs less than twelve monthly payments of {monthly:Personal}."
     }
   ],
   "cancelSources": [

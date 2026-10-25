@@ -40,6 +40,7 @@ jobs:
       # GitHub disables scheduled workflows in public repos after 60 days without activity.
       - name: Keepalive
         if: github.event_name == 'schedule'
+        continue-on-error: true  # a failed keepalive push must not block the day's deploy
         run: |
           last=$(git log -1 --format=%ct)
           if [ $(( $(date +%s) - last )) -gt $(( 50 * 24 * 3600 )) ]; then

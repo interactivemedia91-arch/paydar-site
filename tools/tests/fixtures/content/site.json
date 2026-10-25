@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://getpaydarapp.com",
+  "appId": "6786868155",
+  "providerToken": "123",
+  "privacyUrl": "https://gist.github.com/x/privacy",
+  "supportEmail": "help@example.com",
+  "pricesUrl": "https://example.com/prices.json"
+}

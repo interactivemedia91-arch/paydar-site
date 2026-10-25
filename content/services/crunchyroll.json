@@ -29,7 +29,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "The Fan plan is the cheapest Premium tier in the US, at $9.99/mo."
+      "a": "The Fan plan is the cheapest Premium tier in the US, at {price:Fan}."
     }
   ],
   "cancelSources": [

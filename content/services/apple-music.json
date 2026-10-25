@@ -30,7 +30,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Apple Music Student is $6.99/mo in the US for eligible students."
+      "a": "Apple Music Student is {price:Student} in the US for eligible students."
     }
   ],
   "cancelSources": [

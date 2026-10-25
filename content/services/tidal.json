@@ -13,7 +13,7 @@
     "Select Cancel Subscription and confirm."
   ],
   "appleBilled": true,
-  "note": "Pay through Google Play or a mobile carrier? Cancel with them.",
+  "note": "Pay through Google Play? Cancel in your Google Play subscriptions.",
   "faq": [
     {
       "q": "Can I cancel at any time?",
@@ -25,7 +25,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Tidal Student is $6.99/mo in the US for eligible students."
+      "a": "Tidal Student is {price:Student} in the US for eligible students."
     }
   ],
   "cancelSources": [

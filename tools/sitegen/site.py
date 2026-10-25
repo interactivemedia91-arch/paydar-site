@@ -11,6 +11,10 @@ from .render import home_page, increases_page, service_page
 STALE_AFTER_MONTHS = 6
 
 
+class BuildError(Exception):
+    """Something that would publish wrong or missing prices; the run must fail."""
+
+
 def _months_old(checked: str, today: date) -> int:
     year, month = (int(x) for x in checked.split("-"))
     return (today.year * 12 + today.month) - (year * 12 + month)
@@ -43,7 +47,9 @@ def _sitemap(site: SiteConfig, services: list[Service], today: date) -> str:
 def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dict, today: date,
                static_dir: Path) -> list[str]:
     changes = parse_changes(prices)
-    warnings = []
+    if not any(c.country == "US" for c in changes):
+        raise BuildError("prices.json has no usable US changes")
+    warnings, errors = [], []
     if not site.provider_token:
         warnings.append("NO PROVIDER TOKEN: App Store links carry no campaign")
 
@@ -53,8 +59,14 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
             warnings.append(f"STALE {s.slug}: checked {s.checked}")
         if s.headline_plan is not None and not any(
                 c.plan == s.headline_plan and c.frequency == s.headline_frequency for c in us):
-            warnings.append(f"HEADLINE NOT FOUND {s.slug}: {s.headline_plan} {s.headline_frequency}")
-        _write(out / "cancel" / s.slug / "index.html", service_page(site, s, us, today))
+            errors.append(f"HEADLINE NOT FOUND {s.slug}: {s.headline_plan} {s.headline_frequency}")
+            continue
+        try:
+            _write(out / "cancel" / s.slug / "index.html", service_page(site, s, us, today))
+        except ValueError as e:  # an FAQ price placeholder with no data behind it
+            errors.append(f"PRICE NOT FOUND {s.slug}: {e}")
+    if errors:
+        raise BuildError("\n".join(errors))
 
     known = {s.service_id for s in services}
     for sid in sorted({c.service_id for c in changes if c.country == "US"} - known):

@@ -30,7 +30,7 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Peacock Premium is $12.99/mo in the US, or $129.99/yr if you pay yearly."
+      "a": "Peacock Premium is {monthly:Premium} in the US, or {yearly:Premium} if you pay yearly."
     }
   ],
   "cancelSources": [

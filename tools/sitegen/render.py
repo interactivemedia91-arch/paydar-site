@@ -6,7 +6,7 @@ from html import escape
 from urllib.parse import quote, urlparse
 
 from .content import Service, SiteConfig
-from .prices import MONTHS, Change, chart_bars, increase_rows, plan_cards, price_tag
+from .prices import MONTHS, Change, chart_bars, fill_prices, increase_rows, plan_cards, price_tag
 
 APPLE_NOTE = ("<strong>Paying through Apple?</strong> Then Apple bills you. "
               "Cancel in Settings → your name → Subscriptions instead.")
@@ -44,6 +44,12 @@ def read_minutes(service: Service) -> int:
 def _checked(service: Service) -> str:
     year, month = service.checked.split("-")
     return f"{MONTHS[int(month) - 1]} {year}"
+
+
+def _source_link(url: str, label: str | None = None) -> str:
+    """A link for http(s) URLs only; anything else from the data is shown as plain text."""
+    text = esc(label if label is not None else _host(url))
+    return f'<a href="{esc(url)}">{text}</a>' if url.startswith(("https://", "http://")) else text
 
 
 def _host(url: str) -> str:
@@ -171,8 +177,9 @@ def _prices_html(site: SiteConfig, service: Service, us: list[Change], today: da
 """
 
 
-def _faq_html(service: Service) -> str:
-    items = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in service.faq)
+def _faq_html(service: Service, us: list[Change], today: date) -> str:
+    items = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(fill_prices(a, us, today))}</dd></div>'
+                    for q, a in service.faq)
     return f"""      <section class="faq">
         <h2 class="section-title">Common questions</h2>
         <dl class="faq-list">{items}</dl>
@@ -184,9 +191,9 @@ def _sources_html(service: Service, us: list[Change]) -> str:
     lines = []
     price_sources = list(dict.fromkeys(c.source for c in us if c.source))
     if price_sources and service.headline_plan is not None:
-        links = ", ".join(f'<a href="{esc(s)}">{esc(_host(s))}</a>' for s in price_sources)
+        links = ", ".join(_source_link(s) for s in price_sources)
         lines.append(f"<p>Prices: {links}</p>")
-    links = ", ".join(f'<a href="{esc(u)}">{esc(label)}</a>' for label, u in service.cancel_sources)
+    links = ", ".join(_source_link(u, label) for label, u in service.cancel_sources)
     lines.append(f"<p>Cancel steps: {links}</p>")
     return f"""      <section class="sources">
         <h2>Sources</h2>
@@ -210,7 +217,7 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
             + _notes_html(service)
             + _paydar_card(site, "seo-" + service.slug, f"{service.name} is one. What about the rest?", CARD_TEXT) + "\n"
             + _prices_html(site, service, us, today)
-            + _faq_html(service)
+            + _faq_html(service, us, today)
             + _sources_html(service, us))
     return _shell(site, title=title, description=description, path=f"/cancel/{service.slug}/",
                   ct="seo-" + service.slug, body=body, footer_note=f"Not affiliated with {service.name}.")
@@ -225,6 +232,10 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
         label = esc(names.get(sid) or sid.replace("-", " ").title())
         return f'<a class="{cls}" href="/cancel/{esc(slugs[sid])}/">{label}</a>' if sid in slugs else f'<span class="{cls}">{label}</span>'
 
+    def sources_html(sources: list[str]) -> str:
+        label = "Source" if len(sources) == 1 else "Sources"
+        return f"{label}: " + ", ".join(_source_link(s) for s in sources)
+
     def lines_html(lines: list[str]) -> str:
         return "".join(f"<li>{esc(line)}</li>" for line in lines)
 
@@ -232,7 +243,7 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
         coming = "".join(
             f'<div class="upcoming-card"><h3 class="service-heading">{name_html(r.service_id, "row-name")}</h3>'
             f'<p class="upcoming-date">{esc(r.when)}</p><ul class="row-lines">{lines_html(r.lines)}</ul>'
-            f'<p class="row-source">Source: <a href="{esc(r.source)}">{esc(_host(r.source))}</a></p></div>'
+            f'<p class="row-source">{sources_html(r.sources)}</p></div>'
             for r in upcoming)
     else:
         coming = '<p class="empty">No announced increases right now.</p>'
@@ -240,7 +251,7 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
         f'<div class="recent-row"><div class="recent-top">{name_html(r.service_id, "recent-name")}'
         f'<time datetime="{r.effective.isoformat()}">{esc(r.when)}</time></div>'
         f'<ul class="row-lines">{lines_html(r.lines)}</ul>'
-        f'<p class="row-source">Source: <a href="{esc(r.source)}">{esc(_host(r.source))}</a></p></div>'
+        f'<p class="row-source">{sources_html(r.sources)}</p></div>'
         for r in past)
     updated = f"{MONTHS[today.month - 1][:3]} {today.day}, {today.year}"
     body = f"""      <h1 class="page-title">Subscription price increases (US)</h1>
