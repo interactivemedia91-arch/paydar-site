@@ -222,7 +222,7 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
     upcoming, past = increase_rows(us_all, names, today)
 
     def name_html(sid: str, cls: str) -> str:
-        label = esc(names.get(sid, sid))
+        label = esc(names.get(sid) or sid.replace("-", " ").title())
         return f'<a class="{cls}" href="/cancel/{esc(slugs[sid])}/">{label}</a>' if sid in slugs else f'<span class="{cls}">{label}</span>'
 
     def lines_html(lines: list[str]) -> str:

@@ -105,7 +105,7 @@ class OtherPagesTest(unittest.TestCase):
         self.assertLess(html.find("Coming up"), html.find("Recently"))
         self.assertIn("Updated Oct 25, 2026", html)
         self.assertIn('href="/cancel/netflix/"', html)
-        self.assertIn("unknown-service", html)
+        self.assertIn("Unknown Service", html)
         self.assertNotIn('href="/cancel/unknown-service/"', html)
         self.assertIn("ct=seo-price-increases", html)
 
