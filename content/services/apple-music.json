@@ -1,0 +1,47 @@
+{
+  "serviceId": "apple-music",
+  "name": "Apple Music",
+  "slug": "apple-music",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at music.apple.com, open your account settings and manage subscriptions. On iPhone: Settings → your name → Subscriptions.",
+    "url": "https://music.apple.com"
+  },
+  "steps": [
+    "Go to music.apple.com in a web browser and sign in with your Apple Account.",
+    "Open your account menu, then Settings.",
+    "Under Subscriptions, select Manage.",
+    "Select Cancel Subscription. If the site won't let you, cancel on iPhone in Settings → your name → Subscriptions → Apple Music."
+  ],
+  "appleBilled": false,
+  "note": "Pay for Apple Music through Google Play? Cancel in the Apple Music app on Android or at play.google.com.",
+  "faq": [
+    {
+      "q": "What happens to my music?",
+      "a": "Catalog music stops playing when the paid period ends. Music you had on your device before subscribing stays, and Sync Library turns off."
+    },
+    {
+      "q": "There's no Cancel button. Why?",
+      "a": "Then the subscription is already cancelled. If it says Expires instead of Renews, it simply ends on that date."
+    },
+    {
+      "q": "Does deleting the app cancel Apple Music?",
+      "a": "No. Deleting the app doesn't cancel the subscription."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Apple Music Student is $6.99/mo in the US for eligible students."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Apple Support: How to cancel Apple Music",
+      "url": "https://support.apple.com/en-us/HT212047"
+    }
+  ],
+  "headline": {
+    "plan": "Individual",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

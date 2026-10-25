@@ -1,0 +1,46 @@
+{
+  "serviceId": "crunchyroll",
+  "name": "Crunchyroll",
+  "slug": "crunchyroll",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at crunchyroll.com, open Settings → Membership Info and cancel. Billed by Apple or Google? Cancel there instead.",
+    "url": "https://www.crunchyroll.com"
+  },
+  "steps": [
+    "Sign in at crunchyroll.com in a web browser.",
+    "Open Settings, then Membership Info, to see how you're billed.",
+    "If Crunchyroll bills you directly, choose to cancel your membership and confirm."
+  ],
+  "appleBilled": true,
+  "note": "Billed through Apple or Google? The website won't show a cancel option. In the Crunchyroll app go to Membership → Manage → Cancel Subscription. PlayStation and other partner subscriptions also show on Membership Info.",
+  "faq": [
+    {
+      "q": "Do I keep Premium after cancelling?",
+      "a": "Yes. You keep all Premium perks until your membership expires at the end of the billing period."
+    },
+    {
+      "q": "Does deleting my account stop the charges?",
+      "a": "No. Cancel your Premium membership first, then delete the account."
+    },
+    {
+      "q": "Why was I charged after cancelling?",
+      "a": "Usually a renewal was already processing, you have a second account under another email, or Apple or Google bills you separately."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "The Fan plan is the cheapest Premium tier in the US, at $9.99/mo."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Crunchyroll Help: How do I cancel my membership?",
+      "url": "https://help.crunchyroll.com/hc/en-us/articles/17931128982164-How-do-I-cancel-my-membership-"
+    }
+  ],
+  "headline": {
+    "plan": "Fan",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

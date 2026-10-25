@@ -1,0 +1,43 @@
+{
+  "serviceId": "amazon-music",
+  "name": "Amazon Music Unlimited",
+  "slug": "amazon-music",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Open Your Amazon Music Settings at amazon.com/music/settings and choose Cancel subscription under Subscription Renewal.",
+    "url": "https://www.amazon.com/music/settings"
+  },
+  "steps": [
+    "Sign in at amazon.com and open Your Amazon Music Settings.",
+    "Find the Amazon Music Unlimited section.",
+    "Under Subscription Renewal details, select Cancel subscription.",
+    "Confirm the cancellation."
+  ],
+  "appleBilled": true,
+  "note": "Signed up through Google or your mobile carrier? Cancel with them; they also handle refunds.",
+  "faq": [
+    {
+      "q": "What happens after I cancel?",
+      "a": "You keep Amazon Music Unlimited until your plan ends. After that, songs and podcasts in your library are greyed out."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "Eligible monthly plans bought from Amazon can be paused. Annual plans, free trials, promotions and plans billed by Apple, Google or a carrier can't."
+    },
+    {
+      "q": "Does this cancel Amazon Prime?",
+      "a": "No. Amazon Music Unlimited is a separate subscription; your Prime membership isn't affected."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Amazon Help: Cancel Your Amazon Music Unlimited Subscription",
+      "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GCRZL3F2UZMNP3T3"
+    }
+  ],
+  "headline": {
+    "plan": "Unlimited (Prime)",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

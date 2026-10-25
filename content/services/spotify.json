@@ -1,0 +1,46 @@
+{
+  "serviceId": "spotify",
+  "name": "Spotify",
+  "slug": "spotify",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at spotify.com/account in a browser, open Manage your plan and select Cancel subscription.",
+    "url": "https://www.spotify.com/account/"
+  },
+  "steps": [
+    "Sign in at spotify.com/account in a web browser.",
+    "Open Manage your plan.",
+    "Select Cancel subscription and confirm."
+  ],
+  "appleBilled": false,
+  "note": "Don't see a cancel option? A partner such as your mobile or internet provider bills you. Check Payment under Manage your plan and contact them.",
+  "faq": [
+    {
+      "q": "When does Premium stop?",
+      "a": "Premium stays until your next billing date, then your account switches to the free plan. If you cancel during a free trial, you move to free right away."
+    },
+    {
+      "q": "Do I lose my playlists?",
+      "a": "No. Your playlists and saved music stay, and you can keep listening on the free plan with ads."
+    },
+    {
+      "q": "I'm on a Family or Duo plan. Can I cancel?",
+      "a": "Only the plan manager can cancel. Members can leave the plan, which takes them off it but doesn't cancel it."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Spotify Premium Student is $6.99/mo in the US for eligible students."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Spotify Support: Cancel Premium",
+      "url": "https://support.spotify.com/us/article/cancel-premium/"
+    }
+  ],
+  "headline": {
+    "plan": "Individual",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

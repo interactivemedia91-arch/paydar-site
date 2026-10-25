@@ -1,0 +1,43 @@
+{
+  "serviceId": "youtube-music",
+  "name": "YouTube Music Premium",
+  "slug": "youtube-music",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Go to youtube.com/paid_memberships, choose YouTube Music Premium and cancel. Joined in the iPhone app? Cancel in your Apple account.",
+    "url": "https://www.youtube.com/paid_memberships"
+  },
+  "steps": [
+    "Go to youtube.com/paid_memberships in a web browser and sign in with the account that pays.",
+    "Next to YouTube Music Premium, select Manage membership.",
+    "Choose the option to cancel and confirm.",
+    "Check the Status on that page to make sure the membership is ending."
+  ],
+  "appleBilled": true,
+  "note": "Pay through Google Play? Cancel in your Google Play account settings.",
+  "faq": [
+    {
+      "q": "When does Music Premium stop?",
+      "a": "Your benefits continue until the end of the billing period, and you won't be charged again unless you re-subscribe."
+    },
+    {
+      "q": "I have YouTube Premium. Do I cancel YouTube Music separately?",
+      "a": "No. YouTube Premium already includes YouTube Music Premium; cancelling YouTube Premium ends both."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "Yes. YouTube lets you pause a paid membership instead of cancelling it."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "YouTube Help: Cancel your YouTube paid membership",
+      "url": "https://support.google.com/youtube/answer/6308278?hl=en"
+    }
+  ],
+  "headline": {
+    "plan": "Individual",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

@@ -1,0 +1,43 @@
+{
+  "serviceId": "youtube-premium",
+  "name": "YouTube Premium",
+  "slug": "youtube-premium",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Go to youtube.com/paid_memberships, choose your membership and cancel. Joined in the iPhone app? Cancel in your Apple account.",
+    "url": "https://www.youtube.com/paid_memberships"
+  },
+  "steps": [
+    "Go to youtube.com/paid_memberships in a web browser and sign in.",
+    "Next to YouTube Premium, select Manage membership.",
+    "Choose the option to cancel and confirm.",
+    "Check the Status on that page to make sure the membership is ending."
+  ],
+  "appleBilled": true,
+  "note": "Pay through Google Play? Cancel in your Google Play account settings.",
+  "faq": [
+    {
+      "q": "Do I keep Premium after cancelling?",
+      "a": "Yes. Your benefits continue until the end of the billing period, and you won't be charged again unless you re-subscribe."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "Yes. YouTube lets you pause a paid membership instead of cancelling it."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Premium Lite, with fewer features, is $8.99/mo in the US."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "YouTube Help: Cancel your YouTube paid membership",
+      "url": "https://support.google.com/youtube/answer/6308278?hl=en"
+    }
+  ],
+  "headline": {
+    "plan": "Individual",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

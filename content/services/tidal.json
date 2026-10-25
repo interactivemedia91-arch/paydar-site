@@ -1,0 +1,42 @@
+{
+  "serviceId": "tidal",
+  "name": "Tidal",
+  "slug": "tidal",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at account.tidal.com, open Subscription and select Cancel Subscription.",
+    "url": "https://account.tidal.com"
+  },
+  "steps": [
+    "Sign in at account.tidal.com in a web browser.",
+    "Open Subscription.",
+    "Select Cancel Subscription and confirm."
+  ],
+  "appleBilled": true,
+  "note": "Pay through Google Play or a mobile carrier? Cancel with them.",
+  "faq": [
+    {
+      "q": "Can I cancel at any time?",
+      "a": "Yes. Tidal lets you cancel a subscription or a free trial at any time."
+    },
+    {
+      "q": "Tidal isn't in my Apple subscriptions. Why?",
+      "a": "Then Apple probably doesn't bill you. Check account.tidal.com or your Google Play subscriptions instead."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Tidal Student is $6.99/mo in the US for eligible students."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Tidal Support: Cancel TIDAL subscription or trial",
+      "url": "https://support.tidal.com/hc/en-us/articles/201314601-Cancel-TIDAL-Subscription-or-Trial"
+    }
+  ],
+  "headline": {
+    "plan": "Individual",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}
