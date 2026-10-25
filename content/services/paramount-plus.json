@@ -1,0 +1,51 @@
+{
+  "serviceId": "paramount-plus",
+  "name": "Paramount+",
+  "slug": "paramount-plus",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at paramountplus.com in a browser, open Account and select Cancel Subscription.",
+    "url": "https://www.paramountplus.com/account/"
+  },
+  "steps": [
+    "Go to paramountplus.com in a web browser and sign in.",
+    "Select your profile name in the top corner, then Account.",
+    "Scroll down and select Cancel Subscription.",
+    "Follow the prompts to confirm."
+  ],
+  "appleBilled": true,
+  "note": "Subscribed through Google Play, Amazon, Roku or Prime Video Channels? Cancel there; the Paramount+ website can't cancel those.",
+  "faq": [
+    {
+      "q": "Got Paramount+ as a Prime Video Channel?",
+      "a": "Cancel it in your Amazon account under Memberships & Subscriptions. It keeps running even if you end Amazon Prime."
+    },
+    {
+      "q": "Why isn't there a cancel option on my Account page?",
+      "a": "Usually because Apple, Google Play, Amazon or Roku bills you. You cancel in that platform's subscription settings."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Paramount+ Essential, with ads, is $8.99/mo in the US."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Pocket-lint: How to cancel Paramount+",
+      "url": "https://www.pocket-lint.com/tv/news/163662-how-to-cancel-paramount-plus"
+    },
+    {
+      "label": "Online Tech Tips: Cancel Paramount+ on any device",
+      "url": "https://www.online-tech-tips.com/how-to-cancel-your-paramount-plus-subscription-on-any-device/"
+    },
+    {
+      "label": "Amazon Help: Prime Video subscriptions continue after Prime ends",
+      "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GTJQ7QZY7QL2HK4Y"
+    }
+  ],
+  "headline": {
+    "plan": "Premium",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

@@ -4,25 +4,26 @@
   "slug": "netflix",
   "checked": "2026-10",
   "fastest": {
-    "text": "Open netflix.com/cancelplan in a browser. You can't cancel inside the Netflix app.",
+    "text": "Open netflix.com/cancelplan in a browser, sign in, then select Cancel and Finish Cancellation.",
     "url": "https://www.netflix.com/cancelplan"
   },
   "steps": [
-    "Sign in at netflix.com in a browser (you can't cancel inside the app).",
-    "Open the account menu and go to Account.",
-    "Under Membership & Billing, tap Cancel Membership.",
-    "Confirm with Finish Cancellation."
+    "Go to netflix.com/cancelplan in a web browser and sign in if asked.",
+    "Select Cancel.",
+    "Under Cancel, select Finish Cancellation.",
+    "Look for Netflix's confirmation email so you know it went through."
   ],
   "appleBilled": true,
-  "note": "If you pay through Google Play, Roku or your TV provider, cancel there instead.",
+  "note": "No cancel option on the page? Then a partner bills you (for example your phone, internet or TV provider), and you cancel with them instead.",
   "faq": [
-    {"q": "Do I keep watching after I cancel?", "a": "Yes, until the end of your current billing period."},
-    {"q": "Can I get a refund?", "a": "Netflix doesn't refund partial months."},
-    {"q": "Can I pause instead?", "a": "Netflix has no pause in the US. If you come back within 10 months, your profiles and history are still there."},
-    {"q": "Is there a cheaper plan?", "a": "Standard with ads, $8.99/mo."}
+    {"q": "Do I keep watching after I cancel?", "a": "Yes. You can keep using Netflix until the end of the billing period you've already paid for, and you won't be charged again."},
+    {"q": "Can I get a refund?", "a": "No. Netflix's terms say payments are non-refundable and there are no refunds or credits for partial months."},
+    {"q": "Does deleting the app cancel my membership?", "a": "No. Signing out or deleting the app doesn't cancel anything; you have to finish the cancellation on your account page."},
+    {"q": "Is there a cheaper plan?", "a": "Standard with ads is the cheapest Netflix plan in the US, at $8.99/mo."}
   ],
   "cancelSources": [
-    {"label": "Netflix Help Center: How to cancel Netflix", "url": "https://help.netflix.com/en/node/407"}
+    {"label": "Netflix Help Center: How to cancel Netflix", "url": "https://help.netflix.com/en/node/407"},
+    {"label": "Netflix Terms of Use", "url": "https://help.netflix.com/legal/termsofuse"}
   ],
   "headline": {"plan": "Standard", "frequency": "monthly"},
   "planAliases": {}

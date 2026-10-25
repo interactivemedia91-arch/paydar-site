@@ -1,0 +1,51 @@
+{
+  "serviceId": "apple-tv",
+  "name": "Apple TV",
+  "slug": "apple-tv",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "On iPhone: Settings → your name → Subscriptions → Apple TV → Cancel Subscription. On the web, use Apple's subscriptions page.",
+    "url": "https://apps.apple.com/account/subscriptions"
+  },
+  "steps": [
+    "Open the Settings app on your iPhone or iPad and tap your name.",
+    "Tap Subscriptions.",
+    "Tap Apple TV.",
+    "Tap Cancel Subscription (you may need to scroll down)."
+  ],
+  "appleBilled": false,
+  "note": "Getting Apple TV through Apple One? Then you cancel Apple One or switch to an Apple One plan without it.",
+  "faq": [
+    {
+      "q": "Can I cancel on the web?",
+      "a": "Yes. Sign in with your Apple Account on Apple's subscriptions page and follow the prompts."
+    },
+    {
+      "q": "I don't see a Cancel button. Why?",
+      "a": "If there's no Cancel button, or you see an expiration message in red, the subscription is already cancelled."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "You can ask Apple at reportaproblem.apple.com: sign in, choose I'd like to → Request a refund, pick the subscription and submit. Apple usually answers within 24 to 48 hours."
+    },
+    {
+      "q": "Is there a cheaper option?",
+      "a": "Paying yearly, at $119/yr, costs less than twelve monthly payments of $14.99."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Apple Support: Cancel a subscription from Apple",
+      "url": "https://support.apple.com/en-us/118428"
+    },
+    {
+      "label": "Apple Support: Request a refund for apps or content",
+      "url": "https://support.apple.com/en-us/118223"
+    }
+  ],
+  "headline": {
+    "plan": "",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

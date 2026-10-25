@@ -1,0 +1,51 @@
+{
+  "serviceId": "peacock",
+  "name": "Peacock",
+  "slug": "peacock",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at peacocktv.com in a browser, open Account → Plans & Payment and select Cancel Plan.",
+    "url": "https://www.peacocktv.com/help/article/cancellation"
+  },
+  "steps": [
+    "Sign in at peacocktv.com in a web browser (the mobile app can't cancel).",
+    "Select Account in the top-right corner.",
+    "On the Plans & Payment tab, select Cancel Plan.",
+    "Confirm with Yes, Cancel. The confirmation email can take a few hours."
+  ],
+  "appleBilled": true,
+  "note": "Subscribed through Google, Roku, Amazon or a provider such as Spectrum? Cancel with them; Peacock can't cancel those plans.",
+  "faq": [
+    {
+      "q": "Can I get a refund?",
+      "a": "No. Peacock doesn't refund or credit earlier payments when you cancel or downgrade, unless the law requires it."
+    },
+    {
+      "q": "When does my plan stop?",
+      "a": "It won't renew at the end of the current billing cycle. After that you can still watch a limited amount of Peacock for free."
+    },
+    {
+      "q": "How do I know who bills me?",
+      "a": "Sign in and look under Plans & Payment, then Your Plan; your payment method is listed there."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "Peacock Premium is $12.99/mo in the US, or $129.99/yr if you pay yearly."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Peacock Help: Cancellation",
+      "url": "https://www.peacocktv.com/help/article/cancellation"
+    },
+    {
+      "label": "How-To Geek: How to cancel your Peacock subscription",
+      "url": "https://www.howtogeek.com/681833/how-to-cancel-your-peacock-subscription-and-change-plans/"
+    }
+  ],
+  "headline": {
+    "plan": "Premium",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

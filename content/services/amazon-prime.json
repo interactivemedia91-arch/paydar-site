@@ -1,0 +1,42 @@
+{
+  "serviceId": "amazon-prime",
+  "name": "Amazon Prime",
+  "slug": "amazon-prime",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Go to amazon.com/gp/primecentral, sign in, then choose Manage membership and End membership.",
+    "url": "https://www.amazon.com/gp/primecentral"
+  },
+  "steps": [
+    "Sign in at amazon.com and open Account & Lists, then Prime Membership.",
+    "Select Manage membership.",
+    "Select End membership and follow the prompts.",
+    "Confirm; Amazon shows the date your Prime benefits end."
+  ],
+  "appleBilled": false,
+  "note": "Prime Video Channels such as Paramount+ keep running after Prime ends; cancel them separately under Memberships & Subscriptions. Signed up through Google Play or another company? Cancel with them.",
+  "faq": [
+    {
+      "q": "Can I get a refund?",
+      "a": "If you haven't used any Prime benefits in the current period, you're eligible for a full refund of that period. Amazon processes it in three to five business days."
+    },
+    {
+      "q": "Do my Prime Video Channels stop too?",
+      "a": "No. Channels such as Paramount+ continue after your Prime membership ends, so cancel them separately."
+    },
+    {
+      "q": "Is there a cheaper option?",
+      "a": "Amazon sells a Prime Video membership on its own for $8.99/mo, and Prime for Young Adults is $7.49/mo for eligible students."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Amazon Help: Cancel Your Amazon Prime Membership",
+      "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GTJQ7QZY7QL2HK4Y"
+    },
+    {
+      "label": "Amazon Help: The Amazon Prime Membership Fee",
+      "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=G34EUPKVMYFW8N2U"
+    }
+  ]
+}

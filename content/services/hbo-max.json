@@ -1,0 +1,29 @@
+{
+  "serviceId": "hbo-max",
+  "name": "HBO Max",
+  "slug": "hbo-max",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Go to hbomax.com/subscription in a browser, sign in and select Cancel Your Subscription.",
+    "url": "https://www.hbomax.com/subscription"
+  },
+  "steps": [
+    "Go to hbomax.com/subscription in a web browser and sign in.",
+    "Check who bills you; it's shown at the top of the screen.",
+    "If HBO Max bills you directly, select Cancel Your Subscription.",
+    "Confirm, and note the expiration date it shows."
+  ],
+  "appleBilled": true,
+  "note": "Billed by Amazon, Google Play, Roku, Samsung or your internet, mobile or TV provider? Cancel with them; the HBO Max site won't show a cancel option.",
+  "faq": [
+    {"q": "Do I keep watching after I cancel?", "a": "Yes. You can stream until your subscription expires at the end of the billing period."},
+    {"q": "Does deleting the app cancel HBO Max?", "a": "No. Deleting the app doesn't cancel your subscription."},
+    {"q": "Why don't I see a cancel option?", "a": "Usually because someone else bills you, such as Apple, Amazon, Roku or your internet or TV provider. The billing party is listed at the top of hbomax.com/subscription."},
+    {"q": "Is there a cheaper plan?", "a": "Basic with ads is the cheapest HBO Max plan in the US, at $10.99/mo."}
+  ],
+  "cancelSources": [
+    {"label": "HBO Max Help: How do I cancel HBO Max?", "url": "https://help.hbomax.com/us/Answer/Detail/000002526"}
+  ],
+  "headline": {"plan": "Standard", "frequency": "monthly"},
+  "planAliases": {}
+}
