@@ -84,6 +84,14 @@ class ServicePageTest(unittest.TestCase):
         self.assertIn("<ol", html)
         self.assertIn("Amazon Prime is one. What about the rest?", html)
 
+    def test_upcoming_bar_class_does_not_collide_with_page_sections(self):
+        # ".upcoming" styles the price-increases section; a bar wearing it got pushed out of the chart.
+        discovery = replace(NETFLIX, service_id="discovery-plus", name="Discovery+", slug="discovery-plus",
+                            headline_plan="Ad-free")
+        html = service_page(SITE, discovery, us_changes(CHANGES, "discovery-plus", {}), TODAY)
+        self.assertIn('class="bar is-upcoming"', html)
+        self.assertNotIn('class="bar upcoming"', html)
+
     def test_read_minutes(self):
         self.assertEqual(read_minutes(NETFLIX), 1)
         long = replace(NETFLIX, steps=tuple(["word " * 150] * 3))

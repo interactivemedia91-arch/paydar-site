@@ -242,7 +242,7 @@ a.fastest .fastest-text { text-decoration: underline; text-decoration-color: #9C
 .bar { display: block; width: 100%; max-width: 66px; background: #79C8A1; border-radius: 5px 5px 0 0; }
 .chart-column:first-child .bar { background: #B8DCC8; }
 .chart-column:last-child .bar { background: var(--deep); }
-.bar.upcoming, .chart-column:last-child .bar.upcoming {
+.bar.is-upcoming, .chart-column:last-child .bar.is-upcoming {
   background: repeating-linear-gradient(135deg, #E6C373 0 6px, #F3DFAE 6px 12px);
 }
 .chart-dates { padding-top: 10px; text-align: center; color: var(--muted); font-size: 11px; line-height: 1.5; }

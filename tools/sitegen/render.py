@@ -153,7 +153,7 @@ def _prices_html(site: SiteConfig, service: Service, us: list[Change], today: da
         top = max(b.value for b in bars) or 1
         cols = "".join(
             f'<div class="chart-column"><span class="bar-value">{esc(b.text)}</span>'
-            f'<span class="bar{" upcoming" if b.upcoming else ""}" '
+            f'<span class="bar{" is-upcoming" if b.upcoming else ""}" '
             f'style="height:{max(8, round(BAR_MAX_PX * b.value / top))}px"></span></div>' for b in bars)
         dates = "".join(f"<span>{esc(b.label)}</span>" for b in bars)
         unit = "per month" if freq == "monthly" else "per year"
