@@ -1,0 +1,54 @@
+{
+ "version": 1,
+ "updatedAt": "2026-10-19",
+ "changes": [
+  {
+   "id": "n1",
+   "serviceId": "netflix",
+   "plan": "Standard",
+   "country": "US",
+   "currency": "USD",
+   "frequency": "monthly",
+   "from": 15.49,
+   "to": 17.99,
+   "effective": "2025-01-21",
+   "source": "https://nerdist.com/a"
+  },
+  {
+   "id": "n2",
+   "serviceId": "netflix",
+   "plan": "Standard",
+   "country": "US",
+   "currency": "USD",
+   "frequency": "monthly",
+   "from": 17.99,
+   "to": 19.99,
+   "effective": "2026-03-26",
+   "source": "https://www.droid-life.com/b"
+  },
+  {
+   "id": "d1",
+   "serviceId": "discovery-plus",
+   "plan": "Ad-free",
+   "country": "US",
+   "currency": "USD",
+   "frequency": "monthly",
+   "from": 9.99,
+   "to": 11.99,
+   "effective": "2026-11-12",
+   "source": "https://example.com/src"
+  },
+  {
+   "id": "p1",
+   "serviceId": "amazon-prime",
+   "plan": "Prime Video",
+   "country": "DE",
+   "currency": "EUR",
+   "frequency": "monthly",
+   "from": 8.99,
+   "to": 9.99,
+   "effective": "2026-02-01",
+   "source": "https://example.com/src"
+  }
+ ]
+}
