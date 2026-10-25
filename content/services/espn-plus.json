@@ -1,0 +1,49 @@
+{
+  "serviceId": "espn-plus",
+  "name": "ESPN",
+  "slug": "espn",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at espn.com, open your profile → Account → Manage Subscription and cancel your plan.",
+    "url": "https://support.espn.com/hc/en-us/articles/40377550796308"
+  },
+  "steps": [
+    "Log in to your ESPN account in a computer or mobile browser.",
+    "Hover over or tap your profile picture (top right), then select Account under Manage My Account.",
+    "Select Manage Subscription, then your subscription under Plans & Billing.",
+    "Select the plan you want to cancel, select Cancel and confirm."
+  ],
+  "appleBilled": true,
+  "note": "Billed through Google, Roku, Amazon or a TV provider? Manage it with them; ESPN can't cancel those plans.",
+  "faq": [
+    {
+      "q": "Do I keep access after I cancel?",
+      "a": "Yes, until the end of your current billing cycle, and you won't be charged again."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "No. ESPN doesn't give refunds or credits for partially used billing periods."
+    },
+    {
+      "q": "Does cancelling delete my ESPN account?",
+      "a": "No. You can still log in and use the ESPN app without a subscription."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "ESPN Select is $13.99/mo in the US, against $31.99/mo for ESPN Unlimited."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "ESPN Fan Support: Cancelling your ESPN Select or Unlimited subscription",
+      "url": "https://support.espn.com/hc/en-us/articles/40377550796308"
+    }
+  ],
+  "headline": {
+    "plan": "ESPN Select",
+    "frequency": "monthly"
+  },
+  "planAliases": {
+    "ESPN+ / Select": "ESPN Select"
+  }
+}

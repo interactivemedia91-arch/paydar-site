@@ -1,0 +1,47 @@
+{
+  "serviceId": "discovery-plus",
+  "name": "Discovery+",
+  "slug": "discovery-plus",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at discoveryplus.com, open your profile → Subscription and select Cancel.",
+    "url": "https://help.discoveryplus.com/hc/en-us/articles/1500007336882"
+  },
+  "steps": [
+    "Sign in at discoveryplus.com in a web browser.",
+    "Open your profile, then Subscription.",
+    "Check who bills you; it's shown at the top.",
+    "If discovery+ bills you directly, select Cancel and confirm."
+  ],
+  "appleBilled": true,
+  "note": "Billed through Amazon, Prime Video Channels, Google Play, Roku or your TV package? Cancel there; the discovery+ site won't show a Cancel option.",
+  "faq": [
+    {
+      "q": "Do I keep watching after I cancel?",
+      "a": "Yes, until the end of your billing period."
+    },
+    {
+      "q": "Does deleting the app cancel it?",
+      "a": "No. Deleting the app doesn't cancel your subscription."
+    },
+    {
+      "q": "When should I cancel?",
+      "a": "At least a day before your next billing date, so you aren't charged again."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "discovery+ Help: How do I cancel my subscription?",
+      "url": "https://help.discoveryplus.com/hc/en-us/articles/1500007336882"
+    },
+    {
+      "label": "discovery+ Help: discovery+ via Prime Video Channels",
+      "url": "https://help.discoveryplus.com/hc/en-us/articles/32717646937495-discovery-via-Prime-Video-Channels"
+    }
+  ],
+  "headline": {
+    "plan": "Ad-free",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

@@ -1,0 +1,52 @@
+{
+  "serviceId": "adobe-cc",
+  "name": "Adobe Creative Cloud",
+  "slug": "adobe-creative-cloud",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at account.adobe.com, select Manage plan under Plans and payment, then Cancel your plan.",
+    "url": "https://account.adobe.com/plans"
+  },
+  "steps": [
+    "Sign in to your Adobe account at account.adobe.com.",
+    "In Plans and payment, select Manage plan for the plan you want to cancel.",
+    "Select Cancel your plan, check the details and select Continue to cancel.",
+    "Pick a reason, select Continue, review the details and select Confirm cancellation.",
+    "Look for Adobe's confirmation email."
+  ],
+  "appleBilled": true,
+  "note": "Have more than one Adobe plan? Each one has to be cancelled separately. Bought through Google or Microsoft? Cancel with them.",
+  "faq": [
+    {
+      "q": "Is there a cancellation fee?",
+      "a": "On an annual plan paid monthly, cancelling after the first 14 days costs 50% of what's left on the contract. Cancel within 14 days of buying and most plans get a full refund."
+    },
+    {
+      "q": "Do I keep access after cancelling?",
+      "a": "Yes. Paid apps and services keep working until the end of the current billing period, and your Adobe account stays with its free benefits."
+    },
+    {
+      "q": "Can I change my mind?",
+      "a": "Yes. While you're still in the billing period, you can reactivate the plan from your Adobe account."
+    },
+    {
+      "q": "Why can't I cancel right now?",
+      "a": "You can't cancel while a payment is processing or has a problem. Wait 24 hours and try again."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Adobe Help: Cancel your Adobe trial or subscription",
+      "url": "https://helpx.adobe.com/manage-account/using/cancel-subscription.html"
+    },
+    {
+      "label": "Adobe Help: Cancellation terms for annual plans paid monthly",
+      "url": "https://helpx.adobe.com/account-billing-next/manage-plan/cancel-plan/subscription-terms.html"
+    }
+  ],
+  "headline": {
+    "plan": "Creative Cloud Pro (annual, billed monthly)",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

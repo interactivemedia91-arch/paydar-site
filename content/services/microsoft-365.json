@@ -1,0 +1,47 @@
+{
+  "serviceId": "microsoft-365",
+  "name": "Microsoft 365",
+  "slug": "microsoft-365",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Go to account.microsoft.com/services/microsoft365, sign in and select Cancel subscription.",
+    "url": "https://account.microsoft.com/services/microsoft365"
+  },
+  "steps": [
+    "Go to account.microsoft.com/services/microsoft365 and sign in with the account that pays.",
+    "Select Cancel subscription (it may say Upgrade or Cancel).",
+    "Read the Please review section at the top; it may suggest cheaper options.",
+    "At the bottom, select I don't want my subscription."
+  ],
+  "appleBilled": true,
+  "note": "Bought through Google Play or a retailer such as Amazon? Contact them to cancel or ask for a refund.",
+  "faq": [
+    {
+      "q": "What happens to my OneDrive files?",
+      "a": "Your cloud storage drops to the free 5GB. If you're over it, you can't upload or sync new files or send and receive Outlook.com email, and after 6 months Microsoft may delete your OneDrive files."
+    },
+    {
+      "q": "I see Turn on recurring billing instead of Cancel. Why?",
+      "a": "Your subscription is already set to expire. You won't be charged again and can use it until the end date."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "Not every cancellation is refunded. Microsoft checks eligibility after you cancel."
+    },
+    {
+      "q": "Is there a cheaper option?",
+      "a": "Paying yearly, at $99.99/yr for Personal, costs less than twelve monthly payments of $9.99."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Microsoft Support: Cancel a Microsoft 365 subscription",
+      "url": "https://support.microsoft.com/en-us/account-billing/cancel-a-microsoft-365-subscription-46e2634c-c64b-4c65-94b9-2cc9c960e91b"
+    }
+  ],
+  "headline": {
+    "plan": "Personal",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

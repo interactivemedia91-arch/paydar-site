@@ -81,7 +81,7 @@ class CliTest(unittest.TestCase):
             result = self.run_cli("--prices", str(FIXTURES / "prices.json"), "--out", str(out), "--today", "2026-10-25")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertTrue((out / "cancel" / "netflix" / "index.html").is_file())
-            self.assertIn("NO PAGE for US service discovery-plus", result.stdout)
+            self.assertIn("service pages into", result.stdout)
 
 
 if __name__ == "__main__":

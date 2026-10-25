@@ -1,0 +1,47 @@
+{
+  "serviceId": "xbox-game-pass",
+  "name": "Xbox Game Pass",
+  "slug": "xbox-game-pass",
+  "checked": "2026-10",
+  "fastest": {
+    "text": "Sign in at account.microsoft.com/services, find Game Pass and choose Cancel subscription or Turn off recurring billing.",
+    "url": "https://account.microsoft.com/services"
+  },
+  "steps": [
+    "Sign in at account.microsoft.com/services with the Microsoft account that pays.",
+    "Find your Game Pass subscription and select Manage.",
+    "Choose Cancel subscription, or Turn off recurring billing to keep playing until your paid time runs out.",
+    "Confirm, and look for Microsoft's confirmation email."
+  ],
+  "appleBilled": false,
+  "note": "Bought Game Pass with a prepaid code from a store? There's nothing to cancel; it simply runs out, and refunds follow that store's policy.",
+  "faq": [
+    {
+      "q": "Can I cancel on my Xbox?",
+      "a": "Yes. Go to Settings → Account → Subscriptions, pick Game Pass, then choose Cancel or Turn off recurring billing."
+    },
+    {
+      "q": "Do I lose access right away?",
+      "a": "Not if you turn off recurring billing: you keep Game Pass until the time you've paid for runs out, and it isn't renewed."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "PC Game Pass is $13.99/mo in the US if you only play on PC."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Microsoft Support: Recurring billing subscriptions (console steps)",
+      "url": "https://support.microsoft.com/en-US/accounts-billing/subscriptions/learn-about-recurring-billing-subscriptions-in-the-united-kingdom"
+    },
+    {
+      "label": "SlashGear: How to cancel your Xbox Game Pass membership",
+      "url": "https://www.slashgear.com/1169813/how-to-cancel-your-xbox-game-pass-membership"
+    }
+  ],
+  "headline": {
+    "plan": "Ultimate",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}
