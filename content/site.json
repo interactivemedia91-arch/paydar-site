@@ -2,7 +2,7 @@
   "baseUrl": "https://getpaydarapp.com",
   "appId": "6786868155",
   "providerToken": "129114170",
-  "privacyUrl": "https://gist.github.com/interactivemedia91-arch/b02277b9e9fdacd52184d3b30ceb69fd",
+  "privacyUrl": "/privacy/",
   "supportEmail": "interactivemedia91@gmail.com",
   "pricesUrl": "https://interactivemedia91-arch.github.io/prices.json"
 }

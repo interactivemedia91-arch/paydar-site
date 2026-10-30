@@ -1,0 +1,212 @@
+{
+  "homeChips": [
+    "netflix",
+    "spotify",
+    "icloud",
+    "disney-plus",
+    "youtube-premium",
+    "hbo-max",
+    "playstation-plus",
+    "amazon-prime",
+    "apple-music",
+    "xbox-game-pass",
+    "hulu",
+    "peacock",
+    "paramount-plus",
+    "duolingo"
+  ],
+  "services": {
+    "netflix": {
+      "name": "Netflix",
+      "color": "#E50914",
+      "price": 19.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/netflix.webp"
+    },
+    "spotify": {
+      "name": "Spotify",
+      "color": "#1DB954",
+      "price": 12.99,
+      "frequency": "monthly",
+      "category": "music",
+      "logo": "/logos/spotify.webp"
+    },
+    "icloud": {
+      "name": "iCloud+",
+      "color": "#3D94F6",
+      "price": 2.99,
+      "frequency": "monthly",
+      "category": "cloud",
+      "glyph": "M13.762 4.29a6.51 6.51 0 0 0-5.669 3.332 3.571 3.571 0 0 0-1.558-.36 3.571 3.571 0 0 0-3.516 3A4.918 4.918 0 0 0 0 14.796a4.918 4.918 0 0 0 4.92 4.914 4.93 4.93 0 0 0 .617-.045h14.42c2.305-.272 4.041-2.258 4.043-4.589v-.009a4.594 4.594 0 0 0-3.727-4.508 6.51 6.51 0 0 0-6.511-6.27z"
+    },
+    "disney-plus": {
+      "name": "Disney+",
+      "color": "#113CCF",
+      "price": 12.49,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/disney-plus.webp"
+    },
+    "youtube-premium": {
+      "name": "YouTube Premium",
+      "color": "#FF0000",
+      "price": 15.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/youtube-premium.webp"
+    },
+    "hbo-max": {
+      "name": "Max (HBO)",
+      "color": "#5822B4",
+      "price": 18.49,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/hbo-max.webp"
+    },
+    "hulu": {
+      "name": "Hulu",
+      "color": "#1CE783",
+      "price": 12.49,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/hulu.webp"
+    },
+    "amazon-prime": {
+      "name": "Amazon Prime Video",
+      "color": "#00A8E1",
+      "price": 8.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/amazon-prime.webp"
+    },
+    "apple-music": {
+      "name": "Apple Music",
+      "color": "#FC3C44",
+      "price": 11.99,
+      "frequency": "monthly",
+      "category": "music",
+      "logo": "/logos/apple-music.webp"
+    },
+    "xbox-game-pass": {
+      "name": "Xbox Game Pass",
+      "color": "#107C10",
+      "price": 14.99,
+      "frequency": "monthly",
+      "category": "gaming",
+      "logo": "/logos/xbox-game-pass.webp"
+    },
+    "playstation-plus": {
+      "name": "PlayStation Plus",
+      "color": "#00439C",
+      "price": 17.99,
+      "frequency": "monthly",
+      "category": "gaming",
+      "logo": "/logos/playstation-plus.webp"
+    },
+    "peacock": {
+      "name": "Peacock",
+      "color": "#000000",
+      "price": 12.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/peacock.webp"
+    },
+    "paramount-plus": {
+      "name": "Paramount+",
+      "color": "#0064FF",
+      "price": 8.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/paramount-plus.webp"
+    },
+    "duolingo": {
+      "name": "Duolingo Plus",
+      "color": "#58CC02",
+      "price": 6.99,
+      "frequency": "monthly",
+      "category": "education",
+      "logo": "/logos/duolingo.webp"
+    },
+    "1password": {
+      "name": "1Password",
+      "color": "#1A8CFF",
+      "price": 3.99,
+      "frequency": "monthly",
+      "category": "software",
+      "logo": "/logos/1password.webp"
+    },
+    "adobe-cc": {
+      "name": "Adobe Creative Cloud",
+      "color": "#FF0000",
+      "price": 54.99,
+      "frequency": "monthly",
+      "category": "software",
+      "glyph": "M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624Z"
+    },
+    "amazon-music": {
+      "name": "Amazon Music",
+      "color": "#00A8E1",
+      "price": 11.99,
+      "frequency": "monthly",
+      "category": "music",
+      "logo": "/logos/amazon-music.webp"
+    },
+    "apple-tv": {
+      "name": "Apple TV+",
+      "color": "#555555",
+      "price": 14.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/apple-tv.webp"
+    },
+    "crunchyroll": {
+      "name": "Crunchyroll",
+      "color": "#F47521",
+      "price": 9.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/crunchyroll.webp"
+    },
+    "discovery-plus": {
+      "name": "Discovery+",
+      "color": "#0052A5",
+      "price": 6.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/discovery-plus.webp"
+    },
+    "espn-plus": {
+      "name": "ESPN+",
+      "color": "#CC0000",
+      "price": 13.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/espn-plus.webp"
+    },
+    "microsoft-365": {
+      "name": "Microsoft 365",
+      "color": "#D83B01",
+      "price": 9.99,
+      "frequency": "monthly",
+      "category": "productivity",
+      "glyph": "M0 0v11.408h11.408V0zm12.594 0v11.408H24V0zM0 12.594V24h11.408V12.594zm12.594 0V24H24V12.594z"
+    },
+    "tidal": {
+      "name": "Tidal",
+      "color": "#000000",
+      "price": 11.99,
+      "frequency": "monthly",
+      "category": "music",
+      "logo": "/logos/tidal.webp"
+    },
+    "youtube-music": {
+      "name": "YouTube Music",
+      "color": "#FF0000",
+      "price": 11.99,
+      "frequency": "monthly",
+      "category": "music",
+      "logo": "/logos/youtube-music.webp"
+    }
+  }
+}

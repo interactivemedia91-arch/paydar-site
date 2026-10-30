@@ -203,8 +203,7 @@ def chart_bars(changes: list[Change], plan: str, frequency: str, today: date) ->
         return []
     first = series[0]
     bars = [Bar(f"Before {_mon_year(first.effective)}", first.old, money(first.old), False)]
-    bars += [Bar(_mon_year(c.effective) + (" (coming)" if c.effective > today else ""), c.new, money(c.new),
-                 c.effective > today) for c in series]
+    bars += [Bar(_mon_year(c.effective), c.new, money(c.new), c.effective > today) for c in series]
     return bars
 
 

@@ -40,6 +40,7 @@ class BuildSiteTest(unittest.TestCase):
             self.assertIn("<lastmod>2026-10-01</lastmod>", sitemap)  # netflix checked 2026-10
             self.assertIn("Sitemap: https://getpaydarapp.com/sitemap.xml", (out / "robots.txt").read_text())
             self.assertIn("Standard is now $19.99/mo", (out / "cancel/netflix/index.html").read_text())
+            self.assertEqual([f for f in out.rglob("*") if f.name.endswith(".json") or f.name == ".DS_Store"], [])
 
     def test_warnings(self):
         warnings = self.build(services=[PRIME, replace(NETFLIX, checked="2026-01")],

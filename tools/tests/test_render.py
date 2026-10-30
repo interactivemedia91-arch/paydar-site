@@ -1,12 +1,16 @@
+import json
 import re
 import unittest
+from html.parser import HTMLParser
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
-from sitegen.content import SiteConfig, load_services
+from sitegen.content import SiteConfig, load_catalog, load_services
 from sitegen.prices import parse_changes, us_changes
 from sitegen.render import app_store_url, home_page, increases_page, read_minutes, service_page
+
+ROOT = Path(__file__).resolve().parents[2]
 
 TODAY = date(2026, 10, 25)
 SITE = SiteConfig(base_url="https://getpaydarapp.com", app_id="6786868155", provider_token="123",
@@ -33,6 +37,31 @@ SERVICES = load_services(Path(__file__).parent / "fixtures" / "services" / "vali
 PRIME, NETFLIX = SERVICES
 
 
+class _Faq(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.tag, self.pairs = None, []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ("dt", "dd"):
+            self.tag = tag
+            if tag == "dt":
+                self.pairs.append(["", ""])
+
+    def handle_endtag(self, tag):
+        self.tag = None
+
+    def handle_data(self, data):
+        if self.tag:
+            self.pairs[-1][self.tag == "dd"] += data
+
+
+def _faq_text(html):
+    parser = _Faq()
+    parser.feed(html[html.index('class="faq-list'):])
+    return [tuple(p) for p in parser.pairs]
+
+
 def netflix_page(site=SITE, service=NETFLIX):
     return service_page(site, service, us_changes(CHANGES, "netflix", {}), TODAY)
 
@@ -44,7 +73,8 @@ class ServicePageTest(unittest.TestCase):
                  "Standard is now $19.99/mo · +$2 since March", "Fastest way", "<ol", "Paying through Apple?",
                  "Netflix is one. What about the rest?", "Netflix prices now (US)", "Paydar flags increases",
                  "Do I keep watching after I cancel?", "Sources", "Not affiliated with Netflix."]
-        positions = [html.find(m) for m in marks]
+        body = html[html.index("<body"):]  # the head's JSON-LD repeats the questions
+        positions = [body.find(m) for m in marks]
         self.assertNotIn(-1, positions, dict(zip(marks, positions)))
         self.assertEqual(positions, sorted(positions))
 
@@ -89,8 +119,16 @@ class ServicePageTest(unittest.TestCase):
         discovery = replace(NETFLIX, service_id="discovery-plus", name="Discovery+", slug="discovery-plus",
                             headline_plan="Ad-free")
         html = service_page(SITE, discovery, us_changes(CHANGES, "discovery-plus", {}), TODAY)
-        self.assertIn('class="bar is-upcoming"', html)
+        self.assertIn('class="chart-column is-upcoming"', html)
         self.assertNotIn('class="bar upcoming"', html)
+        self.assertIn("(announced)", html)  # the screen-reader table marks the announced price
+        self.assertIn('<div class="sr-only"><table>', html)  # a bare sr-only table widens the page
+        self.assertIn('class="key key-next">Announced', html)
+
+    def test_chart_without_announced_price_has_no_legend(self):
+        html = netflix_page()
+        self.assertIn('class="price-chart', html)
+        self.assertNotIn("key-next", html)
 
     def test_read_minutes(self):
         self.assertEqual(read_minutes(NETFLIX), 1)
@@ -115,13 +153,66 @@ class OtherPagesTest(unittest.TestCase):
         self.assertIn('href="/cancel/netflix/"', html)
         self.assertIn('href="/price-increases/"', html)
         self.assertIn("ct=seo-home", html)
-        self.assertIn("Formerly Subsly.", html)
+        self.assertNotIn("Subsly", html)
+        self.assertIn('href="https://gist.github.com/x/privacy">Privacy</a>', html)
         self.assertIn('<link rel="canonical" href="https://getpaydarapp.com/">', html)
 
-    def test_no_scripts_or_external_assets(self):
+    def test_home_page_chips_start_with_four_picked(self):
+        catalog = load_catalog(ROOT / "content" / "catalog.json")
+        html = home_page(SITE, SERVICES, catalog, [c for c in CHANGES if c.country == "US"], TODAY)
+        self.assertEqual(html.count('aria-pressed="true"'), 4)
+        picked = [catalog.brands[sid].price for sid in catalog.home_chips[:4]]
+        self.assertIn(f"${sum(picked):,.2f}", html)
+        self.assertEqual(html.count('class="blip"'), 4)
+        self.assertIn('"@type": "MobileApplication"', html)
+
+    def test_home_page_hero_arrives_in_order_and_the_pro_hint_sits_under_the_radar(self):
+        catalog = load_catalog(ROOT / "content" / "catalog.json")
+        html = home_page(SITE, SERVICES, catalog)
+        order = [int(i) for i in re.findall(r'style="--i:(\d+)"', html)]
+        self.assertEqual(order, list(range(6 + len(catalog.home_chips))))
+        self.assertLess(html.index('class="radar"'), html.index('class="pro-hint"'))
+
+    def test_structured_data(self):
+        blocks = lambda html: [json.loads(b) for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html)]
+        home = blocks(home_page(SITE, SERVICES))
+        self.assertEqual([b["@type"] for b in home], ["WebSite", "Organization", "MobileApplication"])
+        self.assertNotIn("aggregateRating", json.dumps(home))
+        priced = (("Is there a cheaper plan?", 'Standard with ads, {price:Standard with ads}: the same shows & "most" films, with ads.'),)
+        html = netflix_page(service=replace(NETFLIX, faq=NETFLIX.faq[:3] + priced))
+        article, faq = blocks(html)
+        self.assertEqual((article["@type"], faq["@type"]), ("Article", "FAQPage"))
+        self.assertEqual(article["publisher"]["@id"], home[1]["@id"])
+        # Every question and answer is the page's visible text, decoded, word for word.
+        shown = _faq_text(html[html.index("<body"):])
+        self.assertEqual(shown, [(q["name"], q["acceptedAnswer"]["text"]) for q in faq["mainEntity"]])
+        self.assertIn(("Is there a cheaper plan?", 'Standard with ads, $8.99/mo: the same shows & "most" films, with ads.'),
+                      shown)
+        for text in json.dumps([article, faq], ensure_ascii=False), json.dumps(home, ensure_ascii=False):
+            for leak in ("&amp;", "&#", "&quot;", "{price", "{monthly", "{yearly"):
+                self.assertNotIn(leak, text)
+
+    def test_script_blocks_cannot_be_closed_by_content(self):
+        tricky = replace(NETFLIX, faq=NETFLIX.faq[:3] + (("Odd?", "Type <!--<script> or </script> here."),))
+        html = service_page(SITE, tricky, us_changes(CHANGES, "netflix", {}), TODAY)
+        for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+            self.assertNotIn("<", block)
+            json.loads(block)
+        self.assertIn("<h1", html[html.index("<body"):])
+
+    def test_gsap_is_not_in_the_markup(self):
+        # motion.js loads it on the homepage only when motion is allowed.
+        for html in (netflix_page(), home_page(SITE, SERVICES)):
+            self.assertNotIn("gsap", html)
+            self.assertNotIn("ScrollTrigger", html)
+
+    def test_only_local_scripts_and_no_external_assets(self):
         us_all = [c for c in CHANGES if c.country == "US"]
         for html in (netflix_page(), increases_page(SITE, SERVICES, us_all, TODAY), home_page(SITE, SERVICES)):
-            self.assertNotIn("<script", html)
+            for tag in re.findall(r"<script[^>]*>", html):
+                self.assertTrue(re.fullmatch(r'<script src="/[\w.]+\.js" defer>', tag)
+                                or tag in ('<script type="application/ld+json">',
+                                           '<script type="application/json" id="home-data">'), tag)
             self.assertNotIn("<iframe", html)
             self.assertNotIn("@import", html)
             for src in re.findall(r'src="([^"]+)"', html):

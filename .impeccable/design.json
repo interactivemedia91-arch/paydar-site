@@ -1,0 +1,793 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T12:00:00Z",
+  "title": "Design System: Paydar",
+  "extensions": {
+    "colorMeta": {
+      "base": {
+        "role": "neutral",
+        "displayName": "Aura Base (light)",
+        "canonical": "#F3F1F8",
+        "cssVar": "--base",
+        "tonalRamp": [
+          "oklch(15% 0.003 299)",
+          "oklch(26% 0.006 299)",
+          "oklch(38% 0.009 299)",
+          "oklch(49% 0.010 299)",
+          "oklch(61% 0.010 299)",
+          "oklch(72% 0.009 299)",
+          "oklch(84% 0.006 299)",
+          "oklch(95% 0.003 299)"
+        ]
+      },
+      "base-dark": {
+        "role": "neutral",
+        "displayName": "Aura Base (dark)",
+        "canonical": "#0B0A12",
+        "cssVar": "--base",
+        "tonalRamp": [
+          "oklch(15% 0.006 290)",
+          "oklch(26% 0.011 290)",
+          "oklch(38% 0.016 290)",
+          "oklch(49% 0.017 290)",
+          "oklch(61% 0.017 290)",
+          "oklch(72% 0.016 290)",
+          "oklch(84% 0.011 290)",
+          "oklch(95% 0.006 290)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Aura Ink (light)",
+        "canonical": "#15131F",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "oklch(15% 0.008 292)",
+          "oklch(26% 0.015 292)",
+          "oklch(38% 0.022 292)",
+          "oklch(49% 0.024 292)",
+          "oklch(61% 0.024 292)",
+          "oklch(72% 0.022 292)",
+          "oklch(84% 0.015 292)",
+          "oklch(95% 0.008 292)"
+        ]
+      },
+      "ink-dark": {
+        "role": "primary",
+        "displayName": "Aura Ink (dark)",
+        "canonical": "#F4F2FA",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "oklch(15% 0.004 298)",
+          "oklch(26% 0.007 298)",
+          "oklch(38% 0.010 298)",
+          "oklch(49% 0.011 298)",
+          "oklch(61% 0.011 298)",
+          "oklch(72% 0.010 298)",
+          "oklch(84% 0.007 298)",
+          "oklch(95% 0.004 298)"
+        ]
+      },
+      "on-ink": {
+        "role": "primary",
+        "displayName": "On Ink (light)",
+        "canonical": "#FFFFFF",
+        "cssVar": "--on-ink",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "on-ink-dark": {
+        "role": "primary",
+        "displayName": "On Ink (dark)",
+        "canonical": "#12101A",
+        "cssVar": "--on-ink",
+        "tonalRamp": [
+          "oklch(15% 0.007 293)",
+          "oklch(26% 0.013 293)",
+          "oklch(38% 0.019 293)",
+          "oklch(49% 0.020 293)",
+          "oklch(61% 0.020 293)",
+          "oklch(72% 0.019 293)",
+          "oklch(84% 0.013 293)",
+          "oklch(95% 0.007 293)"
+        ]
+      },
+      "sub": {
+        "role": "neutral",
+        "displayName": "Muted Sub (light)",
+        "canonical": "#5F5A73",
+        "cssVar": "--sub",
+        "tonalRamp": [
+          "oklch(15% 0.014 294)",
+          "oklch(26% 0.026 294)",
+          "oklch(38% 0.037 294)",
+          "oklch(49% 0.040 294)",
+          "oklch(61% 0.040 294)",
+          "oklch(72% 0.037 294)",
+          "oklch(84% 0.026 294)",
+          "oklch(95% 0.014 294)"
+        ]
+      },
+      "sub-dark": {
+        "role": "neutral",
+        "displayName": "Muted Sub (dark)",
+        "canonical": "#A9A4BD",
+        "cssVar": "--sub",
+        "tonalRamp": [
+          "oklch(15% 0.013 295)",
+          "oklch(26% 0.023 295)",
+          "oklch(38% 0.033 295)",
+          "oklch(49% 0.036 295)",
+          "oklch(61% 0.036 295)",
+          "oklch(72% 0.033 295)",
+          "oklch(84% 0.023 295)",
+          "oklch(95% 0.013 295)"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet (light)",
+        "canonical": "#FAF9FD",
+        "cssVar": "--sheet",
+        "tonalRamp": [
+          "oklch(15% 0.002 298)",
+          "oklch(26% 0.003 298)",
+          "oklch(38% 0.005 298)",
+          "oklch(49% 0.005 298)",
+          "oklch(61% 0.005 298)",
+          "oklch(72% 0.005 298)",
+          "oklch(84% 0.003 298)",
+          "oklch(95% 0.002 298)"
+        ]
+      },
+      "sheet-dark": {
+        "role": "neutral",
+        "displayName": "Sheet (dark)",
+        "canonical": "#16141F",
+        "cssVar": "--sheet",
+        "tonalRamp": [
+          "oklch(15% 0.008 293)",
+          "oklch(26% 0.014 293)",
+          "oklch(38% 0.020 293)",
+          "oklch(49% 0.022 293)",
+          "oklch(61% 0.022 293)",
+          "oklch(72% 0.020 293)",
+          "oklch(84% 0.014 293)",
+          "oklch(95% 0.008 293)"
+        ]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Well (light)",
+        "canonical": "rgba(21, 19, 31, .05)",
+        "cssVar": "--well"
+      },
+      "well-dark": {
+        "role": "neutral",
+        "displayName": "Well (dark)",
+        "canonical": "rgba(255, 255, 255, .06)",
+        "cssVar": "--well"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline (light)",
+        "canonical": "rgba(21, 19, 31, .08)",
+        "cssVar": "--hairline"
+      },
+      "hairline-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark)",
+        "canonical": "rgba(255, 255, 255, .08)",
+        "cssVar": "--hairline"
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Radar Ring (light)",
+        "canonical": "rgba(21, 19, 31, .13)",
+        "cssVar": "--ring"
+      },
+      "ring-dark": {
+        "role": "neutral",
+        "displayName": "Radar Ring (dark)",
+        "canonical": "rgba(255, 255, 255, .16)",
+        "cssVar": "--ring"
+      },
+      "glass": {
+        "role": "neutral",
+        "displayName": "Glass (light)",
+        "canonical": "rgba(255, 255, 255, .42)",
+        "cssVar": "--glass"
+      },
+      "glass-dark": {
+        "role": "neutral",
+        "displayName": "Glass (dark)",
+        "canonical": "rgba(30, 27, 44, .34)",
+        "cssVar": "--glass"
+      },
+      "glass-border": {
+        "role": "neutral",
+        "displayName": "Glass Edge (light)",
+        "canonical": "rgba(255, 255, 255, .75)",
+        "cssVar": "--glass-border"
+      },
+      "glass-border-dark": {
+        "role": "neutral",
+        "displayName": "Glass Edge (dark)",
+        "canonical": "rgba(255, 255, 255, .14)",
+        "cssVar": "--glass-border"
+      },
+      "frost": {
+        "role": "neutral",
+        "displayName": "Frost (light)",
+        "canonical": "rgba(255, 255, 255, .86)",
+        "cssVar": "--frost"
+      },
+      "frost-dark": {
+        "role": "neutral",
+        "displayName": "Frost (dark)",
+        "canonical": "rgba(22, 20, 32, .86)",
+        "cssVar": "--frost"
+      },
+      "frost-border": {
+        "role": "neutral",
+        "displayName": "Frost Edge (light)",
+        "canonical": "rgba(255, 255, 255, .95)",
+        "cssVar": "--frost-border"
+      },
+      "frost-border-dark": {
+        "role": "neutral",
+        "displayName": "Frost Edge (dark)",
+        "canonical": "rgba(255, 255, 255, .08)",
+        "cssVar": "--frost-border"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Good-News Green (light)",
+        "canonical": "#16A374",
+        "cssVar": "--accent",
+        "tonalRamp": [
+          "oklch(15% 0.046 163)",
+          "oklch(26% 0.084 163)",
+          "oklch(38% 0.121 163)",
+          "oklch(49% 0.132 163)",
+          "oklch(61% 0.132 163)",
+          "oklch(72% 0.121 163)",
+          "oklch(84% 0.084 163)",
+          "oklch(95% 0.046 163)"
+        ]
+      },
+      "accent-dark": {
+        "role": "secondary",
+        "displayName": "Good-News Green (dark, also its text)",
+        "canonical": "#3DD6A6",
+        "cssVar": "--accent",
+        "tonalRamp": [
+          "oklch(15% 0.050 167)",
+          "oklch(26% 0.092 167)",
+          "oklch(38% 0.133 167)",
+          "oklch(49% 0.144 167)",
+          "oklch(61% 0.144 167)",
+          "oklch(72% 0.133 167)",
+          "oklch(84% 0.092 167)",
+          "oklch(95% 0.050 167)"
+        ]
+      },
+      "accent-text": {
+        "role": "secondary",
+        "displayName": "Good-News Green Text (light)",
+        "canonical": "#086B52",
+        "cssVar": "--accent-text",
+        "tonalRamp": [
+          "oklch(15% 0.032 169)",
+          "oklch(26% 0.058 169)",
+          "oklch(38% 0.084 169)",
+          "oklch(49% 0.092 169)",
+          "oklch(61% 0.092 169)",
+          "oklch(72% 0.084 169)",
+          "oklch(84% 0.058 169)",
+          "oklch(95% 0.032 169)"
+        ]
+      },
+      "rise": {
+        "role": "secondary",
+        "displayName": "Rise Red (light)",
+        "canonical": "#E5484D",
+        "cssVar": "--rise",
+        "tonalRamp": [
+          "oklch(15% 0.068 23)",
+          "oklch(26% 0.123 23)",
+          "oklch(38% 0.178 23)",
+          "oklch(49% 0.193 23)",
+          "oklch(61% 0.193 23)",
+          "oklch(72% 0.178 23)",
+          "oklch(84% 0.123 23)",
+          "oklch(95% 0.068 23)"
+        ]
+      },
+      "rise-dark": {
+        "role": "secondary",
+        "displayName": "Rise Red (dark, also its text)",
+        "canonical": "#FF6B70",
+        "cssVar": "--rise",
+        "tonalRamp": [
+          "oklch(15% 0.063 21)",
+          "oklch(26% 0.115 21)",
+          "oklch(38% 0.167 21)",
+          "oklch(49% 0.181 21)",
+          "oklch(61% 0.181 21)",
+          "oklch(72% 0.167 21)",
+          "oklch(84% 0.115 21)",
+          "oklch(95% 0.063 21)"
+        ]
+      },
+      "rise-text": {
+        "role": "secondary",
+        "displayName": "Rise Red Text (light)",
+        "canonical": "#B4232F",
+        "cssVar": "--rise-text",
+        "tonalRamp": [
+          "oklch(15% 0.063 23)",
+          "oklch(26% 0.114 23)",
+          "oklch(38% 0.165 23)",
+          "oklch(49% 0.180 23)",
+          "oklch(61% 0.180 23)",
+          "oklch(72% 0.165 23)",
+          "oklch(84% 0.114 23)",
+          "oklch(95% 0.063 23)"
+        ]
+      },
+      "coin": {
+        "role": "tertiary",
+        "displayName": "Coin Gold (fill; dark-mode text)",
+        "canonical": "#E8B04B",
+        "cssVar": "--coin",
+        "tonalRamp": [
+          "oklch(15% 0.047 79)",
+          "oklch(26% 0.085 79)",
+          "oklch(38% 0.123 79)",
+          "oklch(49% 0.133 79)",
+          "oklch(61% 0.133 79)",
+          "oklch(72% 0.123 79)",
+          "oklch(84% 0.085 79)",
+          "oklch(95% 0.047 79)"
+        ]
+      },
+      "coin-text": {
+        "role": "tertiary",
+        "displayName": "Coin Gold Text (light)",
+        "canonical": "#946413",
+        "cssVar": "--coin-text",
+        "tonalRamp": [
+          "oklch(15% 0.038 74)",
+          "oklch(26% 0.069 74)",
+          "oklch(38% 0.100 74)",
+          "oklch(49% 0.108 74)",
+          "oklch(61% 0.108 74)",
+          "oklch(72% 0.100 74)",
+          "oklch(84% 0.069 74)",
+          "oklch(95% 0.038 74)"
+        ]
+      },
+      "lavender": {
+        "role": "tertiary",
+        "displayName": "Aura Lavender (light)",
+        "canonical": "#B9A8F0",
+        "cssVar": "--lavender",
+        "tonalRamp": [
+          "oklch(15% 0.036 295)",
+          "oklch(26% 0.065 295)",
+          "oklch(38% 0.095 295)",
+          "oklch(49% 0.103 295)",
+          "oklch(61% 0.103 295)",
+          "oklch(72% 0.095 295)",
+          "oklch(84% 0.065 295)",
+          "oklch(95% 0.036 295)"
+        ]
+      },
+      "lavender-dark": {
+        "role": "tertiary",
+        "displayName": "Aura Lavender (dark)",
+        "canonical": "#7A5AF8",
+        "cssVar": "--lavender",
+        "tonalRamp": [
+          "oklch(15% 0.078 287)",
+          "oklch(26% 0.142 287)",
+          "oklch(38% 0.207 287)",
+          "oklch(49% 0.224 287)",
+          "oklch(61% 0.224 287)",
+          "oklch(72% 0.207 287)",
+          "oklch(84% 0.142 287)",
+          "oklch(95% 0.078 287)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Homepage H1 only; two lines at every width."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "The meter's monthly total; pricing prices use the same voice larger (clamp(3.5rem, 2rem + 4.5vw, 6.5rem))."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Homepage section H2s, short full sentences, max 14ch."
+      },
+      "page-title": {
+        "displayName": "Page Title",
+        "purpose": "H1 of guides, price increases and privacy."
+      },
+      "section-title": {
+        "displayName": "Section Title",
+        "purpose": "H2s on reading pages."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service names in cards, the watch H3."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "Ledes and paragraphs beside homepage headlines (34 to 36em)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Everything read; prose capped at 68ch."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Facts lines, footnotes, sources."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Picker legend, meta lines, chart caption, dates, presets, callout headings."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Radar Today and blip names, change chips, notice app line."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The brand beside the radar mark; repeated huge at 9% ink in the footer."
+      }
+    },
+    "modes": {
+      "strategy": "prefers-color-scheme (light and dark follow the system); '-dark' keys are the dark values of the same CSS variable",
+      "highContrast": "prefers-contrast: more sets --sub to ink at 80%",
+      "reducedTransparency": "glass, frost, chips and header become opaque --sheet with no backdrop blur",
+      "forcedColors": "picked chip gets a 3px Highlight outline; chart bars drawn in CanvasText, announced in Highlight"
+    },
+    "field": {
+      "description": "Fixed radial colour field behind every page (z-index -1), built from picked services.",
+      "steps": "sort by monthly cost desc; skip saturation < 0.1; skip within 20deg hue of a kept spot; max 5; soften light L 0.60-0.72, dark L 0.45-0.58, S 0.45-0.80; radius = 100vw x (0.30 + 0.18 x weight / biggest)",
+      "positions": [
+        "18% 28%",
+        "84% 23.5%",
+        "76% 49%",
+        "23% 55%",
+        "87% 75%"
+      ],
+      "lavenderGlow": "circle 58vw at 51% 14%",
+      "spotAlpha": {
+        "light": "55%",
+        "dark": "80%"
+      },
+      "fallback": [
+        "#16A374",
+        "#F2B35A",
+        "#8A6BD6"
+      ],
+      "veil": {
+        "light": "linear-gradient(180deg, rgba(243,241,248,0) 0%, rgba(243,241,248,.2) 40%, rgba(243,241,248,.72) 100%)",
+        "dark": "linear-gradient(180deg, rgba(11,10,18,.08) 0%, rgba(11,10,18,.38) 45%, rgba(11,10,18,.78) 100%)"
+      },
+      "quietOpacity": "0.5 past the hero (IntersectionObserver, rootMargin -30% top) and on guide, increases and privacy pages"
+    },
+    "materials": [
+      {
+        "name": "glass",
+        "value": "background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: blur(28px) saturate(1.6); box-shadow: 0 18px 50px -24px var(--shadow)",
+        "purpose": "Controls and live readouts: meter, pinned total, notice, Paydar card. Chips use blur(20px) saturate(1.5)."
+      },
+      {
+        "name": "frost",
+        "value": "background: var(--frost); border: 1px solid var(--frost-border); box-shadow: 0 12px 36px -22px var(--shadow)",
+        "purpose": "Reading content: pricing panel, cards, plan lists, charts, FAQ, increase feed."
+      },
+      {
+        "name": "header",
+        "value": "background: color-mix(in srgb, var(--base) 85%, transparent); backdrop-filter: blur(20px) saturate(1.5); mask-image: linear-gradient(#000 calc(100% - 10px), transparent)",
+        "purpose": "Sticky header band that fades instead of drawing a line."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "shadow-color",
+        "value": "rgba(60, 40, 120, .12) light / rgba(0, 0, 0, .45) dark",
+        "purpose": "The single ambient shadow colour (--shadow)."
+      },
+      {
+        "name": "glass-lift",
+        "value": "0 18px 50px -24px var(--shadow)",
+        "purpose": "Glass elements."
+      },
+      {
+        "name": "frost-lift",
+        "value": "0 12px 36px -22px var(--shadow)",
+        "purpose": "Frost panels, cards and lists."
+      },
+      {
+        "name": "device",
+        "value": "0 40px 80px -40px var(--shadow), 0 0 0 1px var(--glass-border)",
+        "purpose": "App screenshots (phone 44px corners); screen row uses 0 30px 60px -36px at 36px corners."
+      },
+      {
+        "name": "logo-drop",
+        "value": "0 8px 18px -8px rgba(0, 0, 0, .55)",
+        "purpose": "Radar blips."
+      },
+      {
+        "name": "guide-logo",
+        "value": "0 10px 24px -12px var(--shadow)",
+        "purpose": "The 64px service logo on guide pages."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Press feedback, blip in and out, Pro hint (--ease-out)."
+      },
+      {
+        "name": "press",
+        "value": "transform scale(.96 to .985) in 80ms, release 160ms ease-out",
+        "purpose": "Pills .97, chips and presets .96, cards .985."
+      },
+      {
+        "name": "hero-arrival",
+        "value": "rise .6s cubic-bezier(.16, 1, .3, 1), delay var(--i) x 30ms; meter .8s from translateY(24px) scale(.97) at .12s",
+        "purpose": "CSS-only hero entrance with the first paint; only under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "field-crossfade",
+        "value": "0.6s ease on registered @property --s1..5, --d1..5, --r1..5 (and opacity)",
+        "purpose": "The field repaints when picks change."
+      },
+      {
+        "name": "blip-in",
+        "value": "300ms cubic-bezier(.23, 1, .32, 1), from scale(.6) opacity 0",
+        "purpose": "A new pick lands on the radar."
+      },
+      {
+        "name": "blip-out",
+        "value": "150ms cubic-bezier(.23, 1, .32, 1), to scale(.85) opacity 0",
+        "purpose": "A dropped pick leaves faster than it came; re-picking cancels the exit."
+      },
+      {
+        "name": "count",
+        "value": "520ms, ease-out cubic (1 - (1 - t)^3)",
+        "purpose": "The monthly total, the pinned total and the yearly figure count to their new value."
+      },
+      {
+        "name": "radar-beam",
+        "value": "7s linear infinite, from 60deg; paused off-screen via IntersectionObserver",
+        "purpose": "The app's 35deg wedge."
+      },
+      {
+        "name": "section-entrance",
+        "value": "GSAP from y 28, opacity 0, .8s expo.out, stagger .08, ScrollTrigger top 82%, once",
+        "purpose": "Homepage sections below the hero only (heading, text, picture by data-rv); screen row drifts by scrub above 761px."
+      },
+      {
+        "name": "smooth-scroll",
+        "value": "Lenis everywhere, anchor duration .6s",
+        "purpose": "All pages."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transitions 1ms, animations none, field transition none; motion.js returns before loading Lenis or GSAP",
+        "purpose": "Everything instant; content visible without script."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrowest",
+        "value": "360px",
+        "purpose": "pills may wrap, meter total stacks"
+      },
+      {
+        "name": "short-labels",
+        "value": "374px",
+        "purpose": "header pill reads 'Get the app'"
+      },
+      {
+        "name": "phone",
+        "value": "480px",
+        "purpose": "pricing panel 32px 22px, guide groups one column"
+      },
+      {
+        "name": "phone-wide",
+        "value": "520px",
+        "purpose": "tighter meter, chips 44px, Paydar card single column"
+      },
+      {
+        "name": "nav",
+        "value": "720px",
+        "purpose": "header links hide"
+      },
+      {
+        "name": "stack",
+        "value": "760px",
+        "purpose": "two-column sections, plans and promises stack"
+      },
+      {
+        "name": "hero-stack",
+        "value": "960px",
+        "purpose": "hero stacks, compact total pins at top 84px + safe area"
+      },
+      {
+        "name": "sticky-meter",
+        "value": "min-width 961px and min-height 700px",
+        "purpose": "meter sticky at top 96px"
+      }
+    ],
+    "input": {
+      "hover": "only inside @media (hover: hover) and (pointer: fine)",
+      "tapHighlight": "-webkit-tap-highlight-color: transparent; plain links dim to .6 while pressed",
+      "touchAction": "manipulation on links and buttons",
+      "safeArea": "header top, gutters left/right, footer bottom, scroll-padding-top"
+    },
+    "focus": {
+      "value": "outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px",
+      "purpose": "Global focus-visible ring."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Pill",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The ink App Store pill with a trailing arrow; always followed by its facts line.",
+      "html": "<div class=\"ds-wrap\"><a class=\"ds-pill\" href=\"#\">Get Paydar free on iPhone <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a><p class=\"ds-facts\">Free for 4 subscriptions · $9.99 once for unlimited · No bank login</p></div>",
+      "css": ".ds-wrap { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-pill { display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: transform 160ms cubic-bezier(.23,1,.32,1), background-color 160ms ease; } .ds-pill svg { width: 20px; height: 20px; } .ds-pill:hover { background: color-mix(in srgb, var(--ink) 86%, var(--on-ink)); } .ds-pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; } .ds-pill:active { transform: scale(.97); transition-duration: 80ms; } .ds-facts { margin: 14px 0 0; color: var(--ink); font-size: .9375rem; }"
+    },
+    {
+      "name": "Small Header Pill",
+      "kind": "button",
+      "refersTo": "button-primary-small",
+      "description": "The header's App Store pill, 44px.",
+      "html": "<a class=\"ds-pill-sm\" href=\"#\">Get it on iPhone</a>",
+      "css": ".ds-pill-sm { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font: 600 .9375rem -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; text-decoration: none; transition: transform 160ms cubic-bezier(.23,1,.32,1); } .ds-pill-sm:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; } .ds-pill-sm:active { transform: scale(.97); transition-duration: 80ms; }"
+    },
+    {
+      "name": "Service Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Glass toggle pills with a circular service icon; picked = ink fill.",
+      "html": "<div class=\"ds-field\"><div class=\"ds-chips\"><button class=\"ds-chip ds-on\" aria-pressed=\"true\"><span class=\"ds-logo\" style=\"background:#E50914\">N</span>Netflix</button><button class=\"ds-chip\" aria-pressed=\"false\"><span class=\"ds-logo\" style=\"background:#1DB954\">S</span>Spotify</button><button class=\"ds-chip\" aria-pressed=\"false\"><span class=\"ds-logo\" style=\"background:#3D94F6\">i</span>iCloud+</button></div></div>",
+      "css": ".ds-field { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); background: radial-gradient(circle 60% at 18% 20%, rgba(242,128,134,.55), transparent 70%), radial-gradient(circle 55% at 85% 25%, rgba(110,226,152,.55), transparent 70%), radial-gradient(circle 60% at 51% 0%, rgba(185,168,240,.55), transparent 70%), #F3F1F8; padding: 28px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-chips { display: flex; flex-wrap: wrap; gap: 10px; } .ds-chip { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 8px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass); backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); color: var(--ink); font: 600 .9375rem -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; cursor: pointer; transition: transform 160ms cubic-bezier(.23,1,.32,1), background-color 200ms ease, color 200ms ease; } .ds-chip:not(.ds-on):hover { background: color-mix(in srgb, var(--glass) 60%, var(--ink) 8%); } .ds-chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; } .ds-chip:active { transform: scale(.96); transition-duration: 80ms; } .ds-chip.ds-on { background: var(--ink); color: var(--on-ink); border-color: var(--ink); } .ds-logo { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: .8rem; }"
+    },
+    {
+      "name": "Reminder Presets",
+      "kind": "input",
+      "refersTo": "preset",
+      "description": "Real radios drawn as small Well pills; checked = ink fill.",
+      "html": "<fieldset class=\"ds-presets\"><label class=\"ds-preset\"><input type=\"radio\" name=\"ds-r\" value=\"1\"><span>1 day before</span></label><label class=\"ds-preset\"><input type=\"radio\" name=\"ds-r\" value=\"3\" checked><span>3 days before</span></label><label class=\"ds-preset\"><input type=\"radio\" name=\"ds-r\" value=\"7\"><span>7 days before</span></label></fieldset>",
+      "css": ".ds-presets { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; border: 0; } .ds-preset { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--well); color: var(--ink); font: 600 .9375rem ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; cursor: pointer; transition: background-color 160ms ease, color 160ms ease, transform 160ms cubic-bezier(.23,1,.32,1); } .ds-preset input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; } .ds-preset:has(input:checked) { background: var(--ink); color: var(--on-ink); } .ds-preset:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 2px; } .ds-preset:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--well), var(--ink) 8%); } .ds-preset:active { transform: scale(.96); transition-duration: 80ms; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Sticky blurred header: radar mark + Rounded wordmark, Sub links, small ink pill.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-brand\" href=\"#\"><svg viewBox=\"0 0 26 26\" width=\"26\" height=\"26\" aria-hidden=\"true\"><circle cx=\"13\" cy=\"13\" r=\"11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\"/><path d=\"M13 13 L13 4\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><circle cx=\"17.5\" cy=\"9\" r=\"2.6\" fill=\"#E8B04B\"/></svg>Paydar</a><nav class=\"ds-nav\"><a href=\"#\">Cancel guides</a><a href=\"#\">Price increases</a></nav><a class=\"ds-hpill\" href=\"#\">Get it on iPhone</a></header>",
+      "css": ".ds-header { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); display: flex; align-items: center; gap: 28px; min-height: 72px; padding: 0 24px; background: color-mix(in srgb, #F3F1F8 85%, transparent); backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-brand { display: inline-flex; align-items: center; gap: 9px; font: 800 1.5rem/1 ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: -.02em; text-decoration: none; color: inherit; } .ds-nav { display: flex; gap: 26px; margin-left: auto; } .ds-nav a { color: var(--sub); text-decoration: none; font-size: .9375rem; padding: 12px 0; transition: color 140ms ease; } .ds-nav a:hover { color: var(--ink); } .ds-nav a:focus-visible, .ds-hpill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; } .ds-hpill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font-weight: 600; font-size: .9375rem; text-decoration: none; }"
+    },
+    {
+      "name": "Meter",
+      "kind": "custom",
+      "refersTo": "meter",
+      "description": "Glass panel with the counted monthly total and the half-disc radar (rings at 7d, 14d, 30d; beam; Today).",
+      "html": "<div class=\"ds-field\"><div class=\"ds-meter\"><p class=\"ds-total\">$48.46 <span>a month</span></p><p class=\"ds-sub\">About $582 a year for what you picked</p><div class=\"ds-radar\"><span class=\"ds-blip\" style=\"left:25%;top:73%;background:#E50914\"></span><span class=\"ds-blip\" style=\"left:53%;top:36%;background:#1DB954\"></span><span class=\"ds-today\">Today</span></div></div></div>",
+      "css": ".ds-field { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); background: radial-gradient(circle 60% at 18% 20%, rgba(242,128,134,.55), transparent 70%), radial-gradient(circle 55% at 85% 25%, rgba(110,226,152,.55), transparent 70%), radial-gradient(circle 60% at 51% 0%, rgba(185,168,240,.55), transparent 70%), #F3F1F8; padding: 28px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; color: var(--ink); } .ds-meter { border-radius: 32px; padding: 30px 30px 40px; text-align: center; background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); box-shadow: 0 18px 50px -24px var(--shadow); } .ds-meter p { margin: 0; } .ds-total { font-weight: 800; font-size: 4rem; letter-spacing: -.045em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-total span { font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; color: var(--sub); } .ds-sub { margin-top: 10px !important; color: var(--sub); } .ds-radar { position: relative; margin: 24px auto 0; width: 100%; aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; background: radial-gradient(circle farthest-side at 50% 100%, transparent 0 calc(51.6% - 1px), var(--ring) 51.6% calc(51.6% + 1px), transparent calc(51.6% + 1px) calc(65.6% - 1px), var(--ring) 65.6% calc(65.6% + 1px), transparent calc(65.6% + 1px) calc(88% - 1px), var(--ring) 88% calc(88% + 1px), transparent calc(88% + 1px)), var(--well); } .ds-blip { position: absolute; width: 36px; height: 36px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 8px 18px -8px rgba(0,0,0,.55); } .ds-today { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); font: 600 .8125rem ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--sub); }"
+    },
+    {
+      "name": "Frost Card (price list)",
+      "kind": "card",
+      "refersTo": "frost-card",
+      "description": "Frost list with hairline rows, change chips and heavy tabular prices.",
+      "html": "<ul class=\"ds-list\"><li class=\"ds-row\"><span class=\"ds-name\">Standard with ads</span><span class=\"ds-chg ds-up\">+$1 · Mar 2026</span><span class=\"ds-price\">$8.99<span>/mo</span></span></li><li class=\"ds-row\"><span class=\"ds-name\">Standard</span><span class=\"ds-chg ds-up\">+$2 · Mar 2026</span><span class=\"ds-price\">$19.99<span>/mo</span></span></li></ul>",
+      "css": ".ds-list { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); list-style: none; margin: 0; padding: 4px 0; border-radius: 24px; background: var(--frost); border: 1px solid var(--frost-border); box-shadow: 0 12px 36px -22px var(--shadow); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 14px 20px; } .ds-row + .ds-row { border-top: 1px solid var(--hairline); } .ds-name { font-weight: 600; } .ds-chg { padding: 3px 9px; border-radius: 9px; font: 700 .8125rem ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-variant-numeric: tabular-nums; } .ds-up { background: color-mix(in srgb, var(--rise) 12%, var(--sheet)); color: var(--rise-text); } .ds-price { margin-left: auto; font-weight: 800; font-size: 1.25rem; font-variant-numeric: tabular-nums; } .ds-price span { font-size: .8125rem; font-weight: 600; color: var(--sub); }"
+    },
+    {
+      "name": "Price Alerts",
+      "kind": "chip",
+      "refersTo": "price-alert-up",
+      "description": "Semantic pills: rise red for increases, accent green for drops.",
+      "html": "<div class=\"ds-tags\"><p class=\"ds-alert ds-alert-up\">Standard is now $19.99/mo · +$2 since March 2026</p><p class=\"ds-alert ds-alert-down\">Premium dropped to $10.99/mo · -$1</p></div>",
+      "css": ".ds-tags { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); display: grid; gap: 10px; justify-items: start; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-alert { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: .9375rem; font-variant-numeric: tabular-nums; } .ds-alert-up { background: color-mix(in srgb, var(--rise) 12%, var(--sheet)); color: var(--rise-text); } .ds-alert-down { background: color-mix(in srgb, var(--accent) 12%, var(--sheet)); color: var(--accent-text); }"
+    },
+    {
+      "name": "Price Chart",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Neutral bars for prices in effect; an announced price hatched in rise red with an inset outline.",
+      "html": "<figure class=\"ds-chart\"><figcaption class=\"ds-cap\"><span>Standard plan, per month</span><span class=\"ds-key\">Announced</span></figcaption><div class=\"ds-cols\"><div class=\"ds-col\"><span class=\"ds-val\">$15.49</span><span class=\"ds-bar\" style=\"height:80px\"></span></div><div class=\"ds-col\"><span class=\"ds-val\">$17.99</span><span class=\"ds-bar\" style=\"height:94px\"></span></div><div class=\"ds-col ds-next\"><span class=\"ds-val\">$19.99</span><span class=\"ds-bar\" style=\"height:104px\"></span></div></div></figure>",
+      "css": ".ds-chart { --ink:#15131F;--on-ink:#FFFFFF;--sub:#5F5A73;--glass:rgba(255,255,255,.42);--glass-border:rgba(255,255,255,.75);--frost:rgba(255,255,255,.86);--frost-border:rgba(255,255,255,.95);--well:rgba(21,19,31,.05);--hairline:rgba(21,19,31,.08);--ring:rgba(21,19,31,.13);--sheet:#FAF9FD;--accent:#16A374;--accent-text:#086B52;--rise:#E5484D;--rise-text:#B4232F;--coin-text:#946413;--shadow:rgba(60,40,120,.12); margin: 0; padding: 22px 22px 18px; border-radius: 24px; background: var(--frost); border: 1px solid var(--frost-border); box-shadow: 0 12px 36px -22px var(--shadow); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; } .ds-cap { display: flex; justify-content: space-between; color: var(--sub); font: 600 .9375rem ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-key { display: inline-flex; align-items: center; gap: 6px; } .ds-key::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: repeating-linear-gradient(135deg, var(--rise) 0 2px, transparent 2px 4px); box-shadow: inset 0 0 0 1.5px var(--rise); } .ds-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: end; margin-top: 20px; border-bottom: 1px solid var(--ring); } .ds-col { display: grid; justify-items: center; gap: 8px; } .ds-val { font-weight: 700; font-size: .9375rem; font-variant-numeric: tabular-nums; } .ds-bar { width: 56px; border-radius: 4px 4px 0 0; background: var(--sub); } .ds-next .ds-bar { background: repeating-linear-gradient(135deg, var(--rise) 0 2px, transparent 2px 6px); box-shadow: inset 0 0 0 2px var(--rise); } .ds-next .ds-val { color: var(--rise-text); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Visitor's Own Aura",
+    "overview": "The site is painted by the person looking at it. Paydar's 2.0 iPhone app draws its Aura from the subscriptions you track; the site does the same with the services the visitor taps. A fixed radial colour field sits behind every page, made from those services' brand colours: biggest monthly cost first, greys skipped, one colour per 20 degrees of hue, at most five spots, each softened so text stays readable, each spot's radius weighted by price, a lavender glow at the top and a veil darkening toward the bottom. Past the hero, and on every reading page, the field steps back to half strength. Light and dark follow the system; nothing is themed by hand.\n\nOver the field, two materials and one shape do all the work. Controls and the live meter sit on glass (translucent, heavily blurred, a 1px white edge). Content that must be read sits on frost (near-opaque, the same 1px edge). Every control is a pill. Type is SF Pro at heavy weights with tight tracking, so prices and totals read as the loudest thing on the screen, with SF Pro Rounded reserved for labels, captions and the wordmark, exactly as in the app. Colour beyond the field is semantic and scarce: red means a price went up, green means good news or the way out, gold means the one-time Pro price.\n\nDensity is calm and generous: one idea per section, large type, long section gaps. The homepage is the one place with live behaviour (picker, radar, counted total, the reminder preview); guides and the price-increase feed are reading pages and stay still apart from smooth scrolling.",
+    "keyCharacteristics": [
+      "A generative colour field from the visitor's own picks, fixed behind the page, quieter (0.5) past the hero and on reading pages.",
+      "Glass for controls and the meter; frost for content panels, cards and lists.",
+      "Every control a pill (999px); ink fill means primary or selected.",
+      "Heavy, tightly tracked, tabular numerals as the loudest element.",
+      "Semantic colour only: rise red, accent green, coin gold.",
+      "Real app screens and real App Store service icons, never mock imagery."
+    ],
+    "rules": [
+      {
+        "name": "The Visitor Paints Rule",
+        "body": "Saturated colour in the frame comes from the field, and the field comes from the services picked (or the page's own service), softened in light to lightness 0.60 to 0.72 and in dark to 0.45 to 0.58, saturation clamped 0.45 to 0.80. With nothing picked it falls back to green, amber and violet (#16A374, #F2B35A, #8A6BD6). Never paint a decorative gradient by hand.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Colour Rule",
+        "body": "Red appears only for price increases; green only for good news and the way out of a charge; gold only for the one-time Pro price. Brand logos and the field may carry any hue, because they are the visitor's content, not interface colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Texture Not Only Colour Rule",
+        "body": "Wherever red or green marks a price change in a chart, it also carries a hatch (135 degrees) and an inset outline, so the meaning never rests on hue alone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Loud Numbers Rule",
+        "body": "A price or total is set heavier and larger than the words around it, always with tabular figures, so columns of prices align and a counted total does not jitter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rounded Is For Labels Rule",
+        "body": "SF Pro Rounded never sets a headline or body paragraph; it labels data and names the brand.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glass For Hands, Frost For Eyes Rule",
+        "body": "Anything the visitor operates or watches change (chips, the meter, the pinned total, the notice, the Paydar card) is glass: blur(28px) saturate(1.6). Anything the visitor reads (pricing panel, cards, plan lists, charts, FAQ) is frost. Under Reduce Transparency both become opaque Sheet with no blur.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do derive the field from real services through the shared steps (aura.py, home.js): at most 5 spots, 20 degree hue gap, greys skipped, radius 0.30 + 0.18 times weight over the biggest weight.",
+      "Do drop the field to 0.5 opacity past the hero and on every reading page.",
+      "Do put controls and live readouts on glass and reading content on frost, with the 1px white border.",
+      "Do make every control a pill; fill it with ink when it is primary or selected.",
+      "Do set prices and totals in heavy, tightly tracked, tabular SF Pro.",
+      "Do keep hover effects inside (hover: hover) and (pointer: fine), drop the tap highlight, and give every pill, chip and card a press scale (0.96 to 0.985, 80ms in, 160ms out, cubic-bezier(.23, 1, .32, 1)).",
+      "Do make every motion instant under Reduce Motion and skip loading GSAP; keep content visible without any script.",
+      "Do honour safe-area insets on the header, gutters and footer.",
+      "Do show real app screens (light and dark via picture sources) and real service icons with recorded provenance."
+    ],
+    "donts": [
+      "Don't use red for anything but a price increase, green for anything but good news or the way out, or gold for anything but the one-time Pro price.",
+      "Don't let a chart's meaning rest on colour alone; announced and dropped prices are hatched.",
+      "Don't put a kicker or eyebrow above a headline; headlines stand alone.",
+      "Don't draw hard offset shadows or stacked heavy shadows; depth is the soft material lift.",
+      "Don't hand-paint gradients or add colour that the field did not produce.",
+      "Don't set headlines or body copy in SF Pro Rounded.",
+      "Don't use em dashes in user-facing text.",
+      "Don't show ratings, reviews, download counts, testimonials or press that do not exist.",
+      "Don't show the old name \"Subsly\"."
+    ]
+  }
+}

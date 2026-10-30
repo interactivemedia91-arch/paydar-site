@@ -18,7 +18,7 @@ from pathlib import Path
 # -I leaves the script's own directory off sys.path.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sitegen.content import ContentError, load_services, load_site  # noqa: E402
+from sitegen.content import ContentError, load_catalog, load_services, load_site  # noqa: E402
 from sitegen.prices import parse_changes  # noqa: E402
 from sitegen.site import BuildError, build_site  # noqa: E402
 
@@ -46,8 +46,11 @@ def main() -> int:
     except (OSError, KeyError, ValueError) as e:
         print(f"Bad content/site.json: {e!r}", file=sys.stderr)
         return 1
+    content = Path(args.content)
     try:
-        services = load_services(Path(args.content) / "services")
+        services = load_services(content / "services")
+        catalog = load_catalog(content / "catalog.json") if (content / "catalog.json").is_file() else None
+        privacy = (content / "privacy.md").read_text(encoding="utf-8") if (content / "privacy.md").is_file() else None
     except ContentError as e:
         print(f"Content problems:\n{e}", file=sys.stderr)
         return 1
@@ -64,7 +67,7 @@ def main() -> int:
     if tmp.exists():
         shutil.rmtree(tmp)
     try:
-        warnings = build_site(tmp, site, services, prices, args.today, ROOT / "static")
+        warnings = build_site(tmp, site, services, prices, args.today, ROOT / "static", catalog, privacy)
     except BuildError as e:
         shutil.rmtree(tmp, ignore_errors=True)
         print(f"Build stopped:\n{e}", file=sys.stderr)

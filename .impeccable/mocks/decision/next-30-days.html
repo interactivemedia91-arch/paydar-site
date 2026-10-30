@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><style>*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:#0B0A12;color:#F4F2FA;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;position:relative}
+.field{position:absolute;inset:0;pointer-events:none}
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,18,.08) 0%,rgba(11,10,18,.38) 45%,rgba(11,10,18,.8) 100%)}
+nav{position:absolute;top:28px;left:56px;right:56px;display:flex;align-items:center;gap:28px;z-index:5}
+.mark{width:26px;height:26px;border-radius:50%;border:3px solid #F4F2FA;position:relative}
+.mark:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#E8B04B;top:1px;right:1px}
+.word{font:800 22px/1 ui-rounded,"SF Pro Rounded",-apple-system,sans-serif;letter-spacing:-.4px}
+.links{margin-left:auto;display:flex;gap:28px;font-size:15px;color:#A9A4BD}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:0 26px;height:54px;font-weight:600;font-size:17px}
+.ink{background:#F4F2FA;color:#12101A}
+.glass{background:rgba(30,27,44,.38);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
+.sub{color:#A9A4BD}.faint{color:#77728C}.acc{color:#3DD6A6}.rise{color:#FF6B70}
+.logo{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;flex:none}
+.fine{font-size:14px;color:#A9A4BD;margin-top:16px}
+</style><style>
+.field{background:radial-gradient(560px 420px at 78% 30%,rgba(229,9,20,.34),transparent 70%),radial-gradient(520px 420px at 20% 10%,rgba(122,90,248,.40),transparent 70%),radial-gradient(420px 360px at 62% 74%,rgba(17,60,207,.34),transparent 70%)}
+.ruler{position:absolute;top:110px;left:56px;right:56px;height:64px;display:grid;grid-template-columns:repeat(30,1fr);border-top:1px solid rgba(255,255,255,.16)}
+.ruler span{border-left:1px solid rgba(255,255,255,.12);padding:10px 0 0 6px;font:600 12px ui-rounded,sans-serif;color:#77728C}
+.ruler span.now{border-left:2px solid #3DD6A6;color:#3DD6A6}
+.ruler span.wk{color:#A9A4BD}
+h1{position:absolute;left:56px;top:250px;width:640px;font-size:78px;line-height:.98;font-weight:800;letter-spacing:-2.6px}
+.lede{position:absolute;left:56px;top:520px;width:540px;font-size:20px;line-height:1.45;color:#A9A4BD}
+.cta{position:absolute;left:56px;top:620px}
+.card{position:absolute;border-radius:24px;padding:18px 20px;width:250px}
+.card .top{display:flex;align-items:center;gap:12px}
+.card b{font-size:17px}.card .p{font-size:26px;font-weight:800;letter-spacing:-.6px;margin-top:12px}
+.card .d{font-size:14px;color:#A9A4BD;margin-top:4px}
+.stem{position:absolute;top:174px;border-left:1px dashed rgba(255,255,255,.22)}
+.lock{position:absolute;right:56px;top:520px;width:420px;padding:16px 18px;border-radius:26px}
+.lock .app{display:flex;align-items:center;gap:10px;font-size:14px;color:#A9A4BD}
+.lock .app i{width:26px;height:26px;border-radius:7px;background:#0B0A12;border:2px solid #F4F2FA;display:inline-block}
+.lock b{display:block;font-size:17px;margin-top:10px}.lock p{font-size:16px;color:#A9A4BD;margin-top:4px}
+.clock{position:absolute;right:56px;top:300px;width:420px;text-align:center;font-size:110px;font-weight:700;letter-spacing:-3px;opacity:.9}
+</style></head><body>
+<div class="field"></div><div class="veil"></div>
+<nav><div class="mark"></div><span class="word">Paydar</span><div class="links"><span>Cancel guides</span><span>Price increases</span></div><span class="pill ink" style="height:42px;font-size:15px">Get it on iPhone</span></nav>
+<div class="ruler"><span class="now">Today</span><span>30</span><span>31</span><span class="wk">Nov 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span class="wk">8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span class="wk">15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span class="wk">22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span></div>
+<div class="stem" style="left:183px;height:40px"></div>
+<div class="card glass" style="left:760px;top:210px"><div class="top"><span class="logo" style="background:#E50914">N</span><b>Netflix</b></div><div class="p">$19.99</div><div class="d">Renews Nov 1 · in 3 days</div></div>
+<div class="card glass" style="left:1060px;top:236px;width:220px"><div class="top"><span class="logo" style="background:#113CCF">D+</span><b>Disney+</b></div><div class="p">$21.49</div><div class="d">Nov 4 · in 6 days</div></div>
+<div class="card glass" style="left:1180px;top:120px;width:200px;opacity:.7;transform:scale(.9)"><div class="top"><span class="logo" style="background:#1DB954">S</span><b>Spotify</b></div><div class="d">Trial ends Nov 12</div></div>
+<div class="lock glass"><div class="app"><i></i>PAYDAR · now</div><b>Netflix renews in 3 days</b><p>$19.99 on Nov 1. Still watching? Here's how to cancel.</p></div>
+<h1>Netflix renews in 3&nbsp;days. You'll know.</h1>
+<p class="lede">Paydar lays out the next 30 days and pings you before every charge, at a time you choose.</p>
+<div class="cta"><span class="pill ink">Download on the App Store</span><p class="fine">Free for 4 subscriptions · $9.99 once for unlimited · No bank login</p></div>
+</body></html>

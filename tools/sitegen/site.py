@@ -1,12 +1,13 @@
 """Writes the whole site into an output directory and reports what needs attention."""
 
+import re
 import shutil
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
-from .content import Service, SiteConfig
+from .content import Catalog, Service, SiteConfig
 from .prices import Change, parse_changes, us_changes
-from .render import home_page, increases_page, service_page
+from .render import home_page, increases_page, privacy_page, service_page
 
 STALE_AFTER_MONTHS = 6
 
@@ -35,8 +36,21 @@ def _us_all(changes: list[Change], services: list[Service]) -> list[Change]:
     return out
 
 
-def _sitemap(site: SiteConfig, services: list[Service], today: date) -> str:
+def _policy_date(privacy_md: str | None, today: date) -> date:
+    """The policy's own "Last updated: 25 October 2026" line, so the sitemap doesn't claim a daily change."""
+    m = re.search(r"Last updated: (\d{1,2}) (\w+) (\d{4})", privacy_md or "")
+    if not m:
+        return today
+    try:
+        return datetime.strptime(" ".join(m.groups()), "%d %B %Y").date()
+    except ValueError:
+        return today
+
+
+def _sitemap(site: SiteConfig, services: list[Service], today: date, privacy_md: str | None = None) -> str:
     entries = [("/", today.isoformat()), ("/price-increases/", today.isoformat())]
+    if privacy_md is not None:
+        entries.append(("/privacy/", _policy_date(privacy_md, today).isoformat()))
     entries += [(f"/cancel/{s.slug}/", f"{s.checked}-01") for s in services]
     urls = "".join(f"  <url><loc>{site.base_url}{path}</loc><lastmod>{lastmod}</lastmod></url>\n"
                    for path, lastmod in entries)
@@ -45,7 +59,7 @@ def _sitemap(site: SiteConfig, services: list[Service], today: date) -> str:
 
 
 def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dict, today: date,
-               static_dir: Path) -> list[str]:
+               static_dir: Path, catalog: Catalog | None = None, privacy_md: str | None = None) -> list[str]:
     changes = parse_changes(prices)
     if not any(c.country == "US" for c in changes):
         raise BuildError("prices.json has no usable US changes")
@@ -62,7 +76,8 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
             errors.append(f"HEADLINE NOT FOUND {s.slug}: {s.headline_plan} {s.headline_frequency}")
             continue
         try:
-            _write(out / "cancel" / s.slug / "index.html", service_page(site, s, us, today))
+            brand = catalog.get(s.service_id) if catalog else None
+            _write(out / "cancel" / s.slug / "index.html", service_page(site, s, us, today, brand))
         except ValueError as e:  # an FAQ price placeholder with no data behind it
             errors.append(f"PRICE NOT FOUND {s.slug}: {e}")
     if errors:
@@ -72,11 +87,19 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
     for sid in sorted({c.service_id for c in changes if c.country == "US"} - known):
         warnings.append(f"NO PAGE for US service {sid}")
 
-    _write(out / "price-increases" / "index.html", increases_page(site, services, _us_all(changes, services), today))
-    _write(out / "index.html", home_page(site, services))
-    _write(out / "sitemap.xml", _sitemap(site, services, today))
+    us_all = _us_all(changes, services)
+    _write(out / "price-increases" / "index.html", increases_page(site, services, us_all, today))
+    _write(out / "index.html", home_page(site, services, catalog, us_all, today))
+    if privacy_md is not None:
+        _write(out / "privacy" / "index.html", privacy_page(site, privacy_md))
+    elif site.privacy_url.startswith("/"):
+        raise BuildError(f"privacyUrl is {site.privacy_url} but content/privacy.md is missing")
+    _write(out / "sitemap.xml", _sitemap(site, services, today, privacy_md))
     _write(out / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {site.base_url}/sitemap.xml\n")
+    private = ("*.json", ".DS_Store")  # provenance sidecars and Finder files are not for the site
     for f in static_dir.iterdir():
-        if f.is_file():
+        if f.is_file() and not any(f.match(p) for p in private):
             shutil.copy2(f, out / f.name)
+        elif f.is_dir():
+            shutil.copytree(f, out / f.name, dirs_exist_ok=True, ignore=shutil.ignore_patterns(*private))
     return warnings

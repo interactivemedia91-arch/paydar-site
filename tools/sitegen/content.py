@@ -141,3 +141,44 @@ def load_services(directory: Path) -> list[Service]:
     if problems:
         raise ContentError("\n".join(problems))
     return sorted(services, key=lambda s: s.name.lower())
+
+
+@dataclass(frozen=True)
+class Brand:
+    """A service as the app's catalog knows it (content/catalog.json, from tools/import_catalog.py)."""
+    service_id: str
+    name: str
+    color: str  # "#RRGGBB"
+    price: float | None  # typical US price, as the app's onboarding prefills it
+    frequency: str
+    category: str
+    logo: str | None  # site path of a 96 px App Store icon
+    glyph: str | None  # simple-icons SVG path (24 × 24) when there is no icon
+
+
+@dataclass(frozen=True)
+class Catalog:
+    home_chips: tuple[str, ...]
+    brands: dict[str, Brand]
+
+    def get(self, service_id: str) -> Brand | None:
+        return self.brands.get(service_id)
+
+
+def load_catalog(path: Path) -> Catalog:
+    d = json.loads(path.read_text(encoding="utf-8"))
+    brands = {sid: Brand(service_id=sid, name=e["name"], color=e["color"], price=e.get("price"),
+                         frequency=e.get("frequency", "monthly"), category=e["category"],
+                         logo=e.get("logo"), glyph=e.get("glyph"))
+              for sid, e in d["services"].items()}
+    problems = [f"catalog.json: {sid}: color must be #RRGGBB" for sid, b in brands.items()
+                if not re.fullmatch(r"#[0-9A-Fa-f]{6}", b.color)]
+    for sid in d["homeChips"]:
+        b = brands.get(sid)
+        if b is None:
+            problems.append(f"catalog.json: homeChips: {sid} is not in services")
+        elif not (isinstance(b.price, (int, float)) and b.price > 0 and b.frequency == "monthly"):
+            problems.append(f"catalog.json: homeChips: {sid} needs a monthly price (the homepage adds them up)")
+    if problems:
+        raise ContentError("\n".join(problems))
+    return Catalog(home_chips=tuple(d["homeChips"]), brands=brands)

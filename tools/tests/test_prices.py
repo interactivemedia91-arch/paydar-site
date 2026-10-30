@@ -105,7 +105,7 @@ class CardsAndChartTest(unittest.TestCase):
         self.assertEqual(plan_cards(cs, "Discovery+", TODAY)[0].price, "$9.99/mo")
         bars = chart_bars(cs, "Ad-free", "monthly", TODAY)
         self.assertEqual([(b.label, b.value, b.upcoming) for b in bars],
-                         [("Before Nov 2026", 9.99, False), ("Nov 2026 (coming)", 11.99, True)])
+                         [("Before Nov 2026", 9.99, False), ("Nov 2026", 11.99, True)])
 
     def test_aliases_join_renamed_plan(self):  # ESPN
         raw = parse_changes({"changes": [

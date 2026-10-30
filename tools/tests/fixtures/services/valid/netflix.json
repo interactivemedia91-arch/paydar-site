@@ -19,7 +19,7 @@
     {"q": "Do I keep watching after I cancel?", "a": "Yes, until the end of your current billing period."},
     {"q": "Can I get a refund?", "a": "Netflix doesn't refund partial months."},
     {"q": "Can I pause instead?", "a": "Netflix has no pause in the US. If you come back within 10 months, your profiles and history are still there."},
-    {"q": "Is there a cheaper plan?", "a": "Standard with ads, $8.99/mo."}
+    {"q": "Is there a cheaper plan?", "a": "Standard with ads, $8.99/mo: the same shows & \"most\" films, with ads."}
   ],
   "cancelSources": [
     {"label": "Netflix Help Center: How to cancel Netflix", "url": "https://help.netflix.com/en/node/407"}
