@@ -32,11 +32,16 @@ ICON_OUT = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6
             'stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 ICON_NEXT = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" '
              'stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
-# The app icon's mark: ring, beam, coin (PaydarWidget's RadarMark).
-RADAR_MARK = ('<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.68" fill="none" '
-              'stroke="currentColor" stroke-width="2.64"/><path d="M12 12 12 1.32A10.68 10.68 0 0 1 20.18 5.13Z" '
-              'fill="currentColor" opacity=".35"/><circle cx="15.5" cy="6.4" r="3.6" fill="#E8B04B"/>'
-              '<circle cx="12" cy="12" r="1.92" fill="currentColor"/></svg>')
+# The app icon's receipt radar as a line mark (the app's ReceiptRadar, same 24-unit geometry):
+# torn paper half-disc, sweep, blip, Today point. The faint ring and wedge (.mark-detail) are
+# hidden at small sizes, as in the app below 20 pt.
+RADAR_MARK = ('<svg class="mark" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+              '<path class="mark-detail" d="M12 14.95 12 4.55A10.4 10.4 0 0 1 18.11 6.54Z" style="fill:var(--accent)" fill-opacity=".28"/>'
+              '<path class="mark-detail" d="M6.28 14.95A5.72 5.72 0 0 1 17.72 14.95" stroke="currentColor" stroke-opacity=".3" stroke-width="1.3"/>'
+              '<path d="M1.6 14.95A10.4 10.4 0 0 1 22.4 14.95V18.05L20.32 19.45 18.24 18.05 16.16 19.45 14.08 18.05 12 19.45 '
+              '9.92 18.05 7.84 19.45 5.76 18.05 3.68 19.45 1.6 18.05Z" stroke="currentColor" stroke-width="1.9"/>'
+              '<path d="M12 14.95 18.11 6.54" style="stroke:var(--accent)" stroke-width="1.9"/>'
+              '<circle cx="8.21" cy="9.73" r="1.9" style="fill:var(--rise)"/><circle cx="12" cy="14.95" r="1.5" style="fill:var(--accent)"/></svg>')
 
 # Homepage guide groups, by the app catalog's category.
 GUIDE_GROUPS = (("Streaming", ("streaming",)), ("Music", ("music",)),

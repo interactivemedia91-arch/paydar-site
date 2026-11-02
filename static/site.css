@@ -336,6 +336,7 @@ p, li, dd { text-wrap: pretty; }
 }
 .notice-app { display: flex; align-items: center; gap: 8px; font: 600 .8125rem var(--round); color: var(--sub); letter-spacing: .02em; }
 .notice-app .mark { width: 18px; height: 18px; }
+.notice-app .mark .mark-detail { display: none; }
 .notice-app span { margin-left: auto; font-weight: 400; letter-spacing: 0; }
 .notice strong { margin-top: 6px; font-size: 1.0625rem; }
 .reminders-copy p { max-width: 36em; font-size: var(--statement); }
