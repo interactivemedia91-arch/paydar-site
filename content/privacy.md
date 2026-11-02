@@ -1,14 +1,15 @@
 ## Privacy Policy
 
-_Last updated: 25 October 2026_
+_Last updated: 2 November 2026_
 
 Paydar ("the app", "we") is a subscription tracker that runs on your device. This policy explains what data the app handles and who it is shared with. By using Paydar you agree to this policy.
 
 ### The short version
 
 - Paydar has **no account and no servers of its own**. The subscriptions, payment method labels, reminders and settings you enter are stored **on your device** and, if you use iCloud, backed up to **your own private iCloud**. We never receive, see, or store them.
-- The app connects to the internet to **download currency exchange rates**, to **download a public list of subscription price changes** and to **check your Paydar Pro purchase**. Purchases are processed by **Apple** and validated by **RevenueCat**, as described below.
+- The app connects to the internet to **download currency exchange rates**, to **download a public list of subscription price changes** and to **check your Paydar Pro purchase** with **Apple**, as described below.
 - From version 1.2.0 Paydar shows **no ads** and does not track you. Earlier versions showed ads (see "Advertising in versions before 1.2.0").
+- This website counts visits with **Cloudflare Web Analytics**, which uses no cookies (see "This website").
 
 ### Data stored on your device
 
@@ -40,13 +41,21 @@ This data is handled under Google's policies, not ours:
 
 Updating to version 1.2.0 or later removes all ads.
 
-### Purchases (Apple App Store & RevenueCat)
+### Purchases (Apple App Store)
 
-The optional one-time Paydar Pro purchase (and the earlier ad-free upgrade) is processed by **Apple's App Store** (in-app purchase). We use **RevenueCat** to validate and remember it so your Pro status works across reinstalls. RevenueCat receives the purchase/transaction details and an anonymous app-user identifier (versions before 1.2.0 also sent your tracking-permission status, allowed or not); it does not receive your subscription data. See RevenueCat's privacy policy: https://www.revenuecat.com/privacy/. We never receive or store your payment card details; those are handled entirely by Apple.
+The optional one-time Paydar Pro purchase (and the earlier ad-free upgrade) is processed by **Apple's App Store** (in-app purchase). From version 2.0 the app checks it directly with Apple (StoreKit), on your device, so your Pro status works across reinstalls; no third party is involved.
+
+Versions before 2.0 used **RevenueCat** to validate and remember the purchase. RevenueCat received the purchase/transaction details and an anonymous app-user identifier (versions before 1.2.0 also sent your tracking-permission status, allowed or not), never your subscription data. See RevenueCat's privacy policy: https://www.revenuecat.com/privacy/.
+
+We never receive or store your payment card details; those are handled entirely by Apple.
 
 ### Notifications
 
 Renewal and trial reminders are scheduled **locally** on your device. Paydar does not use push servers and does not send your data anywhere to deliver them.
+
+### This website
+
+getpaydarapp.com counts page views with **Cloudflare Web Analytics**. It uses no cookies or other storage on your device, does not fingerprint your browser and does not follow you to other sites. Cloudflare processes your IP address and browser details to produce aggregate statistics (pages viewed, referring sites, country, device type). See Cloudflare's privacy policy: https://www.cloudflare.com/privacypolicy/. Links to the App Store carry a campaign tag, so Apple can tell us, in aggregate, how many App Store visits came from this site.
 
 ### Children
 

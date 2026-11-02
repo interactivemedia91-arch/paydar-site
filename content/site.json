@@ -4,5 +4,6 @@
   "providerToken": "129114170",
   "privacyUrl": "/privacy/",
   "supportEmail": "interactivemedia91@gmail.com",
-  "pricesUrl": "https://interactivemedia91-arch.github.io/prices.json"
+  "pricesUrl": "https://interactivemedia91-arch.github.io/prices.json",
+  "analyticsToken": "399f87f77cca45bfb08b06491d096a78"
 }

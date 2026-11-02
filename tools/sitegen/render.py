@@ -92,6 +92,14 @@ def _host(url: str) -> str:
     return host[4:] if host.startswith("www.") else host
 
 
+def analytics_html(site: SiteConfig) -> str:
+    """Cloudflare Web Analytics' beacon (cookieless page views), when the site has a token."""
+    if not site.analytics_token:
+        return ""
+    beacon = esc(json.dumps({"token": site.analytics_token}))
+    return f"\n  <script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon=\"{beacon}\"></script>"
+
+
 def logo_html(brand: Brand | None, name: str, size: int, cls: str = "logo", lazy: bool = True) -> str:
     """The service's App Store icon, else its glyph on a brand tile, else its initial (the app's ServiceLogo)."""
     if brand and brand.logo:
@@ -133,7 +141,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.png?v=2">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/site.css">{head_extra}
+  <link rel="stylesheet" href="/site.css">{analytics_html(site)}{head_extra}
 </head>
 <body class="{page_class}">
   <div class="field" style="{esc(field)}" aria-hidden="true"></div>

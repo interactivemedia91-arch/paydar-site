@@ -21,6 +21,8 @@ class SiteConfig:
     privacy_url: str
     support_email: str
     prices_url: str
+    # Cloudflare Web Analytics (cookieless page views); empty = no beacon.
+    analytics_token: str = ""
 
 
 @dataclass(frozen=True)
@@ -44,7 +46,8 @@ class Service:
 def load_site(path: Path) -> SiteConfig:
     d = json.loads(path.read_text(encoding="utf-8"))
     return SiteConfig(base_url=d["baseUrl"].rstrip("/"), app_id=d["appId"], provider_token=d.get("providerToken", ""),
-                      privacy_url=d["privacyUrl"], support_email=d["supportEmail"], prices_url=d["pricesUrl"])
+                      privacy_url=d["privacyUrl"], support_email=d["supportEmail"], prices_url=d["pricesUrl"],
+                      analytics_token=d.get("analyticsToken", ""))
 
 
 def _text(v) -> bool:

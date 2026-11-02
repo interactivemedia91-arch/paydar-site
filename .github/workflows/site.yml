@@ -63,3 +63,19 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # After a push (new or changed pages), tells Bing and the other IndexNow engines to recrawl the
+  # sitemap's pages. The key is public by design: static/<key>.txt proves the site owns it.
+  indexnow:
+    if: github.event_name == 'push'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping IndexNow
+        continue-on-error: true  # a failed ping must not fail the deploy
+        env:
+          KEY: b1ac0f758eec2a13270245f046b2db71
+        run: |
+          urls=$(curl -fsS https://getpaydarapp.com/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -s .)
+          jq -n --argjson urls "$urls" '{host: "getpaydarapp.com", key: env.KEY, keyLocation: ("https://getpaydarapp.com/" + env.KEY + ".txt"), urlList: $urls}' \
+            | curl -sS -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data-binary @- -o /dev/null -w 'IndexNow: HTTP %{http_code}\n'

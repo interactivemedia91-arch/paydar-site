@@ -94,6 +94,12 @@ class ServicePageTest(unittest.TestCase):
         self.assertIn('<meta name="apple-itunes-app" content="app-id=6786868155">', html)
         self.assertRegex(html, r"<title>How to cancel Netflix \(2026\)")
 
+    def test_analytics_beacon_only_with_a_token(self):
+        self.assertNotIn("cloudflareinsights", netflix_page())
+        html = home_page(replace(SITE, analytics_token="abc123"), SERVICES)
+        self.assertIn('<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" '
+                      'data-cf-beacon="{&quot;token&quot;: &quot;abc123&quot;}"></script>', html)
+
     def test_escapes_content(self):
         self.assertIn("Membership &amp; Billing", netflix_page())
         evil = replace(NETFLIX, steps=("Click <b>here</b>", "Two", "Three"))
