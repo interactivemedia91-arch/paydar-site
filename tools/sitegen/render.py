@@ -131,8 +131,8 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Paydar: every charge, 3 days early. Your renewals on one radar.">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
   <link rel="stylesheet" href="/site.css">{head_extra}
 </head>
 <body class="{page_class}">
