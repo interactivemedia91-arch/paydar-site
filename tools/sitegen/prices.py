@@ -169,6 +169,22 @@ def price_tag(changes: list[Change], plan: str, frequency: str, label: str, toda
     return Tag("flat", f"{name}: {money(last.new)}{per(frequency)}")
 
 
+def title_news(changes: list[Change], plan: str, frequency: str, today: date, year: str) -> str | None:
+    """The headline plan's price news for the page title, the words people search for: an
+    upcoming increase, or one in effect for less than RECENT. Decreases and older increases
+    leave the title as it is. "price increase" comes early, before Google cuts long titles.
+    `year` is the title's own year, not repeated after the month."""
+    past, upcoming = _split(_series(changes, plan, frequency), today)
+    if upcoming:
+        c = upcoming[0]
+        return f"price increase to {money(c.new)}{per(frequency)} {_on(c)}" if _kind(c) == "up" else None
+    if past and past[-1].effective > today - RECENT and _kind(past[-1]) == "up":
+        c = past[-1]
+        month = MONTHS[c.effective.month - 1] + ("" if str(c.effective.year) == year else f" {c.effective.year}")
+        return f"{month} price increase to {money(c.new)}{per(frequency)}"
+    return None
+
+
 def plan_cards(changes: list[Change], service_name: str, today: date) -> list[Card]:
     """One card per plan, cheapest first."""
     plans = list(dict.fromkeys(c.plan for c in changes))

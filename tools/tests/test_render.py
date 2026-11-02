@@ -92,7 +92,8 @@ class ServicePageTest(unittest.TestCase):
         html = netflix_page()
         self.assertIn('<link rel="canonical" href="https://getpaydarapp.com/cancel/netflix/">', html)
         self.assertIn('<meta name="apple-itunes-app" content="app-id=6786868155">', html)
-        self.assertRegex(html, r"<title>How to cancel Netflix \(2026\)")
+        # The headline plan went up in March 2026, under a year before TODAY: the title says so.
+        self.assertIn("<title>Cancel Netflix (2026): March price increase to $19.99/mo | Paydar</title>", html)
 
     def test_analytics_beacon_only_with_a_token(self):
         self.assertNotIn("cloudflareinsights", netflix_page())

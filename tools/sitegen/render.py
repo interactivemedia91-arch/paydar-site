@@ -10,7 +10,7 @@ from urllib.parse import quote, urlparse
 
 from .aura import field_style
 from .content import Brand, Catalog, Service, SiteConfig
-from .prices import MONTHS, Change, chart_bars, fill_prices, increase_rows, plan_cards, price_tag
+from .prices import MONTHS, Change, chart_bars, fill_prices, increase_rows, plan_cards, price_tag, title_news
 from .radar import aura_radius, place
 
 APPLE_NOTE = ("<strong>Paying through Apple?</strong> Then Apple bills you. "
@@ -304,8 +304,13 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
                  brand: Brand | None = None) -> str:
     has_prices = service.headline_plan is not None and bool(us)
     year = service.checked[:4]
-    title = (f"How to cancel {service.name} ({year}): steps and current prices | Paydar" if has_prices
-             else f"How to cancel {service.name} ({year}): step by step | Paydar")
+    news = title_news(us, service.headline_plan, service.headline_frequency, today, year) if has_prices else None
+    if news:  # "Cancel YouTube Premium (2026): June price increase to $15.99/mo"
+        title = f"Cancel {service.name} ({year}): {news} | Paydar"
+    elif has_prices:
+        title = f"How to cancel {service.name} ({year}): steps and current prices | Paydar"
+    else:
+        title = f"How to cancel {service.name} ({year}): step by step | Paydar"
     description = service.fastest_text + (" Steps, current US prices and price history." if has_prices
                                           else " Step-by-step guide.")
     steps = "".join(f"<li><p>{esc(s)}</p></li>" for s in service.steps)

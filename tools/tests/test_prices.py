@@ -2,7 +2,8 @@ import unittest
 from datetime import date
 
 from sitegen.prices import (
-    Change, chart_bars, fill_prices, increase_rows, money, parse_changes, per, plan_cards, price_tag, signed, us_changes,
+    Change, chart_bars, fill_prices, increase_rows, money, parse_changes, per, plan_cards, price_tag, signed, title_news,
+    us_changes,
 )
 
 TODAY = date(2026, 10, 25)
@@ -12,6 +13,31 @@ def ch(plan, freq, old, new, eff, approx=False, sid="x"):
     return Change(id=f"{sid}-{plan}-{freq}-{eff}", service_id=sid, plan=plan, country="US", currency="USD",
                   frequency=freq, old=old, new=new, effective=date.fromisoformat(eff), approx_month=approx,
                   source="https://example.com/source")
+
+
+class TitleNewsTest(unittest.TestCase):
+    NETFLIX = [ch("Standard", "monthly", 15.49, 17.99, "2025-01-21"), ch("Standard", "monthly", 17.99, 19.99, "2026-03-26")]
+
+    def test_recent_increase(self):
+        self.assertEqual(title_news(self.NETFLIX, "Standard", "monthly", TODAY, "2026"),
+                         "March price increase to $19.99/mo")
+        # Another year's increase names its year.
+        self.assertEqual(title_news(self.NETFLIX, "Standard", "monthly", date(2027, 2, 1), "2027"),
+                         "March 2026 price increase to $19.99/mo")
+
+    def test_upcoming_increase(self):
+        changes = [ch("Ad-free", "monthly", 9.99, 11.99, "2026-11-12")]
+        self.assertEqual(title_news(changes, "Ad-free", "monthly", TODAY, "2026"), "price increase to $11.99/mo on Nov 12")
+        approx = [ch("Ad-free", "monthly", 9.99, 11.99, "2026-12-01", approx=True)]
+        self.assertEqual(title_news(approx, "Ad-free", "monthly", TODAY, "2026"),
+                         "price increase to $11.99/mo in December 2026")
+
+    def test_no_news(self):
+        self.assertIsNone(title_news(self.NETFLIX, "Standard", "monthly", date(2027, 4, 1), "2027"))  # over a year old
+        self.assertIsNone(title_news([ch("Basic", "monthly", 9.99, 7.99, "2026-09-01")], "Basic", "monthly", TODAY, "2026"))
+        self.assertIsNone(title_news([ch("Basic", "monthly", 9.99, 7.99, "2026-12-01")], "Basic", "monthly", TODAY, "2026"))
+        self.assertIsNone(title_news(self.NETFLIX, "Premium", "monthly", TODAY, "2026"))  # another plan
+        self.assertIsNone(title_news(self.NETFLIX, "Standard", "annual", TODAY, "2026"))
 
 
 class FormattingTest(unittest.TestCase):
