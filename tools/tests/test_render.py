@@ -147,7 +147,13 @@ class OtherPagesTest(unittest.TestCase):
     def test_increases_page_links_and_order(self):
         us_all = [c for c in CHANGES if c.country == "US"]
         html = increases_page(SITE, SERVICES, us_all, TODAY)
-        self.assertLess(html.find("Coming up"), html.find("Recently"))
+        self.assertLess(html.find("Coming up"), html.find("Every service at a glance"))
+        self.assertLess(html.find("Every service at a glance"), html.find("2026 so far"))
+        self.assertLess(html.find("2026 so far"), html.find(">2025<"))
+        self.assertIn("<title>Subscription price increases 2026: every US hike so far | Paydar</title>", html)
+        self.assertIn('"@type": "FAQPage"', html)
+        self.assertIn("Which subscriptions raised prices in 2026?", html)
+        self.assertIn("So far in 2026, 2 of the 3 subscriptions we track raised their US prices.", html)
         self.assertIn("Updated Oct 25, 2026", html)
         self.assertIn('href="/cancel/netflix/"', html)
         self.assertIn("Unknown Service", html)

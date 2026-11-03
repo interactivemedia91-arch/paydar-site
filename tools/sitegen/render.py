@@ -10,7 +10,11 @@ from urllib.parse import quote, urlparse
 
 from .aura import field_style
 from .content import Brand, Catalog, Service, SiteConfig
-from .prices import MONTHS, Change, chart_bars, fill_prices, increase_rows, plan_cards, price_tag, title_news
+from .prices import (
+    MONTHS, Change, chart_bars, fill_prices, glance_rows, increase_rows, per, percent, plan_cards, price_tag, signed,
+    title_news, year_summary,
+)
+from .prices import money as pmoney
 from .radar import aura_radius, place
 
 APPLE_NOTE = ("<strong>Paying through Apple?</strong> Then Apple bills you. "
@@ -361,13 +365,38 @@ def _json_ld(data: dict) -> str:
     return f'\n  <script type="application/ld+json">{text}</script>'
 
 
-def increases_page(site: SiteConfig, services: list[Service], us_all: list[Change], today: date) -> str:
+# The services the description names first, when they went up that year.
+FAMOUS = ("netflix", "spotify", "disney-plus", "youtube-premium", "hbo-max", "peacock", "apple-tv", "hulu",
+          "paramount-plus", "apple-music")
+
+
+def _and(items: list[str]) -> str:
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def _when_short(c: Change) -> str:
+    """'Mar 26, 2026', or 'Oct 2025' when only the month is known."""
+    if c.approx_month:
+        return f"{MONTHS[c.effective.month - 1][:3]} {c.effective.year}"
+    return f"{MONTHS[c.effective.month - 1][:3]} {c.effective.day}, {c.effective.year}"
+
+
+def increases_page(site: SiteConfig, services: list[Service], us_all: list[Change], today: date,
+                   catalog: Catalog | None = None) -> str:
     names = {s.service_id: s.name for s in services}
     slugs = {s.service_id: s.slug for s in services}
-    upcoming, past = increase_rows(us_all, names, today)
+
+    def name(sid: str) -> str:
+        brand = catalog.get(sid) if catalog else None
+        return names.get(sid) or (brand.name if brand else sid.replace("-", " ").title())
+
+    upcoming, past = increase_rows(us_all, {sid: name(sid) for sid in {c.service_id for c in us_all}}, today)
+    year = today.year
+    summary = year_summary(us_all, year, today)
+    tracked = len({c.service_id for c in us_all})
 
     def name_html(sid: str, cls: str) -> str:
-        label = esc(names.get(sid) or sid.replace("-", " ").title())
+        label = esc(name(sid))
         return f'<a class="{cls}" href="/cancel/{esc(slugs[sid])}/">{label}</a>' if sid in slugs else f'<span class="{cls}">{label}</span>'
 
     def sources_html(sources: list[str]) -> str:
@@ -377,6 +406,14 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
     def lines_html(lines: list[str]) -> str:
         return "".join(f"<li>{esc(line)}</li>" for line in lines)
 
+    def recent_html(rows) -> str:
+        return "".join(
+            f'<div class="recent-row"><div class="recent-top">{name_html(r.service_id, "recent-name")}'
+            f'<time datetime="{r.effective.isoformat()}">{esc(r.when)}</time></div>'
+            f'<ul class="row-lines">{lines_html(r.lines)}</ul>'
+            f'<p class="row-source">{sources_html(r.sources)}</p></div>'
+            for r in rows)
+
     if upcoming:
         coming = "".join(
             f'<div class="upcoming-card frost"><h3 class="service-heading">{name_html(r.service_id, "row-name")}</h3>'
@@ -385,30 +422,118 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
             for r in upcoming)
     else:
         coming = '<p class="empty">No announced increases right now.</p>'
-    recent = "".join(
-        f'<div class="recent-row"><div class="recent-top">{name_html(r.service_id, "recent-name")}'
-        f'<time datetime="{r.effective.isoformat()}">{esc(r.when)}</time></div>'
-        f'<ul class="row-lines">{lines_html(r.lines)}</ul>'
-        f'<p class="row-source">{sources_html(r.sources)}</p></div>'
-        for r in past)
+
+    # The year in three numbers, then the same in a sentence (what a search snippet would quote).
+    stats = (f'<div class="stat frost"><span class="stat-num">{len(summary.services)}</span>'
+             f'<span class="stat-label">services raised prices</span></div>'
+             f'<div class="stat frost"><span class="stat-num">{esc(summary.typical_percent or "–")}</span>'
+             f'<span class="stat-label">typical increase</span></div>'
+             f'<div class="stat frost"><span class="stat-num">{len(upcoming)}</span>'
+             f'<span class="stat-label">{"increase" if len(upcoming) == 1 else "increases"} coming up</span></div>')
+    if summary.services:
+        b = summary.biggest
+        lede = (f"So far in {year}, {len(summary.services)} of the {tracked} subscriptions we track raised their US prices. "
+                f"The typical increase on a monthly plan was {signed(summary.typical)} ({summary.typical_percent})")
+        lede += (f"; the biggest, {name(b.service_id)} {b.plan}, went up {pmoney(b.new - b.old)} to "
+                 f"{pmoney(b.new)}{per(b.frequency)}." if b else ".")
+    else:
+        lede = f"No US price increases have taken effect in {year} yet."
+    if upcoming:
+        lede += f" Next: {name(upcoming[0].service_id)}, {upcoming[0].when}."
+
+    headlines = {s.service_id: (s.headline_plan, s.headline_frequency) for s in services if s.headline_plan is not None}
+
+    def glance_html(g) -> str:
+        brand = catalog.get(g.service_id) if catalog else None
+        plan = f'<span class="glance-plan">{esc(g.plan)}</span>' if g.plan else ""
+        if g.last:
+            kind = "down" if g.last.new < g.last.old else "up"
+            change = (f'<span class="glance-delta {kind}">{esc(signed(g.last.new - g.last.old))} · '
+                      f'{esc(percent(g.last.old, g.last.new))}</span>'
+                      f'<time datetime="{g.last.effective.isoformat()}">{esc(_when_short(g.last))}</time>')
+        else:
+            change = '<span class="glance-delta">–</span>'
+        return (f'<tr><td><div class="glance-service">{logo_html(brand, name(g.service_id), 32, "logo glance-logo")}'
+                f'<div class="glance-text">{name_html(g.service_id, "glance-name")}{plan}</div></div></td>'
+                f'<td class="glance-now">{esc(pmoney(g.now))}<span>{per(g.frequency)}</span>'
+                # Narrow screens drop the third column and show the change here (one of the two is display: none).
+                f'<div class="glance-change glance-change-inline">{change}</div></td>'
+                f'<td><div class="glance-change">{change}</div></td></tr>')
+
+    glance = "".join(glance_html(g) for g in glance_rows(us_all, headlines, today))
+
+    timeline = ""
+    for y in sorted({r.effective.year for r in past}, reverse=True):
+        heading = f"{y} so far" if y == year else str(y)
+        timeline += (f'      <section class="recent">\n        <h2 class="feed-heading">{heading}</h2>\n'
+                     f'        <div class="recent-list frost">{recent_html([r for r in past if r.effective.year == y])}</div>\n'
+                     f'      </section>\n')
+
+    faq = _increases_faq(summary, upcoming, name, year)
+    faq_html = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in faq)
     updated = f"{MONTHS[today.month - 1][:3]} {today.day}, {today.year}"
+    card = _paydar_card(site, "seo-price-increases", "Get pinged before the next one.",
+                        "Paydar tracks every subscription and flags announced price increases before they hit your card.")
     body = f"""    <article class="wrap article article-wide">
-      <h1 class="page-title">Subscription price increases (US)</h1>
-      <p class="page-meta">Updated {updated}</p>
+      <h1 class="page-title">Subscription price increases in {year}</h1>
+      <p class="page-meta">Updated {updated} · US prices · every change links to its source</p>
+      <div class="stat-row">{stats}</div>
+      <p class="increases-lede">{esc(lede)}</p>
       <section class="upcoming">
         <h2 class="feed-heading">Coming up</h2>
         {coming}
       </section>
-{_paydar_card(site, "seo-price-increases", "Get pinged before the next one.", "Paydar tracks every subscription and flags announced price increases before they hit your card.")}
-      <section class="recent">
-        <h2 class="feed-heading">Recently</h2>
-        <div class="recent-list frost">{recent}</div>
+      <section class="glance">
+        <h2 class="feed-heading">Every service at a glance</h2>
+        <div class="glance-wrap frost"><table class="glance-table">
+          <thead><tr><th scope="col">Service</th><th scope="col">Price now</th><th scope="col">Last change</th></tr></thead>
+          <tbody>{glance}</tbody>
+        </table></div>
+      </section>
+{card}
+{timeline}      <section class="faq">
+        <h2 class="section-title">Common questions</h2>
+        <dl class="faq-list frost">{faq_html}</dl>
       </section>
     </article>"""
-    return _shell(site, title="Subscription price increases (US) | Paydar",
-                  description="Every recent and announced US subscription price increase, with sources. Updated daily.",
-                  path="/price-increases/", ct="seo-price-increases", body=body, page_class="page-increases",
+    famous = [name(sid) for sid in FAMOUS if sid in summary.services][:3]
+    description = (f"{len(summary.services)} of the {tracked} US subscriptions we track raised prices in {year}"
+                   + (f", including {_and(famous)}" if famous else "") + ". Every plan, date and source, updated daily.")
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                             for q, a in faq]}
+    return _shell(site, title=f"Subscription price increases {year}: every US hike so far | Paydar",
+                  description=description, path="/price-increases/", ct="seo-price-increases", body=body,
+                  page_class="page-increases", head_extra=_json_ld(faq_ld),
                   field=field_style([("#FF6B70", 2.0), ("#E8B04B", 1.2), (LAVENDER, 1.0)]))
+
+
+def _increases_faq(summary, upcoming, name, year: int) -> list[tuple[str, str]]:
+    """The price-increase page's questions, answered from the data (the FAQ markup shows them word for word)."""
+    faq = []
+    if summary.services:
+        by_month: dict[int, list[str]] = {}
+        for sid, month in summary.first_months:
+            by_month.setdefault(month, []).append(name(sid))
+        months = "; ".join(f"{MONTHS[m - 1]}: {_and(ns)}" for m, ns in by_month.items())
+        faq.append((f"Which subscriptions raised prices in {year}?",
+                    f"{len(summary.services)} of the ones we track, so far. {months}."))
+    if upcoming:
+        nxt = " ".join(f"{name(r.service_id)}, {r.when}: {'; '.join(r.lines)}." for r in upcoming)
+    else:
+        nxt = "None announced right now. This page is updated every day."
+    faq.append(("Which subscription price increases are coming next?", nxt))
+    if summary.biggest:
+        b = summary.biggest
+        faq.append((f"How much have subscription prices gone up in {year}?",
+                    f"The typical increase on a monthly plan was {signed(summary.typical)} a month "
+                    f"({summary.typical_percent}), about {pmoney(summary.typical * 12)} a year. The biggest was "
+                    f"{name(b.service_id)} {b.plan}: {signed(b.new - b.old)}, to {pmoney(b.new)}{per(b.frequency)}."))
+    faq.append(("How can I avoid a subscription price increase?",
+                "A new price usually starts at your first renewal on or after the change date, and services email "
+                "existing subscribers first. Before then you can cancel, switch to a cheaper plan or move to yearly "
+                "billing where it costs less. If you pay through Apple, manage it in Settings → your name → Subscriptions."))
+    return faq
 
 
 # ---- Homepage -------------------------------------------------------------------------------

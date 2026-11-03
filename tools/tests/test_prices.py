@@ -2,8 +2,8 @@ import unittest
 from datetime import date
 
 from sitegen.prices import (
-    Change, chart_bars, fill_prices, increase_rows, money, parse_changes, per, plan_cards, price_tag, signed, title_news,
-    us_changes,
+    Change, chart_bars, fill_prices, glance_rows, increase_rows, money, parse_changes, per, percent, plan_cards, price_tag,
+    signed, title_news, us_changes, year_summary,
 )
 
 TODAY = date(2026, 10, 25)
@@ -13,6 +13,44 @@ def ch(plan, freq, old, new, eff, approx=False, sid="x"):
     return Change(id=f"{sid}-{plan}-{freq}-{eff}", service_id=sid, plan=plan, country="US", currency="USD",
                   frequency=freq, old=old, new=new, effective=date.fromisoformat(eff), approx_month=approx,
                   source="https://example.com/source")
+
+
+class SummaryTest(unittest.TestCase):
+    CHANGES = [ch("Standard", "monthly", 17.99, 19.99, "2026-03-26", sid="netflix"),
+               ch("Standard", "annual", 179.99, 199.99, "2026-03-26", sid="netflix"),
+               ch("Individual", "monthly", 11.99, 12.99, "2026-01-15", sid="spotify"),
+               ch("Family", "monthly", 22.99, 26.99, "2026-06-01", sid="youtube-premium"),
+               ch("Individual", "monthly", 13.99, 15.99, "2026-06-01", sid="youtube-premium"),
+               ch("Individual", "monthly", 10.99, 11.99, "2026-09-01", sid="spotify"),  # a second one
+               ch("Ultimate", "monthly", 29.99, 22.99, "2026-04-22", sid="xbox"),  # a cut
+               ch("Standard", "monthly", 15.49, 17.99, "2025-01-21", sid="netflix"),  # last year
+               ch("Ad-free", "monthly", 9.99, 11.99, "2026-11-12", sid="discovery")]  # not yet
+
+    def test_year_summary(self):
+        s = year_summary(self.CHANGES, 2026, TODAY)
+        self.assertEqual(s.increases, 4)  # netflix (one date, two plans), spotify ×2, youtube
+        self.assertEqual(s.services, ["spotify", "netflix", "youtube-premium"])
+        self.assertEqual(s.first_months, [("spotify", 1), ("netflix", 3), ("youtube-premium", 6)])
+        self.assertEqual((s.typical, s.typical_percent), (2.0, "+11%"))  # monthly: +1, +2, +4, +2, +1
+        self.assertEqual((s.biggest.service_id, s.biggest.plan), ("youtube-premium", "Family"))
+
+    def test_empty_year(self):
+        s = year_summary(self.CHANGES, 2027, TODAY)
+        self.assertEqual((s.increases, s.services, s.biggest, s.typical_percent), (0, [], None, ""))
+
+    def test_glance_rows(self):
+        rows = glance_rows(self.CHANGES, {"netflix": ("Standard", "monthly")}, TODAY)
+        self.assertEqual([r.service_id for r in rows], ["spotify", "youtube-premium", "xbox", "netflix", "discovery"])
+        yt = rows[1]
+        self.assertEqual((yt.plan, yt.now, yt.last.new), ("Individual", 15.99, 15.99))  # the cheaper plan raised that day
+        xbox = rows[2]
+        self.assertEqual((xbox.now, xbox.last.new < xbox.last.old), (22.99, True))  # a cut is the last change
+        disc = rows[4]
+        self.assertEqual((disc.now, disc.last), (9.99, None))  # only an upcoming change
+
+    def test_percent(self):
+        self.assertEqual(percent(17.99, 19.99), "+11%")
+        self.assertEqual(percent(29.99, 22.99), "−23%")
 
 
 class TitleNewsTest(unittest.TestCase):
@@ -186,13 +224,13 @@ class RowsTest(unittest.TestCase):
         names = {"discovery-plus": "Discovery+", "disney-plus": "Disney+", "netflix": "Netflix"}
         up, past = increase_rows(cs, names, TODAY)
         self.assertEqual([(r.service_id, r.when, r.lines) for r in up],
-                         [("discovery-plus", "Nov 12, 2026", ["Ad-free $9.99 → $11.99/mo (+$2)", "With ads $5.99 → $6.99/mo (+$1)"])])
+                         [("discovery-plus", "Nov 12, 2026", ["Ad-free $9.99 → $11.99/mo (+$2, +20%)", "With ads $5.99 → $6.99/mo (+$1, +17%)"])])
         self.assertEqual([r.service_id for r in past], ["disney-plus", "netflix"])
 
     def test_row_label_for_missing_plan(self):
         cs = [ch("", "monthly", 12.99, 14.99, "2026-08-28", sid="apple-tv")]
         _, past = increase_rows(cs, {"apple-tv": "Apple TV"}, TODAY)
-        self.assertEqual(past[0].lines, ["Apple TV $12.99 → $14.99/mo (+$2)"])
+        self.assertEqual(past[0].lines, ["Apple TV $12.99 → $14.99/mo (+$2, +15%)"])
 
 
 class ParseTest(unittest.TestCase):

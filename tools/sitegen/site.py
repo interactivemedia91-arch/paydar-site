@@ -88,7 +88,7 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
         warnings.append(f"NO PAGE for US service {sid}")
 
     us_all = _us_all(changes, services)
-    _write(out / "price-increases" / "index.html", increases_page(site, services, us_all, today))
+    _write(out / "price-increases" / "index.html", increases_page(site, services, us_all, today, catalog))
     _write(out / "index.html", home_page(site, services, catalog, us_all, today))
     if privacy_md is not None:
         _write(out / "privacy" / "index.html", privacy_page(site, privacy_md))

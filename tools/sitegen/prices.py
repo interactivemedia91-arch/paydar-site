@@ -3,6 +3,7 @@
 import math
 import re
 from dataclasses import dataclass
+from statistics import median
 from datetime import date, timedelta
 
 # Fixed English names: strftime would follow the machine's locale.
@@ -105,6 +106,12 @@ def us_changes(changes: list[Change], service_id: str, aliases: dict[str, str]) 
 def money(x: float) -> str:
     x = round(x, 2)
     return f"${int(x)}" if x == int(x) else f"${x:.2f}"
+
+
+def percent(old: float, new: float) -> str:
+    """'+11%': the change, rounded to a whole percent."""
+    p = round((new - old) / old * 100)
+    return ("+" if p >= 0 else MINUS) + f"{abs(p)}%"
 
 
 def signed(x: float) -> str:
@@ -232,13 +239,76 @@ def increase_rows(us: list[Change], names: dict[str, str], today: date) -> tuple
     rows = []
     for (sid, effective), cs in groups.items():
         lines = [f"{c.plan or names.get(sid, sid)} {money(c.old)} → {money(c.new)}{per(c.frequency)} "
-                 f"({signed(c.new - c.old)})" for c in cs]
+                 f"({signed(c.new - c.old)}, {percent(c.old, c.new)})" for c in cs]
         approx = next((c for c in cs if c.approx_month), cs[0])
         sources = list(dict.fromkeys(c.source for c in cs if c.source))
         rows.append(Row(service_id=sid, effective=effective, when=_when(approx), lines=lines, sources=sources))
     upcoming = sorted((r for r in rows if r.effective > today), key=lambda r: (r.effective, r.service_id))
     past = sorted((r for r in rows if r.effective <= today), key=lambda r: (r.effective, r.service_id), reverse=True)
     return upcoming, past
+
+
+@dataclass(frozen=True)
+class Summary:
+    """A year's US price increases that are already in effect."""
+    year: int
+    increases: int  # one per service and date, however many plans it moved
+    services: list[str]  # in the order they first went up that year
+    first_months: list[tuple[str, int]]  # (service, month of its first increase that year), in that order
+    typical: float  # median monthly-plan increase, in dollars
+    typical_percent: str  # median monthly-plan increase, "+13%"
+    biggest: Change | None  # the largest monthly-plan increase in dollars
+
+
+def _first_months(ups: list[Change]) -> list[tuple[str, int]]:
+    first: dict[str, int] = {}
+    for c in ups:  # in date order
+        first.setdefault(c.service_id, c.effective.month)
+    return list(first.items())
+
+
+def year_summary(us: list[Change], year: int, today: date) -> Summary:
+    ups = sorted((c for c in us if c.new > c.old and c.effective.year == year and c.effective <= today),
+                 key=lambda c: (c.effective, c.service_id))
+    monthly = [c for c in ups if c.frequency == "monthly"]
+    ratios = [(c.new - c.old) / c.old for c in monthly]
+    return Summary(year=year, increases=len({(c.service_id, c.effective) for c in ups}),
+                   services=list(dict.fromkeys(c.service_id for c in ups)),
+                   first_months=_first_months(ups),
+                   typical=round(median(c.new - c.old for c in monthly), 2) if monthly else 0.0,
+                   typical_percent=percent(1, 1 + median(ratios)) if ratios else "",
+                   biggest=max(monthly, key=lambda c: (c.new - c.old, c.effective)) if monthly else None)
+
+
+@dataclass(frozen=True)
+class Glance:
+    """One service's line in the at-a-glance table."""
+    service_id: str
+    plan: str
+    frequency: str
+    now: float
+    last: Change | None  # that plan's latest change in effect (a cut too: Xbox went down)
+
+
+def glance_rows(us: list[Change], headlines: dict[str, tuple[str, str]], today: date) -> list[Glance]:
+    """A line per service: its headline plan (else the plan of its latest monthly increase, the
+    cheapest on that date, else of its latest change), the price today and its last change;
+    latest change first."""
+    rows = []
+    for sid in dict.fromkeys(c.service_id for c in us):
+        cs = [c for c in us if c.service_id == sid]
+        if sid in headlines:
+            plan, frequency = headlines[sid]
+        else:
+            pick = max((c for c in cs if c.new > c.old and c.frequency == "monthly"),
+                       key=lambda c: (c.effective, -c.new), default=None) or max(cs, key=lambda c: c.effective)
+            plan, frequency = pick.plan, pick.frequency
+        series = _series(cs, plan, frequency)
+        if not series:
+            continue
+        past = _split(series, today)[0]
+        rows.append(Glance(sid, plan, frequency, _current(series, today), past[-1] if past else None))
+    return sorted(rows, key=lambda r: (r.last.effective if r.last else date.min, r.service_id), reverse=True)
 
 
 PRICE_TOKEN = re.compile(r"\{(price|monthly|yearly):([^}]*)\}")
