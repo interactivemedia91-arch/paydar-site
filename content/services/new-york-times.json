@@ -1,0 +1,38 @@
+{
+  "serviceId": "new-york-times",
+  "name": "The New York Times",
+  "slug": "new-york-times",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Sign in at nytimes.com, open your Account, select Subscription Overview, then Cancel your Subscription.",
+    "url": "https://help.nytimes.com/hc/en-us/articles/360003499613-Cancel-Your-Subscription"
+  },
+  "steps": [
+    "Sign in at nytimes.com and open your Account.",
+    "Select Subscription Overview.",
+    "In the Manage Subscription section, select Cancel your Subscription.",
+    "Follow the instructions to finish. No cancel option? Call or chat with Customer Care (see below)."
+  ],
+  "appleBilled": true,
+  "note": "Billed through The Athletic? Cancel in your account settings for The Athletic instead.",
+  "faq": [
+    {
+      "q": "Can I cancel by phone or chat?",
+      "a": "Yes. In the US call 866-273-3612, 7 a.m. to 5 p.m. ET on weekdays and 7 a.m. to 2 p.m. ET on weekends and holidays, or chat with Customer Care from the Times help center at the same hours."
+    },
+    {
+      "q": "Why can't I cancel in my account?",
+      "a": "Only eligible digital and Home Delivery subscriptions billed by The Times can be cancelled online. For the rest, call or chat."
+    },
+    {
+      "q": "What happens after I cancel?",
+      "a": "You go back to limited access to The Times's content."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "NYT Help: Cancel your subscription",
+      "url": "https://help.nytimes.com/hc/en-us/articles/360003499613-Cancel-Your-Subscription"
+    }
+  ]
+}

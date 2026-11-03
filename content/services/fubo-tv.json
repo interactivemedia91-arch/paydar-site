@@ -1,0 +1,55 @@
+{
+  "serviceId": "fubo-tv",
+  "name": "Fubo",
+  "slug": "fubo",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Sign in at fubo.tv, open Settings → My Account → Subscription, expand your plan and select Cancel.",
+    "url": "https://support.fubo.tv/hc/en-us/articles/360021527991-How-do-I-Cancel-My-Fubo-Subscription"
+  },
+  "steps": [
+    "Sign in at fubo.tv in a web browser and pick any profile.",
+    "Select the settings icon, then My Account.",
+    "Select Subscription, then select your plan to expand it.",
+    "Scroll down and select Cancel. If Fubo offers you a discount, your plan isn't cancelled yet: select CANCEL SUBSCRIPTION to finish."
+  ],
+  "appleBilled": false,
+  "note": "Signed up through Roku? Cancel on the Roku website or your Roku device; Fubo's website can't cancel it.",
+  "faq": [
+    {
+      "q": "Can I get a refund?",
+      "a": "No. Fubo doesn't refund prepaid or partial months; your plan keeps working until the end of the billing cycle. Most plans have no cancellation fee, but a promotional offer with a commitment period can."
+    },
+    {
+      "q": "What if I'm on a free trial?",
+      "a": "If you signed up on Fubo's website, cancelling a trial ends your access straight away. A trial started through Roku runs until it ends."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "No, Fubo doesn't offer pauses. You can cancel and restart your subscription later."
+    },
+    {
+      "q": "How much is Fubo now?",
+      "a": "After the July 2026 increase, Fubo Essential is {monthly:Essential} in the US and Elite is {monthly:Elite}."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Fubo Help: How do I cancel my Fubo subscription?",
+      "url": "https://support.fubo.tv/hc/en-us/articles/360021527991-How-do-I-Cancel-My-Fubo-Subscription"
+    },
+    {
+      "label": "Fubo Help: Fubo's cancellation policy",
+      "url": "https://support.fubo.tv/hc/en-us/articles/360004457571-What-Is-Fubo-s-Cancellation-Policy"
+    },
+    {
+      "label": "Fubo Help: Can I pause my Fubo subscription?",
+      "url": "https://support.fubo.tv/hc/en-us/articles/360042530471-Can-I-pause-my-Fubo-subscription"
+    }
+  ],
+  "headline": {
+    "plan": "Essential",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

@@ -64,13 +64,13 @@
       "category": "streaming",
       "logo": "/logos/hbo-max.webp"
     },
-    "hulu": {
-      "name": "Hulu",
-      "color": "#1CE783",
-      "price": 12.49,
+    "playstation-plus": {
+      "name": "PlayStation Plus",
+      "color": "#00439C",
+      "price": 17.99,
       "frequency": "monthly",
-      "category": "streaming",
-      "logo": "/logos/hulu.webp"
+      "category": "gaming",
+      "logo": "/logos/playstation-plus.webp"
     },
     "amazon-prime": {
       "name": "Amazon Prime Video",
@@ -96,13 +96,13 @@
       "category": "gaming",
       "logo": "/logos/xbox-game-pass.webp"
     },
-    "playstation-plus": {
-      "name": "PlayStation Plus",
-      "color": "#00439C",
-      "price": 17.99,
+    "hulu": {
+      "name": "Hulu",
+      "color": "#1CE783",
+      "price": 12.49,
       "frequency": "monthly",
-      "category": "gaming",
-      "logo": "/logos/playstation-plus.webp"
+      "category": "streaming",
+      "logo": "/logos/hulu.webp"
     },
     "peacock": {
       "name": "Peacock",
@@ -160,6 +160,14 @@
       "category": "streaming",
       "logo": "/logos/apple-tv.webp"
     },
+    "audible": {
+      "name": "Audible",
+      "color": "#F8991C",
+      "price": 14.95,
+      "frequency": "monthly",
+      "category": "education",
+      "logo": "/logos/audible.webp"
+    },
     "crunchyroll": {
       "name": "Crunchyroll",
       "color": "#F47521",
@@ -184,6 +192,14 @@
       "category": "streaming",
       "logo": "/logos/espn-plus.webp"
     },
+    "fubo-tv": {
+      "name": "FuboTV",
+      "color": "#E0122C",
+      "price": 74.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/fubo-tv.webp"
+    },
     "microsoft-365": {
       "name": "Microsoft 365",
       "color": "#D83B01",
@@ -192,6 +208,30 @@
       "category": "productivity",
       "glyph": "M0 0v11.408h11.408V0zm12.594 0v11.408H24V0zM0 12.594V24h11.408V12.594zm12.594 0V24H24V12.594z"
     },
+    "new-york-times": {
+      "name": "New York Times",
+      "color": "#000000",
+      "price": 17,
+      "frequency": "monthly",
+      "category": "news",
+      "logo": "/logos/new-york-times.webp"
+    },
+    "peloton": {
+      "name": "Peloton",
+      "color": "#CC0000",
+      "price": 49.99,
+      "frequency": "monthly",
+      "category": "fitness",
+      "logo": "/logos/peloton.webp"
+    },
+    "starz": {
+      "name": "Starz",
+      "color": "#000000",
+      "price": 8.99,
+      "frequency": "monthly",
+      "category": "streaming",
+      "logo": "/logos/starz.webp"
+    },
     "tidal": {
       "name": "Tidal",
       "color": "#000000",
@@ -199,6 +239,14 @@
       "frequency": "monthly",
       "category": "music",
       "logo": "/logos/tidal.webp"
+    },
+    "uber-one": {
+      "name": "Uber One",
+      "color": "#000000",
+      "price": 9.99,
+      "frequency": "monthly",
+      "category": "food",
+      "logo": "/logos/uber-one.webp"
     },
     "youtube-music": {
       "name": "YouTube Music",

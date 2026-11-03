@@ -1,0 +1,47 @@
+{
+  "serviceId": "starz",
+  "name": "STARZ",
+  "slug": "starz",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Sign in at starz.com on a computer and, under My Subscription, select Cancel Subscription.",
+    "url": "https://m.starz.com/articles/how-do-i-cancel-my-starz-subscription"
+  },
+  "steps": [
+    "Go to starz.com in a web browser on a computer and select Log in at the top of the screen.",
+    "Open your account and find My Subscription.",
+    "Select Cancel Subscription and confirm.",
+    "You keep watching until the end of the billing cycle you've paid for."
+  ],
+  "appleBilled": true,
+  "note": "Subscribed through Amazon, Roku, Google Play, Samsung or a TV provider? Cancel there; STARZ's website can't cancel those.",
+  "faq": [
+    {
+      "q": "When does my access end?",
+      "a": "At the end of your current billing cycle. Cancelling doesn't cut you off straight away."
+    },
+    {
+      "q": "Got STARZ as a Prime Video Channel?",
+      "a": "Cancel it in your Amazon account: go to amazon.com/myvs, select Actions next to STARZ, then cancel. You keep access until the end of the billing cycle."
+    },
+    {
+      "q": "How much is STARZ now?",
+      "a": "STARZ is {monthly:} in the US since June 8, 2026."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "STARZ Help: How do I cancel my STARZ subscription?",
+      "url": "https://m.starz.com/articles/how-do-i-cancel-my-starz-subscription"
+    },
+    {
+      "label": "STARZ Help: How to cancel STARZ through an Amazon subscription",
+      "url": "https://support.starz.com/en_us/how-to-cancel-starz-through-an-amazon-subscription-Sy4jMVZkj"
+    }
+  ],
+  "headline": {
+    "plan": "",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

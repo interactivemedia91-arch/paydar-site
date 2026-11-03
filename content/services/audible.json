@@ -1,0 +1,42 @@
+{
+  "serviceId": "audible",
+  "name": "Audible",
+  "slug": "audible",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "On audible.com, select your name → Membership details → Cancel membership, then Confirm cancellation.",
+    "url": "https://help.audible.com/s/article/cancel-membership"
+  },
+  "steps": [
+    "Sign in at audible.com in a web browser and select your name in the top navigation.",
+    "Select Membership details.",
+    "Select the Cancel membership link.",
+    "Select Confirm cancellation. Audible emails you a confirmation."
+  ],
+  "appleBilled": true,
+  "note": "Billed through Google Play? Cancel it in the Play Store; the Audible site can't cancel it.",
+  "faq": [
+    {
+      "q": "What happens to my credits?",
+      "a": "Use them first. At the end of your final billing cycle, Audible Premium members lose unused credits and member benefits."
+    },
+    {
+      "q": "Do I keep my audiobooks?",
+      "a": "Yes. Titles you bought with credits or a card stay in your library."
+    },
+    {
+      "q": "Can I pause instead?",
+      "a": "If you have credits you don't want to lose, you may be eligible to pause your membership instead of cancelling."
+    },
+    {
+      "q": "Does deleting the app cancel my membership?",
+      "a": "No. Deleting the Audible app doesn't cancel anything; you have to cancel on the Audible website."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Audible Help: Cancel membership",
+      "url": "https://help.audible.com/s/article/cancel-membership"
+    }
+  ]
+}

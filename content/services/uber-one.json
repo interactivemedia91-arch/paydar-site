@@ -1,0 +1,38 @@
+{
+  "serviceId": "uber-one",
+  "name": "Uber One",
+  "slug": "uber-one",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "In the app you joined with (Uber or Uber Eats), open Uber One, select Manage Membership, then End membership.",
+    "url": "https://www.uber.com/legal/subscriptions/eats-pass/us-en"
+  },
+  "steps": [
+    "Open the app you joined Uber One with: Uber or Uber Eats.",
+    "Open the Uber One section of your account.",
+    "Select Manage Membership, then End membership.",
+    "Confirm. Paid members keep their benefits until the end of the billing cycle."
+  ],
+  "appleBilled": false,
+  "note": "You cancel in the app; Uber's terms don't offer a way to end Uber One on the website.",
+  "faq": [
+    {
+      "q": "Do I get a refund?",
+      "a": "Not for the current billing cycle, and there are no pro-rata refunds. But if you cancel in the 24 hours before renewal and that payment has already gone through, Uber refunds it automatically."
+    },
+    {
+      "q": "When do my benefits stop?",
+      "a": "Paid members keep them until the end of the current billing cycle. On a free trial they end as soon as you cancel."
+    },
+    {
+      "q": "What happens to my Uber One credits?",
+      "a": "Credits you earned before cancelling can't be used without an active membership."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Uber: Terms for renewable memberships (US, updated April 2026)",
+      "url": "https://www.uber.com/legal/subscriptions/eats-pass/us-en"
+    }
+  ]
+}
