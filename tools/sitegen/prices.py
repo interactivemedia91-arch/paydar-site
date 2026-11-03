@@ -192,6 +192,28 @@ def title_news(changes: list[Change], plan: str, frequency: str, today: date, ye
     return None
 
 
+def description_news(changes: list[Change], plan: str, frequency: str, today: date, label: str) -> str | None:
+    """The same news as title_news, as the description's first sentence: "Netflix Standard went up
+    from $17.99 to $19.99/mo on Mar 26, 2026." """
+    past, upcoming = _split(_series(changes, plan, frequency), today)
+    if upcoming:
+        c = upcoming[0]
+        if _kind(c) != "up":
+            return None
+        verb = "goes up"
+    elif past and past[-1].effective > today - RECENT and _kind(past[-1]) == "up":
+        c, verb = past[-1], "went up"
+    else:
+        return None
+    when = f"in {_when(c)}" if c.approx_month else f"on {_when(c)}"
+    return f"{label} {verb} from {money(c.old)} to {money(c.new)}{per(frequency)} {when}."
+
+
+def last_change(changes: list[Change], today: date) -> date | None:
+    """The newest change already in effect: when a page built from these prices last changed."""
+    return max((c.effective for c in changes if c.effective <= today), default=None)
+
+
 def plan_cards(changes: list[Change], service_name: str, today: date) -> list[Card]:
     """One card per plan, cheapest first."""
     plans = list(dict.fromkeys(c.plan for c in changes))

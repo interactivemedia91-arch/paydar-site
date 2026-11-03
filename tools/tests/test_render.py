@@ -160,6 +160,17 @@ class OtherPagesTest(unittest.TestCase):
         self.assertNotIn('href="/cancel/unknown-service/"', html)
         self.assertIn("ct=seo-price-increases", html)
 
+    def test_guide_description_breadcrumbs_and_related(self):
+        html = service_page(SITE, NETFLIX, us_changes(CHANGES, "netflix", {}), TODAY, related=[(PRIME, None)])
+        # The headline plan's March increase leads the description.
+        self.assertRegex(html, r'<meta name="description" content="Netflix Standard went up from \$17\.99 to \$19\.99/mo on '
+                               r'Mar 26, 2026\. ')
+        self.assertIn('<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Paydar</a>', html)
+        self.assertIn('<span aria-current="page">Netflix</span></nav>', html)
+        self.assertIn("Also cancelling?", html)
+        self.assertIn('<a href="/cancel/amazon-prime/">', html)
+        self.assertIn('href="/subscription-calculator/"', html)
+
     def test_calculator_page(self):
         us_all = [c for c in CHANGES if c.country == "US"]
         html = calculator_page(SITE, SERVICES, us_all, TODAY)
@@ -218,8 +229,11 @@ class OtherPagesTest(unittest.TestCase):
         self.assertNotIn("aggregateRating", json.dumps(home))
         priced = (("Is there a cheaper plan?", 'Standard with ads, {price:Standard with ads}: the same shows & "most" films, with ads.'),)
         html = netflix_page(service=replace(NETFLIX, faq=NETFLIX.faq[:3] + priced))
-        article, faq = blocks(html)
-        self.assertEqual((article["@type"], faq["@type"]), ("Article", "FAQPage"))
+        article, faq, crumbs = blocks(html)
+        self.assertEqual((article["@type"], faq["@type"], crumbs["@type"]), ("Article", "FAQPage", "BreadcrumbList"))
+        self.assertEqual([i["item"] for i in crumbs["itemListElement"]],
+                         ["https://getpaydarapp.com/", "https://getpaydarapp.com/cancel/netflix/"])
+        self.assertEqual(article["dateModified"], "2026-10-01")  # checked in October, after the March change
         self.assertEqual(article["publisher"]["@id"], home[1]["@id"])
         # Every question and answer is the page's visible text, decoded, word for word.
         shown = _faq_text(html[html.index("<body"):])

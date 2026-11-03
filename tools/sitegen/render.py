@@ -11,8 +11,8 @@ from urllib.parse import quote, urlparse
 from .aura import field_style
 from .content import Brand, Catalog, Service, SiteConfig
 from .prices import (
-    MONTHS, Change, PlanPrice, chart_bars, fill_prices, glance_rows, increase_rows, per, percent, plan_cards, plan_prices,
-    price_tag, signed, title_news, year_summary,
+    MONTHS, Change, PlanPrice, chart_bars, description_news, fill_prices, glance_rows, increase_rows, last_change, per,
+    percent, plan_cards, plan_prices, price_tag, signed, title_news, year_summary,
 )
 from .prices import money as pmoney
 from .radar import aura_radius, place
@@ -307,7 +307,7 @@ def _sources_html(service: Service, us: list[Change]) -> str:
 
 
 def service_page(site: SiteConfig, service: Service, us: list[Change], today: date,
-                 brand: Brand | None = None) -> str:
+                 brand: Brand | None = None, related: list[tuple[Service, Brand | None]] = ()) -> str:
     has_prices = service.headline_plan is not None and bool(us)
     year = service.checked[:4]
     news = title_news(us, service.headline_plan, service.headline_frequency, today, year) if has_prices else None
@@ -317,10 +317,19 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
         title = f"How to cancel {service.name} ({year}): steps and current prices | Paydar"
     else:
         title = f"How to cancel {service.name} ({year}): step by step | Paydar"
-    description = service.fastest_text + (" Steps, current US prices and price history." if has_prices
-                                          else " Step-by-step guide.")
+    label = f"{service.name} {service.headline_plan or ''}".strip()
+    lead = description_news(us, service.headline_plan, service.headline_frequency, today, label) if has_prices else None
+    if lead:  # the price news first, then how to cancel: what the searcher came for
+        description = f"{lead} {service.fastest_text}"
+    else:
+        description = service.fastest_text + (" Steps, current US prices and price history." if has_prices
+                                              else " Step-by-step guide.")
+    modified = max(filter(None, [date.fromisoformat(f"{service.checked}-01"), last_change(us, today)]))
     steps = "".join(f"<li><p>{esc(s)}</p></li>" for s in service.steps)
     body = ("    <article class=\"wrap article\">\n"
+            f"      <nav class=\"crumbs\" aria-label=\"Breadcrumb\"><a href=\"/\">Paydar</a><span aria-hidden=\"true\">›</span>"
+            f"<a href=\"/#guides\">Cancel guides</a><span aria-hidden=\"true\">›</span>"
+            f"<span aria-current=\"page\">{esc(service.name)}</span></nav>\n"
             f"      <header class=\"guide-head\">{logo_html(brand, service.name, 64, 'logo guide-logo', lazy=False)}"
             f"<h1 class=\"page-title\">How to cancel {esc(service.name)}</h1></header>\n"
             f"      <p class=\"page-meta\">Checked {_checked(service)} · {read_minutes(service)} min read</p>\n"
@@ -332,19 +341,46 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
                            brand, service.name) + "\n"
             + _prices_html(site, service, us, today)
             + _faq_html(service, us, today)
+            + _related_html(related)
             + _sources_html(service, us)
             + "\n    </article>")
     return _shell(site, title=title, description=description, path=f"/cancel/{service.slug}/",
                   ct="seo-" + service.slug, body=body, field=_service_field(brand), page_class="page-guide",
                   footer_note=f"Not affiliated with {service.name}.",
-                  head_extra=_json_ld(_guide_ld(site, service, description)) + _json_ld(_faq_ld(service, us, today)))
+                  head_extra=_json_ld(_guide_ld(site, service, description, modified)) + _json_ld(_faq_ld(service, us, today))
+                  + _json_ld(_crumbs_ld(site, service)))
 
 
-def _guide_ld(site: SiteConfig, service: Service, description: str) -> dict:
+def _related_html(related: list[tuple[Service, Brand | None]]) -> str:
+    """Other guides (same kind first), then the two pages every guide leads on to."""
+    links = "".join(f'<li><a href="/cancel/{esc(s.slug)}/">{logo_html(b, s.name, 32, "guide-tile")}<span>{esc(s.name)}</span></a></li>'
+                    for s, b in related)
+    guides = f'<ul class="related-list">{links}</ul>' if links else ""
+    return f"""      <section class="related">
+        <h2 class="section-title">Also cancelling?</h2>
+        {guides}
+        <div class="related-more">
+          <a class="next-link frost" href="/subscription-calculator/"><span>What do your subscriptions cost?</span>
+            <small>Tick what you pay for and see the year's total {ICON_NEXT}</small></a>
+          <a class="next-link frost" href="/price-increases/"><span>Every price increase this year</span>
+            <small>Plans, dates and sources, updated daily {ICON_NEXT}</small></a>
+        </div>
+      </section>
+"""
+
+
+def _crumbs_ld(site: SiteConfig, service: Service) -> dict:
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Paydar", "item": f"{site.base_url}/"},
+        {"@type": "ListItem", "position": 2, "name": f"How to cancel {service.name}",
+         "item": f"{site.base_url}/cancel/{service.slug}/"}]}
+
+
+def _guide_ld(site: SiteConfig, service: Service, description: str, modified: date | None = None) -> dict:
     url = f"{site.base_url}/cancel/{service.slug}/"
     return {"@context": "https://schema.org", "@type": "Article",
             "headline": f"How to cancel {service.name}", "description": description, "url": url,
-            "dateModified": f"{service.checked}-01",
+            "dateModified": (modified.isoformat() if modified else f"{service.checked}-01"),
             "author": _org(site), "publisher": _org(site),
             "mainEntityOfPage": url, "image": f"{site.base_url}/og.jpg"}
 
@@ -810,7 +846,8 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
         <legend style="--i:3">Tap what you pay for</legend>
         <p class="mini-total glass" aria-hidden="true" style="--i:4"><span class="mini-month">{money(total)}</span> a month</p>
         <div class="chips">{chips_html}</div>
-        <p class="more" style="--i:{5 + len(chips)}">Plus 100+ more services in the app, or add your own.</p>
+        <p class="more" style="--i:{5 + len(chips)}">Plus 100+ more services in the app, or add your own.
+          <a href="/subscription-calculator/">Every plan, priced: the cost calculator</a></p>
       </fieldset>
       <div class="meter glass">
         <p class="meter-total"><span class="total-month">{money(total)}</span><span class="per">a month</span></p>

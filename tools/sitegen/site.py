@@ -6,8 +6,8 @@ from datetime import date, datetime
 from pathlib import Path
 
 from .content import Catalog, Service, SiteConfig
-from .prices import Change, parse_changes, us_changes
-from .render import calculator_page, home_page, increases_page, privacy_page, service_page
+from .prices import Change, last_change, parse_changes, us_changes
+from .render import GUIDE_GROUPS, calculator_page, home_page, increases_page, privacy_page, service_page
 
 STALE_AFTER_MONTHS = 6
 
@@ -47,12 +47,31 @@ def _policy_date(privacy_md: str | None, today: date) -> date:
         return today
 
 
-def _sitemap(site: SiteConfig, services: list[Service], today: date, privacy_md: str | None = None) -> str:
+def _related(service: Service, services: list[Service], catalog: Catalog | None, n: int = 6) -> list:
+    """Up to n other guides for the "Also cancelling?" block: the same kind of service first, each
+    list starting after this guide (A to Z, wrapping round) so every guide gets linked as often."""
+    kind = lambda s: next((t for t, cats in GUIDE_GROUPS if catalog and (b := catalog.get(s.service_id)) and b.category in cats), "")
+
+    def after(items: list[Service]) -> list[Service]:
+        items = sorted(items, key=lambda s: s.name.lower())
+        later = [s for s in items if s.name.lower() > service.name.lower()]
+        return later + [s for s in items if s not in later]
+
+    others = [s for s in services if s.service_id != service.service_id]
+    same = after([s for s in others if kind(s) == kind(service)])
+    rest = after([s for s in others if kind(s) != kind(service)])
+    return [(s, catalog.get(s.service_id) if catalog else None) for s in (same + rest)[:n]]
+
+
+def _sitemap(site: SiteConfig, services: list[Service], today: date, privacy_md: str | None = None,
+             modified: dict | None = None) -> str:
     entries = [("/", today.isoformat()), ("/price-increases/", today.isoformat()),
                ("/subscription-calculator/", today.isoformat())]
     if privacy_md is not None:
         entries.append(("/privacy/", _policy_date(privacy_md, today).isoformat()))
-    entries += [(f"/cancel/{s.slug}/", f"{s.checked}-01") for s in services]
+    for s in services:  # a guide changes when it's checked and when one of its prices changes
+        checked = date.fromisoformat(f"{s.checked}-01")
+        entries.append((f"/cancel/{s.slug}/", max(filter(None, [checked, (modified or {}).get(s.service_id)])).isoformat()))
     urls = "".join(f"  <url><loc>{site.base_url}{path}</loc><lastmod>{lastmod}</lastmod></url>\n"
                    for path, lastmod in entries)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -78,7 +97,8 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
             continue
         try:
             brand = catalog.get(s.service_id) if catalog else None
-            _write(out / "cancel" / s.slug / "index.html", service_page(site, s, us, today, brand))
+            _write(out / "cancel" / s.slug / "index.html",
+                   service_page(site, s, us, today, brand, _related(s, services, catalog)))
         except ValueError as e:  # an FAQ price placeholder with no data behind it
             errors.append(f"PRICE NOT FOUND {s.slug}: {e}")
     if errors:
@@ -96,7 +116,8 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
         _write(out / "privacy" / "index.html", privacy_page(site, privacy_md))
     elif site.privacy_url.startswith("/"):
         raise BuildError(f"privacyUrl is {site.privacy_url} but content/privacy.md is missing")
-    _write(out / "sitemap.xml", _sitemap(site, services, today, privacy_md))
+    modified = {s.service_id: last_change(us_changes(changes, s.service_id, s.plan_aliases), today) for s in services}
+    _write(out / "sitemap.xml", _sitemap(site, services, today, privacy_md, modified))
     _write(out / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {site.base_url}/sitemap.xml\n")
     private = ("*.json", ".DS_Store")  # provenance sidecars and Finder files are not for the site
     for f in static_dir.iterdir():

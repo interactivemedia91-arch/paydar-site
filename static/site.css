@@ -520,6 +520,24 @@ a.row-name, a.recent-name { text-decoration: underline; text-decoration-color: c
 .recent-top time { color: var(--sub); font: 600 .9375rem var(--round); }
 .empty { color: var(--sub); }
 
+/* Guides: where you are (Home › Cancel guides › X) and where to go next. */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 18px; color: var(--sub); font: 600 .875rem var(--round); }
+.crumbs a { color: var(--sub); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .crumbs a:hover { color: var(--ink); text-decoration: underline; } }
+.crumbs [aria-current] { color: var(--ink); }
+.related-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 20px; }
+.related-list a { display: flex; align-items: center; gap: 12px; min-height: 48px; text-decoration: none; font-weight: 600; }
+@media (hover: hover) and (pointer: fine) { .related-list a:hover span { text-decoration: underline; } }
+.related-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.next-link { display: grid; gap: 4px; padding: 18px 20px; border-radius: 22px; text-decoration: none; }
+.next-link span { font-weight: 700; font-size: 1.0625rem; }
+.next-link small { display: flex; align-items: center; gap: 6px; color: var(--sub); font-size: var(--small); }
+.next-link small svg { width: 16px; height: 16px; flex: none; }
+@media (max-width: 640px) {
+  .related-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .related-more { grid-template-columns: 1fr; }
+}
+
 /* Price increases: the year in numbers, the sentence a snippet quotes, every service at a glance. */
 .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 32px 0 0; }
 .stat { padding: 18px 20px; border-radius: 22px; display: grid; gap: 4px; align-content: start; }

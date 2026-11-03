@@ -3,7 +3,7 @@ from datetime import date
 
 from sitegen.prices import (
     Change, chart_bars, fill_prices, glance_rows, increase_rows, money, parse_changes, per, percent, plan_cards, price_tag,
-    signed, title_news, us_changes, year_summary, plan_prices,
+    signed, title_news, us_changes, year_summary, plan_prices, description_news, last_change,
 )
 
 TODAY = date(2026, 10, 25)
@@ -51,6 +51,23 @@ class SummaryTest(unittest.TestCase):
     def test_percent(self):
         self.assertEqual(percent(17.99, 19.99), "+11%")
         self.assertEqual(percent(29.99, 22.99), "−23%")
+
+
+class DescriptionNewsTest(unittest.TestCase):
+    def test_recent_upcoming_and_none(self):
+        netflix = [ch("Standard", "monthly", 17.99, 19.99, "2026-03-26")]
+        self.assertEqual(description_news(netflix, "Standard", "monthly", TODAY, "Netflix Standard"),
+                         "Netflix Standard went up from $17.99 to $19.99/mo on Mar 26, 2026.")
+        soon = [ch("Ad-free", "monthly", 9.99, 11.99, "2026-12-01", approx=True)]
+        self.assertEqual(description_news(soon, "Ad-free", "monthly", TODAY, "Discovery+ Ad-free"),
+                         "Discovery+ Ad-free goes up from $9.99 to $11.99/mo in December 2026.")
+        self.assertIsNone(description_news(netflix, "Standard", "monthly", date(2027, 6, 1), "Netflix Standard"))
+        self.assertIsNone(description_news([ch("Basic", "monthly", 9.99, 7.99, "2026-09-01")], "Basic", "monthly", TODAY, "X"))
+
+    def test_last_change(self):
+        cs = [ch("A", "monthly", 1, 2, "2026-03-01"), ch("A", "monthly", 2, 3, "2026-12-01")]
+        self.assertEqual(last_change(cs, TODAY), date(2026, 3, 1))  # the December one isn't in effect yet
+        self.assertIsNone(last_change([], TODAY))
 
 
 class PlanPricesTest(unittest.TestCase):
