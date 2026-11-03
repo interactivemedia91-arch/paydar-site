@@ -546,6 +546,51 @@ a.glance-name { text-decoration: underline; text-decoration-color: color-mix(in 
 .glance-delta.down { color: var(--accent-text); }
 .glance-change time { color: var(--sub); font-size: .8125rem; }
 .glance-change-inline { display: none; }
+/* Cost calculator: the price list is the picker; the total stays in view (right on wide screens, a
+   bar at the bottom on phones). */
+.calc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 28px; align-items: start; margin-top: 36px; }
+.calc-group + .calc-group { margin-top: 36px; }
+.calc-group-title { font-size: 1.375rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 14px; }
+.calc-service { border-radius: 22px; padding: 6px 0; }
+.calc-service + .calc-service { margin-top: 12px; }
+.calc-head { display: flex; align-items: center; gap: 12px; padding: 12px 18px 4px; }
+.calc-logo { width: 36px; height: 36px; border-radius: 10px; flex: none; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: .85rem; overflow: hidden; }
+.calc-logo svg { width: 100%; height: 100%; }
+.calc-name { font-weight: 700; font-size: 1.0625rem; }
+a.calc-name { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+.calc-plans { list-style: none; margin: 0; padding: 0; }
+.calc-plan { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 6px 18px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.calc-plans li + li .calc-plan { border-top: 1px solid var(--hairline); }
+@media (hover: hover) and (pointer: fine) { .calc-plan:hover { background: var(--well); } }
+.calc-plan input { appearance: none; flex: none; width: 22px; height: 22px; margin: 0; border-radius: 7px; border: 2px solid var(--ring); background: transparent; cursor: pointer; transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out); }
+.calc-plan input:checked { border-color: var(--accent); background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5 10 16.5 18 8' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 16px no-repeat; }
+.calc-plan input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.calc-plan-text { flex: 1; min-width: 0; display: grid; }
+.calc-plan-name { overflow-wrap: anywhere; }
+.calc-rise { color: var(--rise-text); font: 600 .8125rem var(--round); }
+.calc-plan-price { font-weight: 700; white-space: nowrap; }
+.calc-plan-price span { color: var(--sub); font-weight: 400; }
+.calc-total { position: sticky; top: 96px; padding: 22px; border-radius: 26px; }
+.calc-month { margin: 0; color: var(--sub); font: 600 1rem var(--round); }
+.calc-num { display: block; color: var(--ink); font-size: clamp(2.4rem, 1.8rem + 1.6vw, 3.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.calc-year { margin: 6px 0 0; font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.calc-year span { color: var(--ink); }
+.calc-added { margin: 12px 0 0; color: var(--rise-text); font: 600 .9375rem/1.35 var(--round); }
+.calc-actions { display: grid; gap: 10px; margin-top: 18px; }
+.calc-actions .pill { justify-content: center; }
+.calc-share { background: var(--well); color: var(--ink); border: 0; font: inherit; cursor: pointer; }
+.calc-note { margin: 14px 0 0; color: var(--sub); font-size: var(--small); }
+@media (max-width: 860px) {
+  .calc-layout { grid-template-columns: minmax(0, 1fr); }
+  .calc-total { top: auto; bottom: max(10px, env(safe-area-inset-bottom)); padding: 14px 16px; border-radius: 22px; display: grid; grid-template-columns: 1fr auto; column-gap: 12px; align-items: center; }
+  .calc-month { grid-column: 1; }
+  .calc-num { display: inline; font-size: 1.75rem; }
+  .calc-year { grid-column: 1; margin: 0; font-size: .9375rem; font-weight: 600; color: var(--sub); }
+  .calc-added { grid-column: 1 / -1; margin: 6px 0 0; font-size: .8125rem; }
+  .calc-actions { grid-column: 2; grid-row: 1 / 3; margin: 0; }
+  .calc-actions .calc-share, .calc-note { display: none; }  /* phones share from Safari; the app link matters more */
+  .calc-cta { min-height: 40px; padding: 0 14px; font-size: .875rem; }
+}
 @media (max-width: 560px) {
   .stat { padding: 14px 14px; border-radius: 18px; }
   .stat-label { font-size: .8125rem; }

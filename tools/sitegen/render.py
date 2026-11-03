@@ -11,8 +11,8 @@ from urllib.parse import quote, urlparse
 from .aura import field_style
 from .content import Brand, Catalog, Service, SiteConfig
 from .prices import (
-    MONTHS, Change, chart_bars, fill_prices, glance_rows, increase_rows, per, percent, plan_cards, price_tag, signed,
-    title_news, year_summary,
+    MONTHS, Change, PlanPrice, chart_bars, fill_prices, glance_rows, increase_rows, per, percent, plan_cards, plan_prices,
+    price_tag, signed, title_news, year_summary,
 )
 from .prices import money as pmoney
 from .radar import aura_radius, place
@@ -156,6 +156,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
       <nav class="nav" aria-label="Site">
         <a href="/#guides">Cancel guides</a>
         <a href="/price-increases/">Price increases</a>
+        <a href="/subscription-calculator/">Cost calculator</a>
       </nav>
       <a class="pill pill-ink pill-small" href="{store}"><span class="label-long">Get it on iPhone</span><span class="label-short">Get the app</span></a>
     </div>
@@ -169,6 +170,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
       <nav class="footer-links" aria-label="Footer">
         <a href="/#guides">Cancel guides</a>
         <a href="/price-increases/">Price increases</a>
+        <a href="/subscription-calculator/">Cost calculator</a>
         <a href="{esc(site.privacy_url)}">Privacy</a>
         <a href="mailto:{esc(site.support_email)}">Support</a>
         <a href="{store}">App Store</a>
@@ -534,6 +536,143 @@ def _increases_faq(summary, upcoming, name, year: int) -> list[tuple[str, str]]:
                 "existing subscribers first. Before then you can cancel, switch to a cheaper plan or move to yearly "
                 "billing where it costs less. If you pay through Apple, manage it in Settings → your name → Subscriptions."))
     return faq
+
+
+# ---- Subscription cost calculator ------------------------------------------------------------
+
+CALC_GROUPS = GUIDE_GROUPS + (("Everything else", ()),)
+
+
+def _plan_key(service_id: str, p) -> str:
+    """The plan's id in the share link: 'netflix:standard-monthly'."""
+    slug = re.sub(r"[^a-z0-9]+", "-", (p.plan or "plan").lower()).strip("-")
+    return f"{service_id}:{slug}-{p.frequency}"
+
+
+def calculator_page(site: SiteConfig, services: list[Service], us_all: list[Change], today: date,
+                    catalog: Catalog | None = None) -> str:
+    names = {s.service_id: s.name for s in services}
+    slugs = {s.service_id: s.slug for s in services}
+    headlines = {s.service_id: (s.headline_plan, s.headline_frequency) for s in services if s.headline_plan is not None}
+    year = today.year
+
+    def name(sid: str) -> str:
+        brand = catalog.get(sid) if catalog else None
+        return names.get(sid) or (brand.name if brand else sid.replace("-", " ").title())
+
+    # Every service with a price: plan by plan from the price list, else the catalog's typical price.
+    entries = []
+    for sid in dict.fromkeys([*(c.service_id for c in us_all), *(catalog.brands if catalog else {})]):
+        brand = catalog.get(sid) if catalog else None
+        cs = [c for c in us_all if c.service_id == sid]
+        if cs:
+            plans, typical = plan_prices(cs, today), False
+        elif brand and brand.price:
+            plans, typical = [PlanPrice("", brand.frequency, brand.price, brand.price)], True
+        else:
+            continue
+        head = headlines.get(sid)
+        default = next((p for p in plans if head and (p.plan, p.frequency) == head), plans[0])
+        category = brand.category if brand else "other"
+        entries.append((sid, plans, default, typical, category))
+
+    home = list(catalog.home_chips[:4]) if catalog else []
+    picked = {_plan_key(sid, default) for sid, _, default, _, _ in entries if sid in home}
+
+    def monthly(p) -> float:
+        return p.now if p.frequency == "monthly" else p.now / 12
+
+    def added(p) -> float:
+        return (p.now - p.start) * (12 if p.frequency == "monthly" else 1)
+
+    def plan_html(sid: str, p, typical: bool) -> str:
+        key = _plan_key(sid, p)
+        if typical:  # the catalog's price, which can be another product's: Amazon's is Prime Video's, not Prime's
+            brand = catalog.get(sid) if catalog else None
+            label = (SHORT_NAMES.get(sid) or brand.name) if brand and brand.name != name(sid) else "Typical price"
+        else:
+            label = p.plan or ("Monthly" if p.frequency == "monthly" else "Yearly")
+        rise = (f'<span class="calc-rise">+{esc(pmoney(p.now - p.start))} in {year}</span>' if p.now > p.start else "")
+        return (f'<li><label class="calc-plan"><input type="checkbox" value="{esc(key)}"'
+                f' data-monthly="{monthly(p):.4f}" data-added="{added(p):.2f}"{" checked" if key in picked else ""}>'
+                f'<span class="calc-plan-text"><span class="calc-plan-name">{esc(label)}</span>{rise}</span>'
+                f'<span class="calc-plan-price">{esc(pmoney(p.now))}<span>{per(p.frequency)}</span></span></label></li>')
+
+    def service_html(entry) -> str:
+        sid, plans, _, typical, _ = entry
+        brand = catalog.get(sid) if catalog else None
+        title = (f'<a class="calc-name" href="/cancel/{esc(slugs[sid])}/">{esc(name(sid))}</a>' if sid in slugs
+                 else f'<span class="calc-name">{esc(name(sid))}</span>')
+        return (f'<div class="calc-service frost"><div class="calc-head">{logo_html(brand, name(sid), 36, "logo calc-logo")}'
+                f'{title}</div><ul class="calc-plans">{"".join(plan_html(sid, p, typical) for p in plans)}</ul></div>')
+
+    groups, used = "", set()
+    for title, cats in CALC_GROUPS:
+        items = [e for e in entries if e[0] not in used and (e[4] in cats or not cats)]
+        used.update(e[0] for e in items)
+        if items:
+            items.sort(key=lambda e: name(e[0]).lower())
+            groups += (f'      <section class="calc-group"><h2 class="calc-group-title">{esc(title)}</h2>'
+                       f'{"".join(service_html(e) for e in items)}</section>\n')
+
+    # The total the page opens with (the script takes over from there).
+    chosen = [p for sid, plans, _, _, _ in entries for p in plans if _plan_key(sid, p) in picked]
+    month = sum(monthly(p) for p in chosen)
+    rise = sum(added(p) for p in chosen)
+    picks = [f"{name(sid)} {default.plan}".strip() for sid, _, default, _, _ in entries if sid in home]
+    rose = [name(sid) for sid, plans, _, _, _ in entries if any(p.now > p.start for p in plans)]
+
+    rise_text = (f"{year}'s price increases add {pmoney(round(rise, 2))} a year to these." if rise > 0
+                 else f"None of these went up in {year}.")
+    store = esc(app_store_url(site, "seo-calculator"))
+    faq = [(f"How much do {_and(picks)} cost a year?",
+            f"{money(month * 12)} a year, or {money(month)} a month, at today's US prices before tax.")] if picks else []
+    faq += [
+        ("How do I work out what my subscriptions cost a year?",
+         "Add up the monthly prices and multiply by 12, then add any yearly plans as they are. This calculator does it "
+         "with today's US prices and counts a yearly plan as a twelfth of its price each month."),
+        (f"Which subscriptions got more expensive in {year}?",
+         f"{_and(rose)}. Every change, with its source, is on our price increases page." if rose
+         else f"None of the ones listed here, so far in {year}."),
+        ("Are these prices up to date?",
+         "They come from the price list Paydar uses to flag increases, with a source for every change, and this page "
+         "is rebuilt every day. US prices, before sales tax."),
+    ]
+    faq_html = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in faq)
+    updated = f"{MONTHS[today.month - 1][:3]} {today.day}, {today.year}"
+    body = f"""    <article class="wrap article article-wide calc">
+      <h1 class="page-title">What do your subscriptions cost?</h1>
+      <p class="page-meta">Tick what you pay for · US prices, updated {updated} · <a href="/price-increases/">every {year} price increase</a></p>
+      <div class="calc-layout">
+        <div class="calc-list">
+{groups}        </div>
+        <aside class="calc-total glass" aria-label="Your total" data-year="{year}">
+          <p class="calc-month"><span class="calc-num" data-total="month">{esc(money(month))}</span> a month</p>
+          <p class="calc-year"><span data-total="year">{esc(money(month * 12))}</span> a year</p>
+          <p class="calc-added" data-total="added">{esc(rise_text)}</p>
+          <p class="calc-live sr-only" aria-live="polite"></p>
+          <div class="calc-actions">
+            <button class="pill calc-share" type="button" hidden>Copy link to this list</button>
+            <a class="pill pill-ink calc-cta" href="{store}">Track them in Paydar {ICON_NEXT}</a>
+          </div>
+          <p class="calc-note">Paydar puts each renewal on one radar and pings you before it charges.</p>
+        </aside>
+      </div>
+      <section class="faq">
+        <h2 class="section-title">Common questions</h2>
+        <dl class="faq-list frost">{faq_html}</dl>
+      </section>
+    </article>"""
+    others = len(entries) - 3
+    description = (f"Tick what you pay for and see your monthly and yearly total at today's US prices for Netflix, "
+                   f"Spotify, Disney+ and {others} more, plus what {year}'s price increases added.")
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                             for q, a in faq]}
+    return _shell(site, title=f"Subscription cost calculator ({year} US prices) | Paydar", description=description,
+                  path="/subscription-calculator/", ct="seo-calculator", body=body, page_class="page-calc",
+                  head_extra=_json_ld(faq_ld), field=field_style([("#16A374", 1.6), ("#8A6BD6", 1.2), ("#4A9EFF", 1.0)]),
+                  scripts='\n  <script src="/calc.js" defer></script>')
 
 
 # ---- Homepage -------------------------------------------------------------------------------

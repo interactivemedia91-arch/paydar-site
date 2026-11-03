@@ -3,7 +3,7 @@ from datetime import date
 
 from sitegen.prices import (
     Change, chart_bars, fill_prices, glance_rows, increase_rows, money, parse_changes, per, percent, plan_cards, price_tag,
-    signed, title_news, us_changes, year_summary,
+    signed, title_news, us_changes, year_summary, plan_prices,
 )
 
 TODAY = date(2026, 10, 25)
@@ -51,6 +51,16 @@ class SummaryTest(unittest.TestCase):
     def test_percent(self):
         self.assertEqual(percent(17.99, 19.99), "+11%")
         self.assertEqual(percent(29.99, 22.99), "−23%")
+
+
+class PlanPricesTest(unittest.TestCase):
+    def test_now_and_january(self):
+        cs = [ch("Standard", "monthly", 15.49, 17.99, "2025-01-21"), ch("Standard", "monthly", 17.99, 19.99, "2026-03-26"),
+              ch("Standard", "annual", 179.99, 199.99, "2025-06-01"), ch("Basic", "monthly", 7.99, 8.99, "2026-12-01")]
+        got = [(p.plan, p.frequency, p.now, p.start) for p in plan_prices(cs, TODAY)]
+        self.assertEqual(got, [("Basic", "monthly", 7.99, 7.99),  # its rise is still to come
+                               ("Standard", "monthly", 19.99, 17.99),  # +$2 since January
+                               ("Standard", "annual", 199.99, 199.99)])  # yearly plans last
 
 
 class TitleNewsTest(unittest.TestCase):

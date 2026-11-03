@@ -311,6 +311,26 @@ def glance_rows(us: list[Change], headlines: dict[str, tuple[str, str]], today: 
     return sorted(rows, key=lambda r: (r.last.effective if r.last else date.min, r.service_id), reverse=True)
 
 
+@dataclass(frozen=True)
+class PlanPrice:
+    """A plan as the calculator lists it."""
+    plan: str
+    frequency: str
+    now: float
+    start: float  # on January 1 of the year asked for: what that year's increases added is now − start
+
+
+def plan_prices(changes: list[Change], today: date) -> list[PlanPrice]:
+    """Every plan of one service with a known price today (monthly first, then cheapest first)."""
+    jan1 = date(today.year, 1, 1)
+    out = []
+    for plan, frequency in dict.fromkeys((c.plan, c.frequency) for c in changes):
+        series = _series(changes, plan, frequency)
+        before = [c for c in series if c.effective <= jan1]
+        out.append(PlanPrice(plan, frequency, _current(series, today), before[-1].new if before else series[0].old))
+    return sorted(out, key=lambda p: (p.frequency != "monthly", p.now))
+
+
 PRICE_TOKEN = re.compile(r"\{(price|monthly|yearly):([^}]*)\}")
 
 

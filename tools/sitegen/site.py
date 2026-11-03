@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .content import Catalog, Service, SiteConfig
 from .prices import Change, parse_changes, us_changes
-from .render import home_page, increases_page, privacy_page, service_page
+from .render import calculator_page, home_page, increases_page, privacy_page, service_page
 
 STALE_AFTER_MONTHS = 6
 
@@ -48,7 +48,8 @@ def _policy_date(privacy_md: str | None, today: date) -> date:
 
 
 def _sitemap(site: SiteConfig, services: list[Service], today: date, privacy_md: str | None = None) -> str:
-    entries = [("/", today.isoformat()), ("/price-increases/", today.isoformat())]
+    entries = [("/", today.isoformat()), ("/price-increases/", today.isoformat()),
+               ("/subscription-calculator/", today.isoformat())]
     if privacy_md is not None:
         entries.append(("/privacy/", _policy_date(privacy_md, today).isoformat()))
     entries += [(f"/cancel/{s.slug}/", f"{s.checked}-01") for s in services]
@@ -89,6 +90,7 @@ def build_site(out: Path, site: SiteConfig, services: list[Service], prices: dic
 
     us_all = _us_all(changes, services)
     _write(out / "price-increases" / "index.html", increases_page(site, services, us_all, today, catalog))
+    _write(out / "subscription-calculator" / "index.html", calculator_page(site, services, us_all, today, catalog))
     _write(out / "index.html", home_page(site, services, catalog, us_all, today))
     if privacy_md is not None:
         _write(out / "privacy" / "index.html", privacy_page(site, privacy_md))

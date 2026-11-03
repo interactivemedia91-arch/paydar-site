@@ -8,7 +8,7 @@ from pathlib import Path
 
 from sitegen.content import SiteConfig, load_catalog, load_services
 from sitegen.prices import parse_changes, us_changes
-from sitegen.render import app_store_url, home_page, increases_page, read_minutes, service_page
+from sitegen.render import app_store_url, calculator_page, home_page, increases_page, read_minutes, service_page
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -159,6 +159,31 @@ class OtherPagesTest(unittest.TestCase):
         self.assertIn("Unknown Service", html)
         self.assertNotIn('href="/cancel/unknown-service/"', html)
         self.assertIn("ct=seo-price-increases", html)
+
+    def test_calculator_page(self):
+        us_all = [c for c in CHANGES if c.country == "US"]
+        html = calculator_page(SITE, SERVICES, us_all, TODAY)
+        self.assertIn("<title>Subscription cost calculator (2026 US prices) | Paydar</title>", html)
+        # Every plan with a price today, its 2026 rise, a link to the guide where there is one.
+        self.assertIn('value="netflix:standard-monthly" data-monthly="19.9900" data-added="24.00"', html)
+        self.assertIn('<span class="calc-rise">+$2 in 2026</span>', html)
+        self.assertIn('<a class="calc-name" href="/cancel/netflix/">Netflix</a>', html)
+        self.assertIn('value="discovery-plus:ad-free-monthly" data-monthly="9.9900" data-added="0.00"', html)  # not yet
+        self.assertNotIn(" checked", html)  # no catalog, no default picks
+        self.assertIn('data-total="month">$0.00', html)
+        self.assertIn('"@type": "FAQPage"', html)
+        self.assertIn('href="/subscription-calculator/">Cost calculator</a>', html)  # header and footer
+        self.assertIn('<script src="/calc.js" defer></script>', html)
+        self.assertIn("ct=seo-calculator", html)
+
+    def test_calculator_defaults_with_the_catalog(self):
+        catalog = load_catalog(ROOT / "content" / "catalog.json")
+        us_all = [c for c in CHANGES if c.country == "US"]
+        html = calculator_page(SITE, SERVICES, us_all, TODAY, catalog)
+        self.assertEqual(html.count(" checked"), 4)  # the homepage's first four picks
+        self.assertIn('value="netflix:standard-monthly" data-monthly="19.9900" data-added="24.00" checked', html)
+        self.assertIn('value="amazon-prime:plan-monthly"', html)  # catalog only: its typical price
+        self.assertIn('<span class="calc-plan-name">Prime Video</span>', html)  # that price is Prime Video's
 
     def test_home_page(self):
         html = home_page(SITE, SERVICES)

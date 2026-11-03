@@ -30,11 +30,13 @@ class BuildSiteTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
             build_site(out, SITE, SERVICES, PRICES, TODAY, ROOT / "static")
-            for rel in ("index.html", "price-increases/index.html", "cancel/netflix/index.html",
+            for rel in ("index.html", "price-increases/index.html", "subscription-calculator/index.html", "calc.js",
+                        "cancel/netflix/index.html",
                         "cancel/amazon-prime/index.html", "site.css", "icon.png", "robots.txt"):
                 self.assertTrue((out / rel).is_file(), rel)
             sitemap = (out / "sitemap.xml").read_text()
             for loc in ("https://getpaydarapp.com/", "https://getpaydarapp.com/price-increases/",
+                        "https://getpaydarapp.com/subscription-calculator/",
                         "https://getpaydarapp.com/cancel/netflix/", "https://getpaydarapp.com/cancel/amazon-prime/"):
                 self.assertIn(f"<loc>{loc}</loc>", sitemap)
             self.assertIn("<lastmod>2026-10-01</lastmod>", sitemap)  # netflix checked 2026-10
