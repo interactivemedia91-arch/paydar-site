@@ -1,0 +1,55 @@
+{
+  "serviceId": "peloton",
+  "name": "Peloton",
+  "slug": "peloton",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Go to account.onepeloton.com/mymembership, select Manage next to your membership, then Pause or cancel.",
+    "url": "https://support.onepeloton.com/s/article/Peloton-Membership-How-to-Manage-Your-All-Access-Membership"
+  },
+  "steps": [
+    "Go to account.onepeloton.com/mymembership in a web browser and sign in.",
+    "Under Memberships, select Manage next to the membership you want to end.",
+    "Select Pause or cancel, then choose to cancel.",
+    "You can keep taking classes until the end of your current billing period."
+  ],
+  "appleBilled": true,
+  "note": "Got the Peloton App through Google Play or Roku? Cancel it there; Peloton's website can't cancel those.",
+  "faq": [
+    {
+      "q": "Can I pause instead?",
+      "a": "Yes. An All-Access Membership can be paused for 1, 2 or 3 months from the same Pause or cancel option. While it's paused you can't take classes."
+    },
+    {
+      "q": "When does my membership stop?",
+      "a": "At the end of your current billing period. You can reactivate any time from your Bike, Tread or Row or on the website."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "Only for a charge made in error, and only if you tell Peloton Member Support within 60 days of it."
+    },
+    {
+      "q": "Is there a cheaper plan?",
+      "a": "The Peloton App One membership is $12.99/mo on the web ($15.99 if you buy it in the iPhone app), but it doesn't work on Peloton equipment. All-Access is {monthly:All-Access}."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Peloton Support: How to Manage Your All-Access Membership",
+      "url": "https://support.onepeloton.com/s/article/Peloton-Membership-How-to-Manage-Your-All-Access-Membership"
+    },
+    {
+      "label": "Peloton Support: App Memberships vs. All-Access Membership",
+      "url": "https://support.onepeloton.com/s/article/Peloton-Membership-Peloton-App-Memberships-vs-Peloton-All-Access-Membership"
+    },
+    {
+      "label": "Peloton: Membership plans and prices",
+      "url": "https://www.onepeloton.com/membership"
+    }
+  ],
+  "headline": {
+    "plan": "All-Access",
+    "frequency": "monthly"
+  },
+  "planAliases": {}
+}

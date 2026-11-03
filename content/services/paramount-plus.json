@@ -2,20 +2,24 @@
   "serviceId": "paramount-plus",
   "name": "Paramount+",
   "slug": "paramount-plus",
-  "checked": "2026-10",
+  "checked": "2026-11",
   "fastest": {
-    "text": "Sign in at paramountplus.com in a browser, open Account and select Cancel Subscription.",
+    "text": "Sign in at paramountplus.com in a browser, open your Account page and select Cancel Subscription.",
     "url": "https://www.paramountplus.com/account/"
   },
   "steps": [
     "Go to paramountplus.com in a web browser and sign in.",
-    "Select your profile name in the top corner, then Account.",
-    "Scroll down and select Cancel Subscription.",
-    "Follow the prompts to confirm."
+    "Select your profile, then Account.",
+    "Select Cancel Subscription.",
+    "Follow the prompts to confirm. You keep watching until the end of the billing period you've paid for."
   ],
   "appleBilled": true,
   "note": "Subscribed through Google Play, Amazon, Roku or Prime Video Channels? Cancel there; the Paramount+ website can't cancel those.",
   "faq": [
+    {
+      "q": "When does my access end?",
+      "a": "At the end of your current billing period, or when your free trial ends. Cancelling doesn't cut you off straight away."
+    },
     {
       "q": "Got Paramount+ as a Prime Video Channel?",
       "a": "Cancel it in your Amazon account under Memberships & Subscriptions. It keeps running even if you end Amazon Prime."
@@ -26,17 +30,13 @@
     },
     {
       "q": "Is there a cheaper plan?",
-      "a": "Paramount+ Essential, with ads, is $8.99/mo in the US."
+      "a": "Paramount+ Essential, with ads, is {monthly:Essential} in the US; Premium is {monthly:Premium}."
     }
   ],
   "cancelSources": [
     {
-      "label": "Pocket-lint: How to cancel Paramount+",
-      "url": "https://www.pocket-lint.com/tv/news/163662-how-to-cancel-paramount-plus"
-    },
-    {
-      "label": "Online Tech Tips: Cancel Paramount+ on any device",
-      "url": "https://www.online-tech-tips.com/how-to-cancel-your-paramount-plus-subscription-on-any-device/"
+      "label": "Engadget: How to cancel your Paramount+ subscription",
+      "url": "https://www.engadget.com/entertainment/streaming/how-to-cancel-your-paramount-subscription-140053714.html"
     },
     {
       "label": "Amazon Help: Prime Video subscriptions continue after Prime ends",
