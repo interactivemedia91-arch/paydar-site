@@ -1,6 +1,6 @@
 ## Privacy Policy
 
-_Last updated: 2 November 2026_
+_Last updated: 5 November 2026_
 
 Paydar ("the app", "we") is a subscription tracker that runs on your device. This policy explains what data the app handles and who it is shared with. By using Paydar you agree to this policy.
 
@@ -67,5 +67,5 @@ We may update this policy as the app evolves. Material changes will be reflected
 
 ### Contact
 
-Questions about privacy or the app? Email **interactivemedia91@gmail.com**.
+Questions about privacy or the app? Email **hello@getpaydarapp.com**.
 

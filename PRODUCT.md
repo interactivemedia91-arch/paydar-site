@@ -60,7 +60,8 @@ link, plus search traffic to the guides.
 - iPhone only. No Android app, no web app.
 - Price data is US-focused (USD).
 - Privacy policy moves from the GitHub gist to `/privacy/` on the domain (owner decision,
-  29 Oct 2026); the support email stays `interactivemedia91@gmail.com`.
+  29 Oct 2026); the support email is `hello@getpaydarapp.com` (Cloudflare Email Routing to the
+  owner's Gmail, owner decision 5 Nov 2026).
 
 ## Brand Commitments
 
