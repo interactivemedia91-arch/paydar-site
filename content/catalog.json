@@ -168,6 +168,14 @@
       "category": "education",
       "logo": "/logos/audible.webp"
     },
+    "calm": {
+      "name": "Calm",
+      "color": "#1B4FD8",
+      "price": 14.99,
+      "frequency": "monthly",
+      "category": "fitness",
+      "logo": "/logos/calm.webp"
+    },
     "crunchyroll": {
       "name": "Crunchyroll",
       "color": "#F47521",
@@ -184,6 +192,14 @@
       "category": "streaming",
       "logo": "/logos/discovery-plus.webp"
     },
+    "doordash": {
+      "name": "DashPass",
+      "color": "#FF3008",
+      "price": 9.99,
+      "frequency": "monthly",
+      "category": "food",
+      "logo": "/logos/doordash.webp"
+    },
     "espn-plus": {
       "name": "ESPN+",
       "color": "#CC0000",
@@ -199,6 +215,14 @@
       "frequency": "monthly",
       "category": "streaming",
       "logo": "/logos/fubo-tv.webp"
+    },
+    "hello-fresh": {
+      "name": "HelloFresh",
+      "color": "#9DC209",
+      "price": null,
+      "frequency": "monthly",
+      "category": "food",
+      "logo": "/logos/hello-fresh.webp"
     },
     "microsoft-365": {
       "name": "Microsoft 365",

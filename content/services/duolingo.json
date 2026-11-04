@@ -1,0 +1,42 @@
+{
+  "serviceId": "duolingo",
+  "name": "Duolingo Super",
+  "slug": "duolingo",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "In the Duolingo app, tap the Super icon → Settings (gear) → Manage subscription → Cancel subscription, then confirm in the App Store or Google Play.",
+    "url": "https://www.duolingo.com/help/cancel-my-super-duolingo-subscription"
+  },
+  "steps": [
+    "Open the Duolingo app and tap the Super icon at the top of the home screen.",
+    "Tap Settings (the gear icon), then Manage subscription.",
+    "Select Cancel subscription and go through the steps.",
+    "Confirm the cancellation in the App Store or Google Play when it opens."
+  ],
+  "appleBilled": true,
+  "note": "Subscribed on the website? Sign in on duolingo.com, click your profile picture → Settings → Super Duolingo → Cancel subscription.",
+  "faq": [
+    {
+      "q": "Will I lose my streak?",
+      "a": "No. Your streak and learning progress aren't affected, and you keep Super features until the end of the period you've paid for."
+    },
+    {
+      "q": "Do I get a refund?",
+      "a": "Usually not: Duolingo says in-app purchases are nonrefundable and partly used periods aren't refunded. Apple handles refunds for iPhone subscriptions; for web or Android, Duolingo support can review a request."
+    },
+    {
+      "q": "Does deleting the app cancel Super?",
+      "a": "No. Deleting the app or your Duolingo account doesn't cancel the subscription."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Duolingo Help: How do I cancel my Super Duolingo subscription?",
+      "url": "https://www.duolingo.com/help/cancel-my-super-duolingo-subscription"
+    },
+    {
+      "label": "Duolingo Help: How do I request a refund?",
+      "url": "https://www.duolingo.com/help/how-do-I-request-a-refund"
+    }
+  ]
+}

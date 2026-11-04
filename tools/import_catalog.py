@@ -19,6 +19,10 @@ HOME_CHIPS = ["netflix", "spotify", "icloud", "disney-plus", "youtube-premium", 
               "amazon-prime", "apple-music", "xbox-game-pass", "hulu", "peacock",
               "paramount-plus", "duolingo"]
 
+# App defaults that aren't a plan price, kept off the site (the calculator would list them as a
+# "Typical price"): HelloFresh charges per serving, so its $60 is only a placeholder.
+NO_PRICE = {"hello-fresh"}
+
 
 def main() -> int:
     res = Path(sys.argv[1]).expanduser()
@@ -30,7 +34,7 @@ def main() -> int:
     logos.mkdir(parents=True, exist_ok=True)
     for sid in dict.fromkeys(HOME_CHIPS + guide_ids):
         s = services[sid]
-        entry = {"name": s["name"], "color": s["color"], "price": s.get("defaultPrice"),
+        entry = {"name": s["name"], "color": s["color"], "price": None if sid in NO_PRICE else s.get("defaultPrice"),
                  "frequency": s.get("defaultFrequency", "monthly"), "category": s["category"]}
         png = icons / f"{sid}.imageset" / f"{sid}.png"
         if png.is_file():

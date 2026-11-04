@@ -1,0 +1,38 @@
+{
+  "serviceId": "doordash",
+  "name": "DoorDash DashPass",
+  "slug": "dashpass",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "In the DoorDash app or on doordash.com, tap the account icon → Manage DashPass → Cancel Membership, then Cancel DashPass.",
+    "url": "https://help.doordash.com/en-us/consumers/article/how-do-i-cancel-my-dashpass-subscription"
+  },
+  "steps": [
+    "Open the DoorDash app, or sign in at doordash.com.",
+    "Tap the account icon, then Manage DashPass.",
+    "Tap Cancel Membership, choose a reason, then select Cancel DashPass.",
+    "Select Got it. DoorDash emails you a confirmation."
+  ],
+  "appleBilled": false,
+  "note": "Only need a break? On the same Manage DashPass page you can select Pause Membership instead.",
+  "faq": [
+    {
+      "q": "How late can I cancel?",
+      "a": "At least 24 hours before your next scheduled payment. Cancel later than that and you're charged for the next period."
+    },
+    {
+      "q": "When do my DashPass benefits end?",
+      "a": "On a paid plan, at the end of the current billing period. On a free trial, as soon as you cancel."
+    },
+    {
+      "q": "Can I pause instead of cancelling?",
+      "a": "Yes. On the Manage DashPass page, select Pause Membership, then Pause DashPass to confirm."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "DoorDash Help: How do I cancel my DashPass subscription?",
+      "url": "https://help.doordash.com/en-us/consumers/article/how-do-i-cancel-my-dashpass-subscription"
+    }
+  ]
+}

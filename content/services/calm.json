@@ -1,0 +1,50 @@
+{
+  "serviceId": "calm",
+  "name": "Calm",
+  "slug": "calm",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "On calm.com, click your profile icon → Settings → Manage Subscription → Cancel Subscription.",
+    "url": "https://support.calm.com/hc/en-us/articles/115002473607-How-to-cancel-my-subscription"
+  },
+  "steps": [
+    "Log in to your Calm account in a web browser at calm.com/login.",
+    "Click your profile icon in the top-right corner.",
+    "Select Settings, then Manage Subscription.",
+    "Click Cancel Subscription and follow the prompts."
+  ],
+  "appleBilled": true,
+  "note": "On Android, cancel in the Google Play app: profile icon → Payments & subscriptions → Subscriptions → Calm. A Family Plan can only be cancelled by its admin, on the Calm website.",
+  "faq": [
+    {
+      "q": "Do I keep Premium after cancelling?",
+      "a": "Yes, until the end of your current billing or trial period. Your subscription just won't renew."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "For Calm.com purchases, within 30 days. Apple handles refunds for App Store subscriptions, and Calm Support handles Google Play ones. Cancelling alone doesn't refund anything."
+    },
+    {
+      "q": "Why is my renewal more expensive?",
+      "a": "Calm raised its yearly price, and subscribers on an older, lower rate move to the current standard price at their next renewal. Your exact renewal price is shown in your subscription settings."
+    },
+    {
+      "q": "I can't find Calm in my Apple or Google subscriptions.",
+      "a": "You may have subscribed with a different Apple ID or Google account; check the other accounts you've used."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "Calm Support: How to cancel your subscription or free trial",
+      "url": "https://support.calm.com/hc/en-us/articles/115002473607-How-to-cancel-my-subscription"
+    },
+    {
+      "label": "Calm Support: Refund policy",
+      "url": "https://support.calm.com/hc/en-us/articles/360008240974"
+    },
+    {
+      "label": "Calm Support: Pricing update",
+      "url": "https://support.calm.com/hc/en-us/articles/37467219653915"
+    }
+  ]
+}

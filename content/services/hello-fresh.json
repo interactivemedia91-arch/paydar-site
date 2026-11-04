@@ -1,0 +1,38 @@
+{
+  "serviceId": "hello-fresh",
+  "name": "HelloFresh",
+  "slug": "hellofresh",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Log in on hellofresh.com, open hellofresh.com/cancellation and follow the prompts, by 11:59 PM PT five days before your next delivery.",
+    "url": "https://www.hellofresh.com/about/faq"
+  },
+  "steps": [
+    "Log in to your HelloFresh account on hellofresh.com.",
+    "Open the cancellation page, hellofresh.com/cancellation (HelloFresh's help center links to it).",
+    "Follow the prompts. A summary screen shows how much HelloFresh Cash you'll lose.",
+    "Finish by 11:59 PM PT, five days before your next scheduled delivery."
+  ],
+  "appleBilled": false,
+  "note": "Only need a break? Skip a week instead: My Menu → pick the delivery day → Edit Delivery → Skip This Week.",
+  "faq": [
+    {
+      "q": "What's the cancellation deadline?",
+      "a": "11:59 PM PT, five days before your next scheduled delivery. HelloFresh can't cancel a box after that cut-off, and you pay for orders already processed."
+    },
+    {
+      "q": "What happens to my credits?",
+      "a": "Most credits, including referral bonuses, promotional offers and credits from customer care, are removed when you cancel. The cancellation summary shows how much HelloFresh Cash you'd lose."
+    },
+    {
+      "q": "Can I come back later?",
+      "a": "Yes. Log in and use the Reactivate button; you don't need to go through checkout again."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "HelloFresh Help Center: How do I cancel my subscription? (Account Management)",
+      "url": "https://www.hellofresh.com/about/faq"
+    }
+  ]
+}

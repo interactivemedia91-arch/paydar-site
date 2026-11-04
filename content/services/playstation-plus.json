@@ -1,0 +1,46 @@
+{
+  "serviceId": "playstation-plus",
+  "name": "PlayStation Plus",
+  "slug": "playstation-plus",
+  "checked": "2026-11",
+  "fastest": {
+    "text": "Sign in to Account Management on playstation.com, select Subscription, then Cancel Subscription next to PlayStation Plus.",
+    "url": "https://www.playstation.com/en-us/support/subscriptions/cancel-playstation-plus/"
+  },
+  "steps": [
+    "Sign in to Account Management on playstation.com.",
+    "Select Subscription from the menu on the left.",
+    "Select Cancel Subscription next to PlayStation Plus.",
+    "On a PS5 instead: Settings → Users and Accounts → Account → Payment and Subscriptions → Subscriptions → PlayStation Plus → Cancel Subscription."
+  ],
+  "appleBilled": false,
+  "note": "On a PS4: PlayStation Plus → Manage Membership → Subscription → Cancel Subscription. Changed your mind? Select Reactivate Subscription before your next payment date.",
+  "faq": [
+    {
+      "q": "What do I keep after cancelling?",
+      "a": "Every benefit until the end of the period you've paid for. After that, monthly games you downloaded with PS Plus stop working, but redeemed packs, avatars and discounted purchases stay yours."
+    },
+    {
+      "q": "Can I get a refund?",
+      "a": "Within 14 days of the initial transaction you can cancel and ask for a refund, even if you've used PS Plus; it may be reduced for the time you had. After that, cancelling only stops future payments."
+    },
+    {
+      "q": "Will it cost more if I come back later?",
+      "a": "Probably. On May 20, 2026 Sony raised monthly prices for new subscribers (Essential went from $9.99 to $10.99 a month). Existing members keep their price unless their subscription changes or lapses."
+    }
+  ],
+  "cancelSources": [
+    {
+      "label": "PlayStation Support: How to cancel PlayStation Plus",
+      "url": "https://www.playstation.com/en-us/support/subscriptions/cancel-playstation-plus/"
+    },
+    {
+      "label": "PlayStation Store cancellation policy (US)",
+      "url": "https://www.playstation.com/en-us/legal/playstation-store-cancellation-policy/"
+    },
+    {
+      "label": "Shacknews: PS Plus price increase for new subscribers (May 2026)",
+      "url": "https://www.shacknews.com/article/149181/ps-plus-price-increase-may-2026"
+    }
+  ]
+}
