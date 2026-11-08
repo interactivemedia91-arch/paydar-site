@@ -175,7 +175,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
         <a href="mailto:{esc(site.support_email)}">Support</a>
         <a href="{store}">App Store</a>
       </nav>
-      {note}<p class="footer-note">Service names and logos belong to their owners. Billdar is an iPhone app by an independent developer. Billdar was called Paydar until November 2026.</p>
+      {note}<p class="footer-note">Service names and logos belong to their owners. Billdar is an iPhone app by an independent developer.</p>
     </div>
   </footer>
   <script src="/lenis.min.js" defer></script>

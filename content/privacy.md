@@ -4,8 +4,6 @@ _Last updated: 8 November 2026_
 
 Billdar ("the app", "we") is a subscription tracker that runs on your device. This policy explains what data the app handles and who it is shared with. By using Billdar you agree to this policy.
 
-Billdar was called Paydar until November 2026.
-
 ### The short version
 
 - Billdar has **no account and no servers of its own**. The subscriptions, payment method labels, reminders and settings you enter are stored **on your device** and, if you use iCloud, backed up to **your own private iCloud**. We never receive, see, or store them.

@@ -275,10 +275,9 @@ class OtherPagesTest(unittest.TestCase):
 
 
 class BrandTest(unittest.TestCase):
-    """Renamed from Paydar on 8 Nov 2026: the old name survives only in one sentence that explains it."""
-    NOTE = "Billdar was called Paydar until November 2026."
+    """Renamed from Paydar on 8 Nov 2026; the old name isn't mentioned anywhere public (owner's call)."""
 
-    def test_billdar_everywhere_and_paydar_only_in_the_rename_note(self):
+    def test_billdar_everywhere_and_no_paydar(self):
         us_all = [c for c in CHANGES if c.country == "US"]
         pages = {"home": home_page(SITE, SERVICES), "guide": netflix_page(),
                  "increases": increases_page(SITE, SERVICES, us_all, TODAY),
@@ -286,8 +285,7 @@ class BrandTest(unittest.TestCase):
         for name, html in pages.items():
             with self.subTest(name):
                 self.assertIn("Billdar", html)
-                self.assertIn(self.NOTE, html)
-                self.assertNotIn("Paydar", html.replace(self.NOTE, ""))
+                self.assertNotIn("Paydar", html)
                 self.assertIn('<link rel="canonical" href="https://getbilldarapp.com/', html)
 
 
