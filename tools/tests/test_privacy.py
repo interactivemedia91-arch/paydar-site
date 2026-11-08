@@ -5,7 +5,7 @@ from sitegen.content import SiteConfig
 from sitegen.render import markdown_html, privacy_page
 from sitegen.site import _policy_date, _sitemap
 
-SITE = SiteConfig(base_url="https://getpaydarapp.com", app_id="6786868155", provider_token="123",
+SITE = SiteConfig(base_url="https://getbilldarapp.com", app_id="6786868155", provider_token="123",
                   privacy_url="/privacy/", support_email="help@example.com", prices_url="https://example.com/p.json")
 POLICY = """## Privacy Policy
 
@@ -13,7 +13,7 @@ _Last updated: 25 October 2026_
 
 ### The short version
 
-- Paydar has **no account**. See https://policies.google.com/privacy.
+- Billdar has **no account**. See https://policies.google.com/privacy.
 - Rates come from `open.er-api.com`.
 """
 
@@ -42,7 +42,7 @@ class PrivacyTest(unittest.TestCase):
         today = date(2026, 10, 29)
         self.assertEqual(_policy_date(POLICY, today), date(2026, 10, 25))
         self.assertEqual(_policy_date("no date here", today), today)
-        self.assertIn("<loc>https://getpaydarapp.com/privacy/</loc><lastmod>2026-10-25</lastmod>",
+        self.assertIn("<loc>https://getbilldarapp.com/privacy/</loc><lastmod>2026-10-25</lastmod>",
                       _sitemap(SITE, [], today, POLICY))
         self.assertNotIn("/privacy/", _sitemap(SITE, [], today, None))
 

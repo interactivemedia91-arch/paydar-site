@@ -1,9 +1,9 @@
 {
-  "baseUrl": "https://getpaydarapp.com",
+  "baseUrl": "https://getbilldarapp.com",
   "appId": "6786868155",
   "providerToken": "129114170",
   "privacyUrl": "/privacy/",
-  "supportEmail": "hello@getpaydarapp.com",
+  "supportEmail": "hello@getbilldarapp.com",
   "pricesUrl": "https://interactivemedia91-arch.github.io/prices.json",
   "analyticsToken": "399f87f77cca45bfb08b06491d096a78"
 }

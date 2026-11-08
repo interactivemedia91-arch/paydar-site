@@ -13,7 +13,7 @@ from sitegen.site import BuildError, build_site
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = Path(__file__).parent / "fixtures"
 TODAY = date(2026, 10, 25)
-SITE = SiteConfig(base_url="https://getpaydarapp.com", app_id="6786868155", provider_token="123",
+SITE = SiteConfig(base_url="https://getbilldarapp.com", app_id="6786868155", provider_token="123",
                   privacy_url="https://gist.github.com/x/privacy", support_email="help@example.com",
                   prices_url="https://example.com/prices.json")
 PRICES = json.loads((FIXTURES / "prices.json").read_text())
@@ -35,12 +35,13 @@ class BuildSiteTest(unittest.TestCase):
                         "cancel/amazon-prime/index.html", "site.css", "icon.png", "robots.txt"):
                 self.assertTrue((out / rel).is_file(), rel)
             sitemap = (out / "sitemap.xml").read_text()
-            for loc in ("https://getpaydarapp.com/", "https://getpaydarapp.com/price-increases/",
-                        "https://getpaydarapp.com/subscription-calculator/",
-                        "https://getpaydarapp.com/cancel/netflix/", "https://getpaydarapp.com/cancel/amazon-prime/"):
+            for loc in ("https://getbilldarapp.com/", "https://getbilldarapp.com/price-increases/",
+                        "https://getbilldarapp.com/subscription-calculator/",
+                        "https://getbilldarapp.com/cancel/netflix/", "https://getbilldarapp.com/cancel/amazon-prime/"):
                 self.assertIn(f"<loc>{loc}</loc>", sitemap)
             self.assertIn("<lastmod>2026-10-01</lastmod>", sitemap)  # netflix checked 2026-10, after its last change
-            self.assertIn("Sitemap: https://getpaydarapp.com/sitemap.xml", (out / "robots.txt").read_text())
+            self.assertIn("Sitemap: https://getbilldarapp.com/sitemap.xml", (out / "robots.txt").read_text())
+            self.assertEqual((out / "CNAME").read_text().strip(), "getbilldarapp.com")
             self.assertIn("Standard is now $19.99/mo", (out / "cancel/netflix/index.html").read_text())
             self.assertEqual([f for f in out.rglob("*") if f.name.endswith(".json") or f.name == ".DS_Store"], [])
 

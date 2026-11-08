@@ -1,4 +1,4 @@
-"""Build getpaydarapp.com into _site/.
+"""Build getbilldarapp.com into _site/.
 
 Usage: python3 -I tools/build.py [--out _site] [--prices URL_OR_PATH] [--today YYYY-MM-DD] [--content DIR]
 

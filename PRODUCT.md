@@ -14,18 +14,18 @@ Two audiences, both confirmed by the owner (29 Oct 2026):
   and land on a cancel guide. Often annoyed by a charge or a price increase; they want the
   answer first.
 - **Referred visitors:** people arriving on the homepage from Reddit, the App Store or word of
-  mouth, deciding whether to download Paydar.
+  mouth, deciding whether to download Billdar.
 
-Both are iPhone owners or could be; Paydar is iPhone-only, so Android visitors exist and must
+Both are iPhone owners or could be; Billdar is iPhone-only, so Android visitors exist and must
 not hit a dead end.
 
 ## Product Purpose
 
-getpaydarapp.com is the home of Paydar, an iPhone subscription tracker. The site:
+getpaydarapp.com is the home of Billdar, an iPhone subscription tracker. The site:
 
 - helps people cancel subscriptions (19 sourced cancel guides at `/cancel/<service>/`);
 - tracks US subscription price increases (`/price-increases/`);
-- turns both into App Store downloads of Paydar.
+- turns both into App Store downloads of Billdar.
 
 Success is App Store downloads, measured by per-page campaign tokens (`ct=`) on every App Store
 link, plus search traffic to the guides.
@@ -33,9 +33,9 @@ link, plus search traffic to the guides.
 ## Positioning
 
 - **A subscription tracker that isn't a subscription.** Free for up to 4 active subscriptions;
-  Paydar Pro unlocks unlimited for a single one-time purchase ($9.99 in the US), no
+  Billdar Pro unlocks unlimited for a single one-time purchase ($9.99 in the US), no
   subscription ever.
-- **No bank login.** Subscriptions are added from a catalog of popular services; Paydar never
+- **No bank login.** Subscriptions are added from a catalog of popular services; Billdar never
   connects to a bank.
 - **Private by design.** No account, no sign-up, no ads, no third-party SDKs. Data stays on the
   iPhone with an automatic backup to the user's own private iCloud.
@@ -52,7 +52,7 @@ link, plus search traffic to the guides.
 
 ## Capabilities and Constraints
 
-- App features (Paydar 2.0, submitted 28 Oct 2026): radar of upcoming renewals, renewal
+- App features (Billdar 2.0, submitted 28 Oct 2026): radar of upcoming renewals, renewal
   reminders, cancel guides, value check (cost per use), free-trial tracking, price watch, mark
   as paid / payment history, 150+ currencies with live rates, custom billing cycles, payment
   methods, Home Screen and Lock Screen widgets, spending stats with a monthly budget, iCloud
@@ -65,16 +65,16 @@ link, plus search traffic to the guides.
 
 ## Brand Commitments
 
-- Name: **Paydar**. The old name "Subsly" is not shown on the site (owner decision,
+- Name: **Billdar**. The old name "Subsly" is not shown on the site (owner decision,
   29 Oct 2026).
 - App icon: radar ring with a beam and a gold coin (`static/icon.png`).
-- The site follows the Paydar 2.0 app's look (owner decision, 29 Oct 2026). The visual system
+- The site follows the Billdar 2.0 app's look (owner decision, 29 Oct 2026). The visual system
   itself is defined in DESIGN.md, not here.
 - Owner rule from the app: no em dash ("—") in user-facing text.
 
 ## Evidence on Hand
 
-- Real Paydar 2.0 screens, dark and light, from the simulator:
+- Real Billdar 2.0 screens, dark and light, from the simulator:
   `~/Code/scratchpad/paydar-store-2.0/screen-*-{dark,light}.png` (home, calendar, caught, pro,
   stats, stats2, trials).
 - The App Store screenshot set: `~/Code/scratchpad/paydar-store-2.0/out/`.
@@ -87,7 +87,7 @@ link, plus search traffic to the guides.
 ## Product Principles
 
 1. **Answer the searcher's question.** A guide's cancel steps, FAQ and sources stay complete
-   and easy to find (where the Paydar pitch sits on the page is not locked).
+   and easy to find (where the Billdar pitch sits on the page is not locked).
 2. **Honest numbers only.** Every price is sourced and dated; no invented claims or social
    proof.
 3. **Lead with "not another subscription".** One-time price, no bank login and no account are

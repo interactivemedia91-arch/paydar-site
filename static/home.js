@@ -139,7 +139,7 @@
     const title = `${name} renews ${days === 0 ? "today" : "soon"}`, line = `On your radar: ${money(price)} renews ${when}`;
     notice.querySelector(".notice-title").textContent = title;
     notice.querySelector(".notice-line").textContent = line;
-    notice.setAttribute("aria-label", `A Paydar reminder: ${title}. ${line}.`);
+    notice.setAttribute("aria-label", `A Billdar reminder: ${title}. ${line}.`);
   };
   presets?.addEventListener("change", drawNotice);
 
@@ -148,7 +148,7 @@
     const items = picked.map((c) => ({ color: c.dataset.color, price: Number(c.dataset.price) }));
     const total = items.reduce((t, it) => t + it.price, 0);
     let note = "";
-    if (picked.length > FREE_LIMIT) note = `That's ${picked.length}. Free tracks ${FREE_LIMIT}; Paydar Pro tracks all of them for $9.99, once.`;
+    if (picked.length > FREE_LIMIT) note = `That's ${picked.length}. Free tracks ${FREE_LIMIT}; Billdar Pro tracks all of them for $9.99, once.`;
     else if (!picked.length) note = "Tap a service to put it on your radar.";
     hint.textContent = note;
     hint.hidden = !note;

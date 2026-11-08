@@ -13,7 +13,7 @@ from sitegen.render import app_store_url, calculator_page, home_page, increases_
 ROOT = Path(__file__).resolve().parents[2]
 
 TODAY = date(2026, 10, 25)
-SITE = SiteConfig(base_url="https://getpaydarapp.com", app_id="6786868155", provider_token="123",
+SITE = SiteConfig(base_url="https://getbilldarapp.com", app_id="6786868155", provider_token="123",
                   privacy_url="https://gist.github.com/x/privacy", support_email="help@example.com",
                   prices_url="https://example.com/prices.json")
 
@@ -71,7 +71,7 @@ class ServicePageTest(unittest.TestCase):
         html = netflix_page()
         marks = ["How to cancel Netflix</h1>", "Checked October 2026 · 1 min read",
                  "Standard is now $19.99/mo · +$2 since March", "Fastest way", "<ol", "Paying through Apple?",
-                 "Netflix is one. What about the rest?", "Netflix prices now (US)", "Paydar flags increases",
+                 "Netflix is one. What about the rest?", "Netflix prices now (US)", "Billdar flags increases",
                  "Do I keep watching after I cancel?", "Sources", "Not affiliated with Netflix."]
         body = html[html.index("<body"):]  # the head's JSON-LD repeats the questions
         positions = [body.find(m) for m in marks]
@@ -90,10 +90,10 @@ class ServicePageTest(unittest.TestCase):
 
     def test_head_tags(self):
         html = netflix_page()
-        self.assertIn('<link rel="canonical" href="https://getpaydarapp.com/cancel/netflix/">', html)
+        self.assertIn('<link rel="canonical" href="https://getbilldarapp.com/cancel/netflix/">', html)
         self.assertIn('<meta name="apple-itunes-app" content="app-id=6786868155">', html)
         # The headline plan went up in March 2026, under a year before TODAY: the title says so.
-        self.assertIn("<title>Cancel Netflix (2026): March price increase to $19.99/mo | Paydar</title>", html)
+        self.assertIn("<title>Cancel Netflix (2026): March price increase to $19.99/mo | Billdar</title>", html)
 
     def test_analytics_beacon_only_with_a_token(self):
         self.assertNotIn("cloudflareinsights", netflix_page())
@@ -150,7 +150,7 @@ class OtherPagesTest(unittest.TestCase):
         self.assertLess(html.find("Coming up"), html.find("Every service at a glance"))
         self.assertLess(html.find("Every service at a glance"), html.find("2026 so far"))
         self.assertLess(html.find("2026 so far"), html.find(">2025<"))
-        self.assertIn("<title>Subscription price increases 2026: every US hike so far | Paydar</title>", html)
+        self.assertIn("<title>Subscription price increases 2026: every US hike so far | Billdar</title>", html)
         self.assertIn('"@type": "FAQPage"', html)
         self.assertIn("Which subscriptions raised prices in 2026?", html)
         self.assertIn("So far in 2026, 2 of the 3 subscriptions we track raised their US prices.", html)
@@ -165,7 +165,7 @@ class OtherPagesTest(unittest.TestCase):
         # The headline plan's March increase leads the description.
         self.assertRegex(html, r'<meta name="description" content="Netflix Standard went up from \$17\.99 to \$19\.99/mo on '
                                r'Mar 26, 2026\. ')
-        self.assertIn('<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Paydar</a>', html)
+        self.assertIn('<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Billdar</a>', html)
         self.assertIn('<span aria-current="page">Netflix</span></nav>', html)
         self.assertIn("Also cancelling?", html)
         self.assertIn('<a href="/cancel/amazon-prime/">', html)
@@ -174,7 +174,7 @@ class OtherPagesTest(unittest.TestCase):
     def test_calculator_page(self):
         us_all = [c for c in CHANGES if c.country == "US"]
         html = calculator_page(SITE, SERVICES, us_all, TODAY)
-        self.assertIn("<title>Subscription cost calculator (2026 US prices) | Paydar</title>", html)
+        self.assertIn("<title>Subscription cost calculator (2026 US prices) | Billdar</title>", html)
         # Every plan with a price today, its 2026 rise, a link to the guide where there is one.
         self.assertIn('value="netflix:standard-monthly" data-monthly="19.9900" data-added="24.00"', html)
         self.assertIn('<span class="calc-rise">+$2 in 2026</span>', html)
@@ -204,7 +204,7 @@ class OtherPagesTest(unittest.TestCase):
         self.assertIn("ct=seo-home", html)
         self.assertNotIn("Subsly", html)
         self.assertIn('href="https://gist.github.com/x/privacy">Privacy</a>', html)
-        self.assertIn('<link rel="canonical" href="https://getpaydarapp.com/">', html)
+        self.assertIn('<link rel="canonical" href="https://getbilldarapp.com/">', html)
 
     def test_home_page_chips_start_with_four_picked(self):
         catalog = load_catalog(ROOT / "content" / "catalog.json")
@@ -232,7 +232,7 @@ class OtherPagesTest(unittest.TestCase):
         article, faq, crumbs = blocks(html)
         self.assertEqual((article["@type"], faq["@type"], crumbs["@type"]), ("Article", "FAQPage", "BreadcrumbList"))
         self.assertEqual([i["item"] for i in crumbs["itemListElement"]],
-                         ["https://getpaydarapp.com/", "https://getpaydarapp.com/cancel/netflix/"])
+                         ["https://getbilldarapp.com/", "https://getbilldarapp.com/cancel/netflix/"])
         self.assertEqual(article["dateModified"], "2026-10-01")  # checked in October, after the March change
         self.assertEqual(article["publisher"]["@id"], home[1]["@id"])
         # Every question and answer is the page's visible text, decoded, word for word.
@@ -271,6 +271,24 @@ class OtherPagesTest(unittest.TestCase):
                 self.assertTrue(src.startswith("/"), src)
             for href in re.findall(r'<link rel="stylesheet" href="([^"]+)"', html):
                 self.assertTrue(href.startswith("/"), href)
+
+
+
+class BrandTest(unittest.TestCase):
+    """Renamed from Paydar on 8 Nov 2026: the old name survives only in one sentence that explains it."""
+    NOTE = "Billdar was called Paydar until November 2026."
+
+    def test_billdar_everywhere_and_paydar_only_in_the_rename_note(self):
+        us_all = [c for c in CHANGES if c.country == "US"]
+        pages = {"home": home_page(SITE, SERVICES), "guide": netflix_page(),
+                 "increases": increases_page(SITE, SERVICES, us_all, TODAY),
+                 "calculator": calculator_page(SITE, SERVICES, us_all, TODAY)}
+        for name, html in pages.items():
+            with self.subTest(name):
+                self.assertIn("Billdar", html)
+                self.assertIn(self.NOTE, html)
+                self.assertNotIn("Paydar", html.replace(self.NOTE, ""))
+                self.assertIn('<link rel="canonical" href="https://getbilldarapp.com/', html)
 
 
 if __name__ == "__main__":

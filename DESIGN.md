@@ -1,6 +1,6 @@
 ---
-name: Paydar
-description: The web home of Paydar, in the iPhone app's Aura look. A colour field made from your own subscriptions, controls on glass, content on calm frost.
+name: Billdar
+description: The web home of Billdar, in the iPhone app's Aura look. A colour field made from your own subscriptions, controls on glass, content on calm frost.
 colors:
   base: "#F3F1F8"
   base-dark: "#0B0A12"
@@ -189,13 +189,13 @@ components:
     padding: "8px 14px"
 ---
 
-# Design System: Paydar
+# Design System: Billdar
 
 ## Overview
 
 **Creative North Star: "The Visitor's Own Aura"**
 
-The site is painted by the person looking at it. Paydar's 2.0 iPhone app draws its Aura from the subscriptions you track; the site does the same with the services the visitor taps. A fixed radial colour field sits behind every page, made from those services' brand colours: biggest monthly cost first, greys skipped, one colour per 20 degrees of hue, at most five spots, each softened so text stays readable, each spot's radius weighted by price, a lavender glow at the top and a veil darkening toward the bottom. Past the hero, and on every reading page, the field steps back to half strength. Light and dark follow the system; nothing is themed by hand.
+The site is painted by the person looking at it. Billdar's 2.0 iPhone app draws its Aura from the subscriptions you track; the site does the same with the services the visitor taps. A fixed radial colour field sits behind every page, made from those services' brand colours: biggest monthly cost first, greys skipped, one colour per 20 degrees of hue, at most five spots, each softened so text stays readable, each spot's radius weighted by price, a lavender glow at the top and a veil darkening toward the bottom. Past the hero, and on every reading page, the field steps back to half strength. Light and dark follow the system; nothing is themed by hand.
 
 Over the field, two materials and one shape do all the work. Controls and the live meter sit on glass (translucent, heavily blurred, a 1px white edge). Content that must be read sits on frost (near-opaque, the same 1px edge). Every control is a pill. Type is SF Pro at heavy weights with tight tracking, so prices and totals read as the loudest thing on the screen, with SF Pro Rounded reserved for labels, captions and the wordmark, exactly as in the app. Colour beyond the field is semantic and scarce: red means a price went up, green means good news or the way out, gold means the one-time Pro price.
 
@@ -261,7 +261,7 @@ A near-neutral lavender-grey frame (light) or near-black violet (dark), with all
 - **Small** (400, 0.9375rem): facts lines, footnotes, sources.
 - **Label** (Rounded 600, 0.9375rem): picker legend, meta lines, chart caption, dates, preset text, callout headings.
 - **Caption** (Rounded 600, 0.8125rem): radar "Today" and blip names, change chips, notice app line; radar ring labels go to 0.6875rem.
-- **Wordmark** (Rounded 800, 1.5rem, -0.02em): "Paydar" beside the radar mark; the footer repeats it huge (clamp(5rem, 22vw, 20rem), 0.8, -0.06em) at 9% ink as a quiet sign-off.
+- **Wordmark** (Rounded 800, 1.5rem, -0.02em): "Billdar" beside the radar mark; the footer repeats it huge (clamp(5rem, 22vw, 20rem), 0.8, -0.06em) at 9% ink as a quiet sign-off.
 
 ### Named Rules
 **The Loud Numbers Rule.** A price or total is set heavier and larger than the words around it, always with tabular figures, so columns of prices align and a counted total does not jitter.
@@ -272,7 +272,7 @@ A near-neutral lavender-grey frame (light) or near-black violet (dark), with all
 
 A centred container (max 1280px) with a fluid gutter (clamp(20px, 4vw, 48px)) that also honours the left and right safe-area insets. Homepage sections are separated by a long fluid gap (clamp(112px, 9vw + 40px, 200px)) and mostly split in two asymmetric columns (1.05fr / 0.95fr in the hero, 0.9fr / 1.1fr and 1.1fr / 0.9fr below) with a wide column gap (clamp(40px, 7vw, 120px)). The hero puts copy and picker on the left and the glass meter on the right; above 960px wide and 700px tall the meter is sticky (top 96px).
 
-Reading pages are a single column (820px, 940px for the increase feed) with the field at half strength. Guides open with the service logo and title, then the "Fastest way" callout, numbered steps, a billing note, the Paydar card, price list and chart, FAQ and sources; the searcher's answer always comes first.
+Reading pages are a single column (820px, 940px for the increase feed) with the field at half strength. Guides open with the service logo and title, then the "Fastest way" callout, numbered steps, a billing note, the Billdar card, price list and chart, FAQ and sources; the searcher's answer always comes first.
 
 Responsive steps observed in the build: 960px (hero stacks to copy, picker, meter; a compact glass total pins under the header while picking; guide groups go to two columns), 760px (two-column sections and plan grids stack, the tilted phone straightens, the screen row becomes a staggered single column at 78% width), 720px (header nav hides, leaving brand and the small pill), 520px and 480px (tighter meter, chips and panels), 374px and 360px (short pill labels, pills may wrap). Header, skip link and footer respect the top and bottom safe-area insets.
 
@@ -281,18 +281,18 @@ Responsive steps observed in the build: 960px (hero stacks to copy, picker, mete
 Depth is material, not stacked shadow. The fixed field is the deepest layer; glass and frost float over it with a 1px white border (strong in light, faint in dark) and one long, soft, violet-tinted ambient shadow pulled up under the element. The sticky header is a blurred band of base at 85% that fades out at its lower 10px instead of drawing a line.
 
 ### Shadow Vocabulary
-- **Glass lift** (`box-shadow: 0 18px 50px -24px var(--shadow)`): glass controls, the meter, the notice, the Paydar card.
+- **Glass lift** (`box-shadow: 0 18px 50px -24px var(--shadow)`): glass controls, the meter, the notice, the Billdar card.
 - **Frost lift** (`box-shadow: 0 12px 36px -22px var(--shadow)`): frost panels, cards and lists; slightly lower than glass.
 - **Device** (`box-shadow: 0 40px 80px -40px var(--shadow), 0 0 0 1px var(--glass-border)`): the app screenshots (36px to 44px corners); the hairline ring is their edge.
 - **Logo drop** (`box-shadow: 0 8px 18px -8px rgba(0,0,0,.55)`): radar blips, so logos sit above the disc.
 - The shadow colour is rgba(60, 40, 120, .12) in light and rgba(0, 0, 0, .45) in dark.
 
 ### Named Rules
-**The Glass For Hands, Frost For Eyes Rule.** Anything the visitor operates or watches change (chips, the meter, the pinned total, the notice, the Paydar card) is glass: blur(28px) saturate(1.6). Anything the visitor reads (pricing panel, cards, plan lists, charts, FAQ) is frost. Under Reduce Transparency both become opaque Sheet with no blur.
+**The Glass For Hands, Frost For Eyes Rule.** Anything the visitor operates or watches change (chips, the meter, the pinned total, the notice, the Billdar card) is glass: blur(28px) saturate(1.6). Anything the visitor reads (pricing panel, cards, plan lists, charts, FAQ) is frost. Under Reduce Transparency both become opaque Sheet with no blur.
 
 ## Shapes
 
-Soft, continuous, app-like corners. Every control is a full pill (999px): primary buttons, chips, presets, price alerts, the pinned total, the skip link. Containers step down in radius with their size: pricing panel clamp(28px, 3vw, 40px), meter 32px (28px under 520px), Paydar card 30px, the notice and lists and charts 24px, the billing note 20px. Service logos are circles on the picker and radar, rounded squares in lists (9px at 32px, 15px at 52px, 18px at 64px). The radar is a half-disc with three hairline rings; chart bars are square on the baseline and rounded 4px at the data end.
+Soft, continuous, app-like corners. Every control is a full pill (999px): primary buttons, chips, presets, price alerts, the pinned total, the skip link. Containers step down in radius with their size: pricing panel clamp(28px, 3vw, 40px), meter 32px (28px under 520px), Billdar card 30px, the notice and lists and charts 24px, the billing note 20px. Service logos are circles on the picker and radar, rounded squares in lists (9px at 32px, 15px at 52px, 18px at 64px). The radar is a half-disc with three hairline rings; chart bars are square on the baseline and rounded 4px at the data end.
 
 ## Components
 
@@ -311,8 +311,8 @@ Confident ink pills with a trailing arrow, the only way to the App Store.
 Real radio inputs drawn as small pills: Well fill, Rounded 600 label, checked = ink fill. They drive the phone notice.
 
 ### Cards / Containers
-- **Corner Style:** 24px for cards and lists, 30px for the Paydar card, up to 40px for the pricing panel.
-- **Background:** frost for reading content; glass for the Paydar call-to-action card.
+- **Corner Style:** 24px for cards and lists, 30px for the Billdar card, up to 40px for the pricing panel.
+- **Background:** frost for reading content; glass for the Billdar call-to-action card.
 - **Shadow Strategy:** Frost lift or Glass lift (see Elevation & Depth).
 - **Border:** 1px frost or glass border; rows inside lists are divided by Hairline.
 - **Internal Padding:** about 20px 22px for cards and rows, clamp(24px, 6vw, 88px) for the pricing panel.

@@ -1,4 +1,4 @@
-/* Paydar, in the app's Aura look: a colour field made from subscriptions, controls on glass,
+/* Billdar, in the app's Aura look: a colour field made from subscriptions, controls on glass,
    content on calm frost. Light and dark follow the system. Tokens mirror the app's Aura.swift. */
 
 @property --s1 { syntax: "<color>"; inherits: true; initial-value: transparent; }

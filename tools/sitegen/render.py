@@ -19,13 +19,13 @@ from .radar import aura_radius, place
 
 APPLE_NOTE = ("<strong>Paying through Apple?</strong> Then Apple bills you. "
               "Cancel in Settings → your name → Subscriptions instead.")
-CARD_TEXT = "Paydar puts every subscription on one radar and pings you before each charge. No bank login."
-CHART_LINK = "Paydar flags increases like this before they hit your card"
-CTA_LABEL = "Get Paydar free on iPhone"
+CARD_TEXT = "Billdar puts every subscription on one radar and pings you before each charge. No bank login."
+CHART_LINK = "Billdar flags increases like this before they hit your card"
+CTA_LABEL = "Get Billdar free on iPhone"
 FACTS = "Free for 4 subscriptions · $9.99 once for unlimited · No bank login"
 LAVENDER = "#7A5AF8"
 BAR_MAX_PX = 140
-DESCRIPTION = ("See every subscription charge 3 days before it hits. Paydar puts your renewals on one radar. "
+DESCRIPTION = ("See every subscription charge 3 days before it hits. Billdar puts your renewals on one radar. "
                "No bank login, no account. Free for 4, $9.99 once for unlimited.")
 
 ICON_UP = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 11 11 3M4 3h7v7" '
@@ -134,14 +134,14 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
   <meta name="theme-color" content="#F3F1F8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0B0A12" media="(prefers-color-scheme: dark)">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Paydar">
+  <meta property="og:site_name" content="Billdar">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{esc(url)}">
   <meta property="og:image" content="{esc(site.base_url)}/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Paydar: every charge, 3 days early. Your renewals on one radar.">
+  <meta property="og:image:alt" content="Billdar: every charge, 3 days early. Your renewals on one radar.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.png?v=2">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
@@ -152,7 +152,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-bar">
-      <a class="brand" href="/">{RADAR_MARK}<span>Paydar</span></a>
+      <a class="brand" href="/">{RADAR_MARK}<span>Billdar</span></a>
       <nav class="nav" aria-label="Site">
         <a href="/#guides">Cancel guides</a>
         <a href="/price-increases/">Price increases</a>
@@ -166,7 +166,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p class="footer-word" aria-hidden="true">Paydar</p>
+      <p class="footer-word" aria-hidden="true">Billdar</p>
       <nav class="footer-links" aria-label="Footer">
         <a href="/#guides">Cancel guides</a>
         <a href="/price-increases/">Price increases</a>
@@ -175,7 +175,7 @@ def _shell(site: SiteConfig, *, title: str, description: str, path: str, ct: str
         <a href="mailto:{esc(site.support_email)}">Support</a>
         <a href="{store}">App Store</a>
       </nav>
-      {note}<p class="footer-note">Service names and logos belong to their owners. Paydar is an iPhone app by an independent developer.</p>
+      {note}<p class="footer-note">Service names and logos belong to their owners. Billdar is an iPhone app by an independent developer. Billdar was called Paydar until November 2026.</p>
     </div>
   </footer>
   <script src="/lenis.min.js" defer></script>
@@ -312,11 +312,11 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
     year = service.checked[:4]
     news = title_news(us, service.headline_plan, service.headline_frequency, today, year) if has_prices else None
     if news:  # "Cancel YouTube Premium (2026): June price increase to $15.99/mo"
-        title = f"Cancel {service.name} ({year}): {news} | Paydar"
+        title = f"Cancel {service.name} ({year}): {news} | Billdar"
     elif has_prices:
-        title = f"How to cancel {service.name} ({year}): steps and current prices | Paydar"
+        title = f"How to cancel {service.name} ({year}): steps and current prices | Billdar"
     else:
-        title = f"How to cancel {service.name} ({year}): step by step | Paydar"
+        title = f"How to cancel {service.name} ({year}): step by step | Billdar"
     label = f"{service.name} {service.headline_plan or ''}".strip()
     lead = description_news(us, service.headline_plan, service.headline_frequency, today, label) if has_prices else None
     if lead:  # the price news first, then how to cancel: what the searcher came for
@@ -327,7 +327,7 @@ def service_page(site: SiteConfig, service: Service, us: list[Change], today: da
     modified = max(filter(None, [date.fromisoformat(f"{service.checked}-01"), last_change(us, today)]))
     steps = "".join(f"<li><p>{esc(s)}</p></li>" for s in service.steps)
     body = ("    <article class=\"wrap article\">\n"
-            f"      <nav class=\"crumbs\" aria-label=\"Breadcrumb\"><a href=\"/\">Paydar</a><span aria-hidden=\"true\">›</span>"
+            f"      <nav class=\"crumbs\" aria-label=\"Breadcrumb\"><a href=\"/\">Billdar</a><span aria-hidden=\"true\">›</span>"
             f"<a href=\"/#guides\">Cancel guides</a><span aria-hidden=\"true\">›</span>"
             f"<span aria-current=\"page\">{esc(service.name)}</span></nav>\n"
             f"      <header class=\"guide-head\">{logo_html(brand, service.name, 64, 'logo guide-logo', lazy=False)}"
@@ -371,7 +371,7 @@ def _related_html(related: list[tuple[Service, Brand | None]]) -> str:
 
 def _crumbs_ld(site: SiteConfig, service: Service) -> dict:
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Paydar", "item": f"{site.base_url}/"},
+        {"@type": "ListItem", "position": 1, "name": "Billdar", "item": f"{site.base_url}/"},
         {"@type": "ListItem", "position": 2, "name": f"How to cancel {service.name}",
          "item": f"{site.base_url}/cancel/{service.slug}/"}]}
 
@@ -386,8 +386,8 @@ def _guide_ld(site: SiteConfig, service: Service, description: str, modified: da
 
 
 def _org(site: SiteConfig) -> dict:
-    """Paydar the publisher; the same @id on every page, defined in full on the homepage."""
-    return {"@type": "Organization", "@id": site.base_url + "/#org", "name": "Paydar", "url": site.base_url + "/"}
+    """Billdar the publisher; the same @id on every page, defined in full on the homepage."""
+    return {"@type": "Organization", "@id": site.base_url + "/#org", "name": "Billdar", "url": site.base_url + "/"}
 
 
 def _faq_ld(service: Service, us: list[Change], today: date) -> dict:
@@ -511,7 +511,7 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
     faq_html = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in faq)
     updated = f"{MONTHS[today.month - 1][:3]} {today.day}, {today.year}"
     card = _paydar_card(site, "seo-price-increases", "Get pinged before the next one.",
-                        "Paydar tracks every subscription and flags announced price increases before they hit your card.")
+                        "Billdar tracks every subscription and flags announced price increases before they hit your card.")
     body = f"""    <article class="wrap article article-wide">
       <h1 class="page-title">Subscription price increases in {year}</h1>
       <p class="page-meta">Updated {updated} · US prices · every change links to its source</p>
@@ -540,7 +540,7 @@ def increases_page(site: SiteConfig, services: list[Service], us_all: list[Chang
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
                              for q, a in faq]}
-    return _shell(site, title=f"Subscription price increases {year}: every US hike so far | Paydar",
+    return _shell(site, title=f"Subscription price increases {year}: every US hike so far | Billdar",
                   description=description, path="/price-increases/", ct="seo-price-increases", body=body,
                   page_class="page-increases", head_extra=_json_ld(faq_ld),
                   field=field_style([("#FF6B70", 2.0), ("#E8B04B", 1.2), (LAVENDER, 1.0)]))
@@ -671,7 +671,7 @@ def calculator_page(site: SiteConfig, services: list[Service], us_all: list[Chan
          f"{_and(rose)}. Every change, with its source, is on our price increases page." if rose
          else f"None of the ones listed here, so far in {year}."),
         ("Are these prices up to date?",
-         "They come from the price list Paydar uses to flag increases, with a source for every change, and this page "
+         "They come from the price list Billdar uses to flag increases, with a source for every change, and this page "
          "is rebuilt every day. US prices, before sales tax."),
     ]
     faq_html = "".join(f'<div class="faq-item"><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in faq)
@@ -689,9 +689,9 @@ def calculator_page(site: SiteConfig, services: list[Service], us_all: list[Chan
           <p class="calc-live sr-only" aria-live="polite"></p>
           <div class="calc-actions">
             <button class="pill calc-share" type="button" hidden>Copy link to this list</button>
-            <a class="pill pill-ink calc-cta" href="{store}">Track them in Paydar {ICON_NEXT}</a>
+            <a class="pill pill-ink calc-cta" href="{store}">Track them in Billdar {ICON_NEXT}</a>
           </div>
-          <p class="calc-note">Paydar puts each renewal on one radar and pings you before it charges.</p>
+          <p class="calc-note">Billdar puts each renewal on one radar and pings you before it charges.</p>
         </aside>
       </div>
       <section class="faq">
@@ -705,7 +705,7 @@ def calculator_page(site: SiteConfig, services: list[Service], us_all: list[Chan
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
                              for q, a in faq]}
-    return _shell(site, title=f"Subscription cost calculator ({year} US prices) | Paydar", description=description,
+    return _shell(site, title=f"Subscription cost calculator ({year} US prices) | Billdar", description=description,
                   path="/subscription-calculator/", ct="seo-calculator", body=body, page_class="page-calc",
                   head_extra=_json_ld(faq_ld), field=field_style([("#16A374", 1.6), ("#8A6BD6", 1.2), ("#4A9EFF", 1.0)]),
                   scripts='\n  <script src="/calc.js" defer></script>')
@@ -826,17 +826,17 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
         f'<img src="/screens/{n}-light.webp" alt="{esc(alt)}" width="660" height="1434" loading="lazy"></picture>'
         f'<figcaption><strong>{esc(cap)}</strong> {esc(sub)}</figcaption></figure>'
         for n, alt, cap, sub in (
-            ("calendar", "Paydar's calendar: renewals marked on each day of the month", "Calendar.",
+            ("calendar", "Billdar's calendar: renewals marked on each day of the month", "Calendar.",
              "Every renewal on its day, and what the month costs."),
-            ("trials", "Paydar's subscription list with free trials and their end dates", "Free trials.",
+            ("trials", "Billdar's subscription list with free trials and their end dates", "Free trials.",
              "The day each trial turns paid, with two reminders before it does."),
-            ("caught", "Paydar confirming a payment was marked as paid", "Mark as paid.",
+            ("caught", "Billdar confirming a payment was marked as paid", "Mark as paid.",
              "Log a charge in one tap and keep a history of what you spent."),
         ))
     body = f"""    <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
         <h1 id="hero-title" style="--i:0">Every charge,<br> 3&nbsp;days early.</h1>
-        <p class="lede" style="--i:1">Paydar is a subscription tracker for iPhone. Your next 30 days of renewals sit on one radar, and a reminder lands before each charge.</p>
+        <p class="lede" style="--i:1">Billdar is a subscription tracker for iPhone. Your next 30 days of renewals sit on one radar, and a reminder lands before each charge.</p>
         <div class="hero-action" style="--i:2">
           <a class="pill pill-ink pill-large" href="{store}">{esc(CTA_LABEL)} {ICON_NEXT}</a>
           <p class="facts">{esc(FACTS)}</p>
@@ -867,17 +867,17 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
     <section class="reminders wrap" aria-labelledby="reminders-title">
       <figure class="phone" data-rv="3">
         <picture><source srcset="/screens/home-dark.webp" media="(prefers-color-scheme: dark)">
-        <img src="/screens/home-light.webp" alt="Paydar's home screen: the monthly total, the radar of renewals and the list of what renews next" width="660" height="1434" loading="lazy"></picture>
-        <div class="notice glass" role="img" aria-label="{esc(f"A Paydar reminder: {notice_title}. {notice_line}.")}"
+        <img src="/screens/home-light.webp" alt="Billdar's home screen: the monthly total, the radar of renewals and the list of what renews next" width="660" height="1434" loading="lazy"></picture>
+        <div class="notice glass" role="img" aria-label="{esc(f"A Billdar reminder: {notice_title}. {notice_line}.")}"
              data-name="{esc(soon_name)}" data-price="{soon_price:.2f}">
-          <span class="notice-app">{RADAR_MARK}PAYDAR <span>now</span></span>
+          <span class="notice-app">{RADAR_MARK}BILLDAR <span>now</span></span>
           <strong class="notice-title">{esc(notice_title)}</strong>
           <span class="notice-line">{esc(notice_line)}</span>
         </div>
       </figure>
       <div class="reminders-copy">
         <h2 id="reminders-title" data-rv="1">A heads-up before every charge.</h2>
-        <p data-rv="2">Paydar reminds you before each renewal, at the time of day you pick. Choose when, per subscription: one reminder or several.</p>
+        <p data-rv="2">Billdar reminds you before each renewal, at the time of day you pick. Choose when, per subscription: one reminder or several.</p>
         <fieldset class="presets" data-rv="2">
           <legend class="sr-only">Preview a reminder</legend>
           {_presets_html()}
@@ -896,11 +896,11 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
           </div>
           <div class="plan plan-pro" data-rv="2">
             <p class="plan-price-big">$9.99 <span>once</span></p>
-            <p class="plan-what">Paydar Pro tracks as many as you like, for one payment that never renews.</p>
+            <p class="plan-what">Billdar Pro tracks as many as you like, for one payment that never renews.</p>
           </div>
         </div>
         <ul class="promises" data-rv="3">
-          <li><strong>No bank login.</strong> Pick from 120+ popular services or add your own. Paydar never connects to a bank.</li>
+          <li><strong>No bank login.</strong> Pick from 120+ popular services or add your own. Billdar never connects to a bank.</li>
           <li><strong>No account.</strong> Nothing to sign up for. Open the app and add your first subscription.</li>
           <li><strong>No ads, no tracking.</strong> Your data stays on your iPhone, backed up to your own private iCloud.</li>
         </ul>
@@ -911,12 +911,12 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
     <section class="value wrap" aria-labelledby="value-title">
       <div class="value-copy">
         <h2 id="value-title" data-rv="1">Find what you barely use.</h2>
-        <p data-rv="2">On the 25th, Paydar asks how much you used each subscription this month. It works out the cost per use and shows what you'd save by cutting the ones you barely touch.</p>
+        <p data-rv="2">On the 25th, Billdar asks how much you used each subscription this month. It works out the cost per use and shows what you'd save by cutting the ones you barely touch.</p>
         <p data-rv="2">Then it walks you through cancelling, with step-by-step guides for popular services.</p>
       </div>
       <figure class="phone phone-tilt" data-rv="3">
         <picture><source srcset="/screens/stats-dark.webp" media="(prefers-color-scheme: dark)">
-        <img src="/screens/stats-light.webp" alt="Paydar's stats: the monthly budget and the value check with the cost per use of each subscription" width="660" height="1434" loading="lazy"></picture>
+        <img src="/screens/stats-light.webp" alt="Billdar's stats: the monthly budget and the value check with the cost per use of each subscription" width="660" height="1434" loading="lazy"></picture>
       </figure>
     </section>
 
@@ -928,7 +928,7 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
         {rise}
         <div class="watch-copy">
           <h3>Prices keep moving.</h3>
-          <p>Paydar watches announced US price changes for the services you track and tells you before your price goes up. It never changes a price by itself: it asks you first.</p>
+          <p>Billdar watches announced US price changes for the services you track and tells you before your price goes up. It never changes a price by itself: it asks you first.</p>
         </div>
       </div>
     </section>
@@ -944,15 +944,15 @@ def home_page(site: SiteConfig, services: list[Service], catalog: Catalog | None
       <p class="facts">iPhone only · iOS 18 or later · {esc(FACTS)}</p>
     </section>"""
     # WebSite gives Google the site's name; Organization its logo. No ratings until real ones exist.
-    site_ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "Paydar", "url": site.base_url + "/"}
+    site_ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "Billdar", "url": site.base_url + "/"}
     org_ld = {"@context": "https://schema.org", **_org(site), "logo": site.base_url + "/icon.png"}
-    ld = {"@context": "https://schema.org", "@type": "MobileApplication", "name": "Paydar",
+    ld = {"@context": "https://schema.org", "@type": "MobileApplication", "name": "Billdar",
           "operatingSystem": "iOS 18.0 or later", "applicationCategory": "FinanceApplication",
           "description": DESCRIPTION, "url": site.base_url + "/",
           "installUrl": f"https://apps.apple.com/app/id{site.app_id}",
           "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
           "publisher": {"@id": site.base_url + "/#org"}}
-    return _shell(site, title="Paydar: subscription tracker and renewal reminders for iPhone",
+    return _shell(site, title="Billdar: subscription tracker and renewal reminders for iPhone",
                   description=DESCRIPTION, path="/", ct="seo-home", body=body, field=field, page_class="page-home",
                   head_extra=_json_ld(site_ld) + _json_ld(org_ld) + _json_ld(ld),
                   scripts=f'\n  <script type="application/json" id="home-data">{data}</script>\n  <script src="/home.js" defer></script>')
@@ -1017,7 +1017,7 @@ def privacy_page(site: SiteConfig, policy_md: str) -> str:
       <h1 class="page-title">Privacy Policy</h1>
 {html}
     </article>"""
-    return _shell(site, title="Privacy Policy | Paydar",
-                  description="What Paydar does with your data: it stays on your iPhone and in your own iCloud.",
+    return _shell(site, title="Privacy Policy | Billdar",
+                  description="What Billdar does with your data: it stays on your iPhone and in your own iCloud.",
                   path="/privacy/", ct="seo-privacy", body=body, page_class="page-privacy",
                   field=field_style([(LAVENDER, 1.0), ("#16A374", 0.6)]))

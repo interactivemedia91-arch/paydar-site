@@ -47,7 +47,7 @@ class ContentTest(unittest.TestCase):
 
     def test_site_config(self):
         site = load_site(Path(__file__).resolve().parents[2] / "content" / "site.json")
-        self.assertEqual((site.base_url, site.app_id), ("https://getpaydarapp.com", "6786868155"))
+        self.assertEqual((site.base_url, site.app_id), ("https://getbilldarapp.com", "6786868155"))
         self.assertEqual(site.prices_url, "https://interactivemedia91-arch.github.io/prices.json")
 
 

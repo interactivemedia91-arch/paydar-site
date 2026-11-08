@@ -1,7 +1,9 @@
-# Paydar website
+# Billdar website
+
+Renamed from Paydar on 8 Nov 2026; getpaydarapp.com 301-redirects to getbilldarapp.com (Cloudflare).
 
 Source of https://getpaydarapp.com: cancel guides (`/cancel/<slug>/`), US subscription price
-increases (`/price-increases/`) and the Paydar homepage.
+increases (`/price-increases/`) and the Billdar homepage.
 
 - `content/site.json`: base URL, App Store id and campaign provider token, links.
 - `content/services/<serviceId>.json`: one cancel guide per service. FAQ answers can use
