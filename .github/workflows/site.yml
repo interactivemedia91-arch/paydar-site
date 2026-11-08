@@ -1,4 +1,4 @@
-# Builds getpaydarapp.com from content/ + the shared prices.json and deploys it to GitHub Pages.
+# Builds getbilldarapp.com from content/ + the shared prices.json and deploys it to GitHub Pages.
 # Runs on every push to main and once a day, so "coming up" price increases flip to "in effect"
 # on their date. A failed run keeps the last deployed site, and GitHub emails the repo owner.
 name: Build and deploy site
@@ -76,6 +76,6 @@ jobs:
         env:
           KEY: b1ac0f758eec2a13270245f046b2db71
         run: |
-          urls=$(curl -fsS https://getpaydarapp.com/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -s .)
-          jq -n --argjson urls "$urls" '{host: "getpaydarapp.com", key: env.KEY, keyLocation: ("https://getpaydarapp.com/" + env.KEY + ".txt"), urlList: $urls}' \
+          urls=$(curl -fsS https://getbilldarapp.com/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -s .)
+          jq -n --argjson urls "$urls" '{host: "getbilldarapp.com", key: env.KEY, keyLocation: ("https://getbilldarapp.com/" + env.KEY + ".txt"), urlList: $urls}' \
             | curl -sS -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data-binary @- -o /dev/null -w 'IndexNow: HTTP %{http_code}\n'
